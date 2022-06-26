@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+
+    <!-- CSS -->
+    <link href="./bootstrap.min.css" rel="stylesheet">
+
+    <!-- jQuery first, then Popper and Bootstrap -->
+    <script type='text/javascript' src='./jquery-3.6.0.js'></script>
+    <script type='text/javascript' src='./jquery.cookie.min.js'></script>
+    <script type='text/javascript' src='./popper.min.js'></script>
+    <script type='text/javascript' src='./bootstrap.min.js'></script>
+
+    <!-- App -->
+    <script src="./events/onload.js"></script>
+
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-nav" aria-controls="navbar-nav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbar-nav">
+
+            <ul class="navbar-nav me-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="#">Users</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Volumes</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Tags</a>
+              </li>
+              <li class="nav-item">
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-light" type="submit">Search</button>
+                  </form>
+              </li>
+            </ul>
+
+
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                  <a class="nav-link" href="#">Register</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Restore</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Signin</a>
+                </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Jogn Doe
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+                  <li><a class="dropdown-item" href="#">Select</a></li>
+                  <li><a class="dropdown-item" href="#">Update</a></li>
+                  <li><a class="dropdown-item" href="#">Signout</a></li>
+                </ul>
+              </li>
+            </ul>
+
+          </div>
+        </div>
+      </nav>
+    <!-- End -->
+
+    <h1>Hello, world!</h1>
+  </body>
+</html>
