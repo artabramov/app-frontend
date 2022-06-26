@@ -6,16 +6,15 @@
     <title>Bootstrap demo</title>
 
     <!-- CSS -->
-    <link href="./bootstrap.min.css" rel="stylesheet">
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- jQuery first, then Popper and Bootstrap -->
-    <script type='text/javascript' src='./jquery-3.6.0.js'></script>
-    <script type='text/javascript' src='./jquery.cookie.min.js'></script>
-    <script type='text/javascript' src='./popper.min.js'></script>
-    <script type='text/javascript' src='./bootstrap.min.js'></script>
-
-    <!-- App -->
-    <script src="./events/onload.js"></script>
+    <!-- jQuery first, then Popper and Bootstrap, then other -->
+    <script type='text/javascript' src='./js/jquery-3.6.0.js'></script>
+    <script type='text/javascript' src='./js/jquery.cookie.min.js'></script>
+    <script type='text/javascript' src='./js/popper.min.js'></script>
+    <script type='text/javascript' src='./js/bootstrap.min.js'></script>
+    <script type='text/javascript' src="./js/scripts.js"></script>
+    <script type='text/javascript' src="./js/i18n.js"></script>
 
   </head>
   <body>
@@ -29,37 +28,31 @@
 
             <ul class="navbar-nav me-auto">
               <li class="nav-item">
-                <a class="nav-link" href="#">Users</a>
+                <a id="navbar-users" class="nav-link" href="#">Users</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Volumes</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Tags</a>
+                <a id="navbar-volumes" class="nav-link" href="#">Volumes</a>
               </li>
               <li class="nav-item">
                 <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-light" type="submit">Search</button>
+                    <input id="navbar-search-input" class="form-control me-2" type="search" placeholder="search!" aria-label="Search">
+                    <button id="navbar-search-submit" class="btn btn-outline-light" type="submit">Search</button>
                   </form>
               </li>
             </ul>
 
-
             <ul class="navbar-nav ml-auto">
               <li class="nav-item">
-                  <a class="nav-link" href="#">Register</a>
+                  <a id="navbar-register" class="nav-link" href="#offcanvas-user-register" data-bs-toggle="offcanvas">Register</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Restore</a>
+                  <a id="navbar-restore" class="nav-link" href="#offcanvas-user-restore" data-bs-toggle="offcanvas">Restore</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Signin</a>
+                  <a id="navbar-signin" class="nav-link" href="#offcanvas-user-signin" data-bs-toggle="offcanvas">Signin</a>
                 </li>
               <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Jogn Doe
-                </a>
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">John Doe</a>
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
                   <li><a class="dropdown-item" href="#">Select</a></li>
                   <li><a class="dropdown-item" href="#">Update</a></li>
@@ -71,8 +64,121 @@
           </div>
         </div>
       </nav>
+
+    <!-- Offcanvas user register -->
+
+    <div id="offcanvas-user-register" class="offcanvas offcanvas-end" tabindex="-1" aria-labelledby="offcanvas-user-register-title">
+      <div class="offcanvas-header">
+        <h5 id="offcanvas-user-register-title" class="offcanvas-title">Register</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        <div>
+          Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists, etc.
+        </div>
+      </div>
+    </div>
+
+    <!-- Offcanvas user restore -->
+
+    <div id="offcanvas-user-restore" class="offcanvas offcanvas-end" tabindex="-1" aria-labelledby="offcanvas-user-restore-title">
+      <div class="offcanvas-header">
+        <h5 id="offcanvas-user-restore-title" class="offcanvas-title">Restore</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        <div>
+          Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists, etc.
+        </div>
+      </div>
+    </div>
+
+    <!-- Offcanvas user signin -->
+
+    <div id="offcanvas-user-signin" class="offcanvas offcanvas-end" tabindex="-1" aria-labelledby="offcanvas-user-signin-title">
+      <div class="offcanvas-header">
+        <h5 id="offcanvas-user-signin-title" class="offcanvas-title">Signin</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        <div>
+          Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists, etc.
+        </div>
+      </div>
+    </div>
+
+    <!-- Offcanvas volume insert -->
+
+    <div id="offcanvas-volume-insert" class="offcanvas offcanvas-start" tabindex="-1" aria-labelledby="offcanvas-volume-insert-title">
+      <div class="offcanvas-header">
+        <h5 id="offcanvas-volume-insert-title" class="offcanvas-title">Volume insert</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        <div>
+          Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists, etc.
+        </div>
+      </div>
+    </div>
+
+    <!-- Offcanvas post insert -->
+
+    <div id="offcanvas-post-insert" class="offcanvas offcanvas-start" tabindex="-1" aria-labelledby="offcanvas-post-insert-title">
+      <div class="offcanvas-header">
+        <h5 id="offcanvas-post-insert-title" class="offcanvas-title">Post insert</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        <div>
+          Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists, etc.
+        </div>
+      </div>
+    </div>
+
+    <!-- Offcanvas comment insert -->
+
+    <div id="offcanvas-comment-insert" class="offcanvas offcanvas-start" tabindex="-1" aria-labelledby="offcanvas-comment-insert-title">
+      <div class="offcanvas-header">
+        <h5 id="offcanvas-comment-insert-title" class="offcanvas-title">Comment insert</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        <div>
+          Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists, etc.
+        </div>
+      </div>
+    </div>
+
+    <!-- Users -->
+
+    <div id="tab-users" class="container-fluid">
+      <h1 id="tab-users-title" class="d-inline">Users</h1>
+    </div>
+
+    <!-- Volumes -->
+
+    <div id="tab-volumes" class="container-fluid">
+      <h1 id="tab-volumes-title" class="d-inline">Volumes</h1>
+      <a id="tab-volumes-insert" class="btn btn-outline-primary" href="#offcanvas-volume-insert" data-bs-toggle="offcanvas">Insert volume</a>
+    </div>
+
+    <!-- Posts -->
+
+    <div id="tab-posts" class="container-fluid">
+      <h1 id="tab-posts-title" class="d-inline">Posts</h1>
+      <a id="tab-posts-insert" class="btn btn-outline-primary" href="#offcanvas-post-insert" data-bs-toggle="offcanvas">Insert post</a>
+    </div>
+
+    <!-- Comments -->
+
+    <div id="tab-comments" class="container-fluid">
+      <h1 id="tab-comments-title" class="d-inline">Comments</h1>
+      <a id="tab-comments-insert" class="btn btn-outline-primary" href="#offcanvas-comment-insert" data-bs-toggle="offcanvas">Insert comment</a>
+    </div>
+
     <!-- End -->
 
-    <h1>Hello, world!</h1>
+    
+
   </body>
 </html>
