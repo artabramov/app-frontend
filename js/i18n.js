@@ -29,6 +29,7 @@ const I18N =
     "navbar": {
         "users": "Пользователи",
         "volumes": "Хранилища",
+        "categories": "Категории",
         "search-submit": "Найти",
         "register": "Регистрация",
         "restore": "Восстановление",
