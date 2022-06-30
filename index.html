@@ -46,7 +46,7 @@
 
             <ul class="navbar-nav ml-auto">
               <li class="nav-item">
-                  <a id="navbar-register" class="nav-link" href="#offcanvas-user-register" data-bs-toggle="offcanvas">Register</a>
+                  <a id="navbar-register" class="btn btn-outline-light" href="#offcanvas-user-register" data-bs-toggle="offcanvas">Register</a>
                 </li>
                 <li class="nav-item">
                   <a id="navbar-restore" class="nav-link" href="#offcanvas-user-restore" data-bs-toggle="offcanvas">Restore</a>
@@ -76,9 +76,40 @@
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
       <div class="offcanvas-body">
-        <div>
-          Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists, etc.
+
+        <div class="mb-3 form-text">
+          Containers are the most basic layout element in Bootstrap and are required when using our default grid system. 
         </div>
+
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control" id="offcanvas-user-register-user-login" placeholder="User login">
+          <label for="offcanvas-user-register-user-login">User login</label>
+          <div id="offcanvas-user-register-user-login-error" class="form-text text-danger d-none"></div>
+        </div>
+
+        <div class="form-floating mb-3">
+          <input type="password" class="form-control" id="offcanvas-user-register-user-pass" placeholder="User password">
+          <label for="offcanvas-user-register-user-pass">User password</label>
+          <div id="offcanvas-user-register-user-pass-error" class="form-text text-danger d-none"></div>
+        </div>
+
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control" id="offcanvas-user-register-user-name" placeholder="User name">
+          <label for="offcanvas-user-register-user-name">User name</label>
+          <div id="offcanvas-user-register-user-name-error" class="form-text text-danger d-none"></div>
+        </div>
+
+        <div class="form-check form-switch">
+          <input class="form-check-input" type="checkbox" role="switch" id="offcanvas-user-register-check">
+          <label class="form-check-label" for="offcanvas-user-register-check">Default switch checkbox input </label> <a href="#">user agreement</a>
+        </div>
+
+        <button id="offcanvas-user-register-submit" type="button" class="btn btn-primary" disabled>
+          Primary
+        </button>
+
+
+        
       </div>
     </div>
 
@@ -180,8 +211,6 @@
     </div>
 
     <!-- End -->
-
-    
 
   </body>
 </html>

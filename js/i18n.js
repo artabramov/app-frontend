@@ -1,6 +1,10 @@
-const I18N_IGNORE = ['months', 'sizes', 'navbar-search-input'];
+const I18N_IGNORE = ['errors', 'months', 'sizes', 'navbar-search-input'];
 const I18N =
 {
+    "errors": {
+        "Invalid value.": "Некорректное значение. ",
+        "Already exists.": "Уже существует. ",
+    },
     "months": {
         "1": "января",
         "2": "февраля",
