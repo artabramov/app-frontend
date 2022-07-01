@@ -27,10 +27,12 @@ function enable_toggle(form_id) {
 
 function enable_submit(form_id) {
     $(form_id + '-submit').prop('disabled', false);
+    $(form_id + '-spinner').addClass('d-none');
 }
 
 function disable_submit(form_id) {
     $(form_id + '-submit').prop('disabled', true);
+    $(form_id + '-spinner').removeClass('d-none');
 }
 
 function show_errors(form_id, errors) {
@@ -72,6 +74,10 @@ function hide_form(form_id) {
     $(form_id).offcanvas('hide');    
 }
 
+function show_form(form_id) {
+    $(form_id).offcanvas('show');
+}
+
 // -- user register --
 $(document).ready(function(){
     let form_id = '#offcanvas-user-register';
@@ -79,22 +85,27 @@ $(document).ready(function(){
     $('#offcanvas-user-register-submit').click(function(){
         hide_errors(form_id);
         disable_submit(form_id);
-        let user_login = $('#offcanvas-user-register-user-login').val();
-        let user_pass = $('#offcanvas-user-register-user-pass').val();
-        let user_name = $('#offcanvas-user-register-user-name').val();
+
+        let user_login = $(form_id + '-user-login').val();
+        let user_pass = $(form_id + '-user-pass').val();
+        let user_name = $(form_id + '-user-name').val();
 
         $.ajax({
             method: 'POST',
             url: APP_URL + 'user/?user_login=' + user_login + '&user_name=' + user_name + '&user_pass=' + user_pass,
             dataType: 'json',
-            success: function(data) {
-                if(APP_DEBUG) {console.log(data);}
-                if($.isEmptyObject(data.errors)) {
+            success: function(msg) {
+                if(APP_DEBUG) {console.log(msg);}
+                if($.isEmptyObject(msg.errors)) {
                     hide_form(form_id);
                     clear_form(form_id);
                     enable_submit(form_id);
+
+                    $('#offcanvas-user-register-done-totp-image').attr('src', msg.data.totp_qrcode);
+                    $('#offcanvas-user-register-done-totp-key').text(msg.data.totp_key);
+                    show_form(form_id + '-done');
                 } else {
-                    show_errors(form_id, data.errors);
+                    show_errors(form_id, msg.errors);
                     enable_submit(form_id);
                 }
             },
@@ -103,27 +114,7 @@ $(document).ready(function(){
                 enable_submit(form_id);
             }
         });
-        /*
-        .done(function(msg) {
-            if(APP_DEBUG) {
-                console.log(msg);
-            }
-            before_submit('offcanvas-user-register');
-            if(msg.success == 'true') {
-                console.log('done');
-                //var user_email = $('#form-user-register-email').val();
-                //hideforms();
-                //clearforms();
-                //$('#form-user-signin').offcanvas('show');
-                //$('#form-user-signin-email').val(user_email);
-            } else {
-                console.log('error');
-                // Show error, enable submit & hide spinner
-                //$('#form-user-register-error').text(I18N['errors'][msg.error.code]);
-                //$('#form-user-register-error').removeClass('d-none');
-                //$('#form-user-register-submit').prop('disabled', false);
-                //$('#form-user-register-spinner').addClass('d-none');
-            }
-        */
     });
 });
+
+

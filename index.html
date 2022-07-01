@@ -55,7 +55,9 @@
                   <a id="navbar-signin" class="nav-link" href="#offcanvas-user-signin" data-bs-toggle="offcanvas">Signin</a>
                 </li>
               <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">John Doe</a>
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  John Doe
+                </a>
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
                   <li><a class="dropdown-item" href="#">Select</a></li>
                   <li><a class="dropdown-item" href="#">Update</a></li>
@@ -82,34 +84,70 @@
         </div>
 
         <div class="form-floating mb-3">
-          <input type="text" class="form-control" id="offcanvas-user-register-user-login" placeholder="User login">
+          <input id="offcanvas-user-register-user-login" class="form-control" type="text" placeholder="User login">
           <label for="offcanvas-user-register-user-login">User login</label>
           <div id="offcanvas-user-register-user-login-error" class="form-text text-danger d-none"></div>
         </div>
 
         <div class="form-floating mb-3">
-          <input type="password" class="form-control" id="offcanvas-user-register-user-pass" placeholder="User password">
+          <input id="offcanvas-user-register-user-pass" class="form-control" type="password" placeholder="User password">
           <label for="offcanvas-user-register-user-pass">User password</label>
           <div id="offcanvas-user-register-user-pass-error" class="form-text text-danger d-none"></div>
         </div>
 
         <div class="form-floating mb-3">
-          <input type="text" class="form-control" id="offcanvas-user-register-user-name" placeholder="User name">
+          <input id="offcanvas-user-register-user-name" class="form-control" type="text" placeholder="User name">
           <label for="offcanvas-user-register-user-name">User name</label>
           <div id="offcanvas-user-register-user-name-error" class="form-text text-danger d-none"></div>
         </div>
 
         <div class="form-check form-switch">
-          <input class="form-check-input" type="checkbox" role="switch" id="offcanvas-user-register-check">
+          <input id="offcanvas-user-register-check" class="form-check-input" type="checkbox" role="switch">
           <label class="form-check-label" for="offcanvas-user-register-check">Default switch checkbox input </label> <a href="#">user agreement</a>
         </div>
 
-        <button id="offcanvas-user-register-submit" type="button" class="btn btn-primary" disabled>
+        <button id="offcanvas-user-register-submit" class="btn btn-primary" type="button" disabled>
           Primary
         </button>
 
-
+        <div id="offcanvas-user-register-spinner" class="spinner-border spinner-border-sm text-primary d-none" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
         
+      </div>
+    </div>
+
+    <!-- Offcanvas user register done -->
+
+    <div id="offcanvas-user-register-done" class="offcanvas offcanvas-end" tabindex="-1" aria-labelledby="offcanvas-user-register-done-title">
+      <div class="offcanvas-header">
+        <h5 id="offcanvas-user-register-done-title" class="offcanvas-title">User register done</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+
+        <div id="offcanvas-user-register-done-text-1" class="mb-3 form-text">
+          Scan the image below with an authentication app, such as Google Authenticator, on your phone and save your secret key.
+        </div>
+
+        <div class="mb-3 form-text text-center">
+          <img id="offcanvas-user-register-done-totp-image" src="#" alt="User TOTP">
+        </div>
+
+        <div id="offcanvas-user-register-done-text-2" class="mb-3 form-text">
+          If you can't scan the image, type this key instead:
+        </div>
+
+        <div class="mb-3 form-text text-center">
+          <strong id="offcanvas-user-register-done-totp-key">TOTP</strong>
+        </div>
+
+        <div id="offcanvas-user-register-done-text-3" class="mb-3 form-text">
+          Sign in using the one-time password:
+        </div>
+
+        <a id="offcanvas-user-register-done-submit" class="btn btn-primary" role="button" href="#offcanvas-user-signin" data-bs-toggle="offcanvas">Go ahead</a>
+
       </div>
     </div>
 
@@ -135,9 +173,31 @@
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
       <div class="offcanvas-body">
-        <div>
-          Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists, etc.
+
+        <div class="form-floating mb-3">
+          <input id="offcanvas-user-signin-user-login" class="form-control" type="text" placeholder="User login">
+          <label for="offcanvas-user-signin-user-login">User login</label>
+          <div id="offcanvas-user-signin-user-login-error" class="form-text text-danger d-none"></div>
         </div>
+
+        <div class="mb-3 form-text">
+          Use the password generated by the authentication app on your phone.
+        </div>
+
+        <div class="form-floating mb-3">
+          <input id="offcanvas-user-signin-user-totp" class="form-control" type="text" placeholder="One-time password">
+          <label for="offcanvas-user-signin-user-totp">One-time password</label>
+          <div id="offcanvas-user-signin-user-totp-error" class="form-text text-danger d-none"></div>
+        </div>
+
+        <button id="offcanvas-user-signin-submit" class="btn btn-primary" type="button" disabled>
+          Go ahead
+        </button>
+
+        <div id="offcanvas-user-signin-spinner" class="spinner-border spinner-border-sm text-primary d-none" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+
       </div>
     </div>
 
