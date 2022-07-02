@@ -49,19 +49,17 @@
                   <a id="navbar-register" class="btn btn-outline-light" href="#offcanvas-user-register" data-bs-toggle="offcanvas">Register</a>
                 </li>
                 <li class="nav-item">
-                  <a id="navbar-restore" class="nav-link" href="#offcanvas-user-restore" data-bs-toggle="offcanvas">Restore</a>
-                </li>
-                <li class="nav-item">
                   <a id="navbar-signin" class="nav-link" href="#offcanvas-user-signin" data-bs-toggle="offcanvas">Signin</a>
                 </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <li id="navbar-user" class="nav-item dropdown">
+                <a id="navbar-user-name" class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   John Doe
                 </a>
-                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                  <li><a class="dropdown-item" href="#">Select</a></li>
-                  <li><a class="dropdown-item" href="#">Update</a></li>
-                  <li><a class="dropdown-item" href="#">Signout</a></li>
+                <ul id="navbar-user-dropdown" class="dropdown-menu dropdown-menu-end dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+                  <li><a id="navbar-user-select" class="dropdown-item" href="#">Select</a></li>
+                  <li><a id="navbar-user-update" class="dropdown-item" href="#">Update</a></li>
+                  <li><a id="navbar-user-signout" class="dropdown-item" href="#">Signout</a></li>
+                  <li><a id="navbar-temp" class="dropdown-item" href="#">Temp</a></li>
                 </ul>
               </li>
             </ul>
@@ -161,9 +159,11 @@
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
       <div class="offcanvas-body">
-        <div>
+
+        <div id="offcanvas-user-restore-text-1" class="mb-3 form-text">
           Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists, etc.
         </div>
+
       </div>
     </div>
 
@@ -190,6 +190,10 @@
           <input id="offcanvas-user-signin-user-totp" class="form-control" type="text" placeholder="One-time code">
           <label for="offcanvas-user-signin-user-totp">One-time code</label>
           <div id="offcanvas-user-signin-user-totp-error" class="form-text text-danger d-none"></div>
+        </div>
+
+        <div id="offcanvas-user-signin-text-2" class="mb-3 form-text">
+          Have you run out of attempts to use a one-time code? Use password to <a id="offcanvas-user-signin-user-restore" href="#">restore them</a>.
         </div>
 
         <button id="offcanvas-user-signin-submit" class="btn btn-primary" type="button">

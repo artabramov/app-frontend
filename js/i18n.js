@@ -62,6 +62,7 @@ const I18N =
     },
     "offcanvas-user-signin": {
         "title": "Вход",
+        "text-2": "Закончились оппытки использования одноразового кода? Используйте пароль чтобы <a id=\"offcanvas-user-signin-user-restore\" href=\"#\">восстановить их</a>.",
     },
     "offcanvas-volume-insert": {
         "title": "Добавить хранилище",
