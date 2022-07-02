@@ -26,12 +26,13 @@ $(document).ready(function(){
 // -- navbar --
 
 function update_navbar() {
-    if(USER_DATA) {
-        $('#navbar-user-name').text(USER_DATA.user_name);
-        $('#navbar-user').removeClass('d-none');
-    } else {
+    console.log(USER_DATA);
+    if($.isEmptyObject(USER_DATA)) {
         $('#navbar-user-name').text('');
         $('#navbar-user').addClass('d-none');
+    } else {
+        $('#navbar-user-name').text(USER_DATA.user_name);
+        $('#navbar-user').removeClass('d-none');
     }
 }
 
