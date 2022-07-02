@@ -1,6 +1,10 @@
 const APP_URL = 'http://localhost/app/';
 const APP_DEBUG = true;
 
+// -- user token --
+let USER_TOKEN = !$.cookie('user-token') ? '' : $.cookie('user-token');
+console.log(USER_TOKEN);
+
 // -- i18n --
 $(document).ready(function(){
     $.each(I18N, function(key, value) {
@@ -137,6 +141,11 @@ $(document).ready(function(){
                     //hide_form(form_id);
                     clear_form(form_id);
                     enable_submit(form_id);
+                    
+
+                    USER_TOKEN = msg.data.user_token;
+                    $.cookie('user-token', USER_TOKEN);
+                    console.log(USER_TOKEN);
 
                 } else {
                     show_errors(form_id, msg.errors);
