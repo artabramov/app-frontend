@@ -31,6 +31,8 @@ function update_navbar() {
         $('#navbar-categories').addClass('d-none');
         $('#navbar-search-input').addClass('d-none');
         $('#navbar-search-submit').addClass('d-none');
+        $('#navbar-register').removeClass('d-none');
+        $('#navbar-signin').removeClass('d-none');
         $('#navbar-user-name').text('');
         $('#navbar-user').addClass('d-none');
     } else {
@@ -39,6 +41,8 @@ function update_navbar() {
         $('#navbar-categories').removeClass('d-none');
         $('#navbar-search-input').removeClass('d-none');
         $('#navbar-search-submit').removeClass('d-none');
+        $('#navbar-register').addClass('d-none');
+        $('#navbar-signin').addClass('d-none');
         $('#navbar-user-name').text(USER_DATA.user_name);
         $('#navbar-user').removeClass('d-none');
     }
