@@ -4,6 +4,14 @@ const I18N =
     "errors": {
         "Invalid value.": "Некорректное значение. ",
         "Already exists.": "Уже существует. ",
+        'Empty value.': "Пустое значение. ",
+        'Value not found.': "Значение не найдено. ",
+        'Value is occupied.': "Значение уже занято. ",
+        'Attempts are over.': "Попытки исчерпаны. ",
+        'Permission denied.': "В доступе отказано. ",
+        'Permission suspended.': "Доступ приостановлен. ",
+        'Permission expired.': "Период доступа истек. ",
+        'File error.': "Файловая ошибка. ",
     },
     "months": {
         "1": "января",
@@ -43,9 +51,9 @@ const I18N =
     "offcanvas-user-register": {
         "title": "Регистрация",
     },
-    "offcanvas-user-register-done": {
+    "offcanvas-user-register-after": {
         "text-1": "Отсканируйте это изображение с помощью приложения для аутентификации, например Google Authenticator, и сохраните свой секретный ключ.",
-        "text-2": "Если вы не можете отсканировать изображение, введите вручную этот ключ:",
+        "text-2": "Если вы не можете отсканировать изображение, введите ключ вручную:",
         "text-3": "Войти с помощью одноразового пароля:",
         "submit": "Вперед",
     },

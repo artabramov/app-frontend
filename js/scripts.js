@@ -101,9 +101,43 @@ $(document).ready(function(){
                     clear_form(form_id);
                     enable_submit(form_id);
 
-                    $('#offcanvas-user-register-done-totp-image').attr('src', msg.data.totp_qrcode);
-                    $('#offcanvas-user-register-done-totp-key').text(msg.data.totp_key);
-                    show_form(form_id + '-done');
+                    $('#offcanvas-user-register-after-totp-image').attr('src', msg.data.totp_qrcode);
+                    $('#offcanvas-user-register-after-totp-key').text(msg.data.totp_key);
+                    show_form(form_id + '-after');
+                } else {
+                    show_errors(form_id, msg.errors);
+                    enable_submit(form_id);
+                }
+            },
+            error: function(xhr, status, error) {
+                if(APP_DEBUG) {console.log(error);}
+                enable_submit(form_id);
+            }
+        });
+    });
+});
+
+// -- user signin --
+$(document).ready(function(){
+    let form_id = '#offcanvas-user-signin';
+    $(form_id + '-submit').click(function(){
+        let user_login = $(form_id + '-user-login').val();
+        let user_totp = $(form_id + '-user-totp').val();
+        
+        disable_submit(form_id);
+        hide_errors(form_id);
+
+        $.ajax({
+            method: 'GET',
+            url: APP_URL + 'token/?user_login=' + user_login + '&user_totp=' + user_totp,
+            dataType: 'json',
+            success: function(msg) {
+                if(APP_DEBUG) {console.log(msg);}
+                if($.isEmptyObject(msg.errors)) {
+                    //hide_form(form_id);
+                    clear_form(form_id);
+                    enable_submit(form_id);
+
                 } else {
                     show_errors(form_id, msg.errors);
                     enable_submit(form_id);
