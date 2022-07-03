@@ -207,7 +207,7 @@ $(document).ready(function(){
 // -- temp --
 $(document).ready(function(){
     $('#navbar-temp').click(function(){
-        //console.log(USER_DATA);
+        console.log(USER_DATA);
     });
 });
 
