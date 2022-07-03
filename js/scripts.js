@@ -1,4 +1,5 @@
 const APP_URL = 'http://localhost/app/';
+//const APP_URL = 'http://localhost:5000/';
 
 // -- user --
 //let USER_TOKEN = 'eyJ1c2VyX2lkIjogNzIsICJ1c2VyX25hbWUiOiAiQXJ0ZW0gQWJyYW1vdiIsICJ1c2VyX3N0YXR1cyI6ICJhZG1pbiIsICJ0b2tlbl9zaWduYXR1cmUiOiAidTJtY2swYnJaU3ZXams5V3R1NFNGdmUxMTBoOUM3N05zVHpvcG5xWmJ0SDAxUUdSM2lRZkp4UE9OeWgwMHQwazY0THdhWUQ1MVRrSmJadTVGTlhUT29PRXVtakJBQ2FOM2QzTm11M2tzVTRKY1JWeHU5bXZlT09UbWFuQkxHRG4iLCAidG9rZW5fZXhwaXJlcyI6IDE2NTc0NTM0ODMuNjczMzcxNn0=';
@@ -130,6 +131,8 @@ $(document).ready(function(){
             url: APP_URL + 'user/?user_login=' + user_login + '&user_name=' + user_name + '&user_pass=' + user_pass,
             dataType: 'json',
             success: function(msg) {
+                console.log(msg);
+
                 if($.isEmptyObject(msg.errors)) {
                     hide_form(form_id);
                     clear_form(form_id);
@@ -203,6 +206,7 @@ $(document).ready(function(){
             dataType: 'json',
             success: function(msg) {
                 console.log(msg);
+
                 if($.isEmptyObject(msg.errors)) {
                     $.cookie('user-token', '', { expires: -1 });
                     USER_TOKEN = '';
