@@ -2,8 +2,8 @@ const APP_URL = 'http://localhost/app/';
 //const APP_URL = 'http://localhost:5000/';
 
 // -- user --
-//let USER_TOKEN = 'eyJ1c2VyX2lkIjogNzIsICJ1c2VyX25hbWUiOiAiQXJ0ZW0gQWJyYW1vdiIsICJ1c2VyX3N0YXR1cyI6ICJhZG1pbiIsICJ0b2tlbl9zaWduYXR1cmUiOiAiMXZ1YkRNUklvRWVHNGxUb1h2MVJJbHBjUzhWVHUzNURTcEVzdEwwR0lQWEN6cVc1WmRiOU9kd2o3ZzU5QlNOUzRYSGVQUGNtc1lvNDU0dFp5eVY3SnVLenk3bzk4bjdLTFBudk9QeUx5UUxBU3kyckMybW9vQ3I0VXljeElMZXgiLCAidG9rZW5fZXhwaXJlcyI6IDE2NTc0NjgwNDIuMjc5NzA1fQ==';
-let USER_TOKEN = !$.cookie('user-token') ? '' : $.cookie('user-token');
+let USER_TOKEN = "eyJ1c2VyX2lkIjogNzIsICJ1c2VyX25hbWUiOiAiQXJ0ZW0gQWJyYW1vdiIsICJ1c2VyX3N0YXR1cyI6ICJhZG1pbiIsICJ0b2tlbl9zaWduYXR1cmUiOiAicXUxMzY3dTI5akJwZldCaEF4MUJCS1BSM285ekZabXBRa1Z3aGJRNjhma21ZWHlpSklDaW9BOUEzc1lVSjdxaEx2R3hYSnFZRjE0YmJCdjZnSkRGZlV0ZjJid0lCV2FORDVhVU1rY2FWbWZhZnRWRjJpVDAzdnM1MXhETkI0YlMiLCAidG9rZW5fZXhwaXJlcyI6IDE2NTc0Njk1MzMuMTM4MzE4fQ==";
+//let USER_TOKEN = !$.cookie('user-token') ? '' : $.cookie('user-token');
 let USER_DATA = !USER_TOKEN ? {} : JSON.parse(atob(USER_TOKEN));
 console.log(USER_TOKEN);
 
@@ -36,6 +36,9 @@ function update_navbar() {
         $('#navbar-signin').removeClass('d-none');
         $('#navbar-user-name').text('');
         $('#navbar-user').addClass('d-none');
+
+        $('#navbar-user-select').on('click', function() {});
+
     } else {
         $('#navbar-users').removeClass('d-none');
         $('#navbar-volumes').removeClass('d-none');
@@ -46,6 +49,10 @@ function update_navbar() {
         $('#navbar-signin').addClass('d-none');
         $('#navbar-user-name').text(USER_DATA.user_name);
         $('#navbar-user').removeClass('d-none');
+
+        $('#navbar-user-select').on('click', function() {
+            show_form_user_select(USER_DATA.user_id);
+        });
     }
 }
 
@@ -113,6 +120,20 @@ function show_form(form_id) {
     $(form_id).offcanvas('show');
 }
 
+function show_form_user_select(user_id) {
+
+    if(user_id == USER_DATA.user_id) {
+        $('#offcanvas-user-select').removeClass('offcanvas-start');
+        $('#offcanvas-user-select').addClass('offcanvas-end');
+    } else {
+        $('#offcanvas-user-select').addClass('offcanvas-start');
+        $('#offcanvas-user-select').removeClass('offcanvas-end');
+    }
+
+    console.log(user_id);
+    show_form('#offcanvas-user-select');
+}
+
 // -- user register --
 $(document).ready(function(){
     let form_id = '#offcanvas-user-register';
@@ -125,7 +146,6 @@ $(document).ready(function(){
 
         hide_errors(form_id);
         disable_submit(form_id);
-
         $.ajax({
             method: 'POST',
             url: APP_URL + 'user/?user_login=' + user_login + '&user_name=' + user_name + '&user_pass=' + user_pass,
@@ -135,12 +155,13 @@ $(document).ready(function(){
 
                 if($.isEmptyObject(msg.errors)) {
                     hide_form(form_id);
-                    clear_form(form_id);
-                    enable_submit(form_id);
 
                     $(form_id + '-after-totp-image').attr('src', msg.data.totp_qrcode);
                     $(form_id + '-after-totp-key').text(msg.data.totp_key);
                     show_form(form_id + '-after');
+
+                    clear_form(form_id);
+                    enable_submit(form_id);
 
                 } else {
                     show_errors(form_id, msg.errors);
@@ -161,10 +182,9 @@ $(document).ready(function(){
     $(form_id + '-submit').click(function(){
         let user_login = $(form_id + '-user-login').val();
         let user_totp = $(form_id + '-user-totp').val();
-        
+
         disable_submit(form_id);
         hide_errors(form_id);
-        
         $.ajax({
             method: 'GET',
             url: APP_URL + 'token/?user_login=' + user_login + '&user_totp=' + user_totp,
@@ -214,11 +234,47 @@ $(document).ready(function(){
     });
 });
 
-// -- user restore --
+// -- user signin > user restore --
 $(document).ready(function(){
     $('#offcanvas-user-signin-user-restore').click(function(){
         hide_form('#offcanvas-user-signin');
         show_form('#offcanvas-user-restore');
+    });
+});
+
+// -- user restore --
+$(document).ready(function(){
+    let form_id = '#offcanvas-user-restore';
+
+    $(form_id + '-submit').click(function(){
+        let user_login = $(form_id + '-user-login').val();
+        let user_pass = $(form_id + '-user-pass').val();
+
+        disable_submit(form_id);
+        hide_errors(form_id);
+        $.ajax({
+            method: 'GET',
+            url: APP_URL + 'pass/?user_login=' + user_login + '&user_pass=' + user_pass,
+            dataType: 'json',
+            success: function(msg) {
+                console.log(msg);
+
+                if($.isEmptyObject(msg.errors)) {
+                    hide_form(form_id);
+                    show_form(form_id + '-after');
+
+                    clear_form(form_id);
+                    enable_submit(form_id);
+
+                } else {
+                    show_errors(form_id, msg.errors);
+                    enable_submit(form_id);
+                }
+            },
+            error: function(xhr, status, error) {
+                enable_submit(form_id);
+            }
+        });
     });
 });
 
