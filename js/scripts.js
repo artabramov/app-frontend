@@ -4,7 +4,7 @@ const APP_URL = 'http://localhost/app/';
 //let USER_TOKEN = 'eyJ1c2VyX2lkIjogNzIsICJ1c2VyX25hbWUiOiAiQXJ0ZW0gQWJyYW1vdiIsICJ0b2tlbl9zaWduYXR1cmUiOiAidTJtY2swYnJaU3ZXams5V3R1NFNGdmUxMTBoOUM3N05zVHpvcG5xWmJ0SDAxUUdSM2lRZkp4UE9OeWgwMHQwazY0THdhWUQ1MVRrSmJadTVGTlhUT29PRXVtakJBQ2FOM2QzTm11M2tzVTRKY1JWeHU5bXZlT09UbWFuQkxHRG4iLCAidG9rZW5fZXhwaXJlcyI6IDE2NTczODUzOTYuMzg4NjYxOX0=';
 let USER_TOKEN = !$.cookie('user-token') ? '' : $.cookie('user-token');
 let USER_DATA = !USER_TOKEN ? {} : JSON.parse(atob(USER_TOKEN));
-//console.log(USER_DATA);
+console.log(USER_TOKEN);
 
 // -- update navbar on onload --
 $(document).ready(function(){
