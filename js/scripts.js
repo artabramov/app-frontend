@@ -204,15 +204,13 @@ $(document).ready(function(){
             dataType: 'json',
             success: function(msg) {
                 console.log(msg);
-
-                if($.isEmptyObject(msg.errors)) {
-                    $.cookie('user-token', '', { expires: -1 });
-                    USER_TOKEN = '';
-                    USER_DATA = {};
-                    update_navbar();
-                }
             }
         });
+
+        $.cookie('user-token', '', { expires: -1 });
+        USER_TOKEN = '';
+        USER_DATA = {};
+        update_navbar();
     });
 });
 
