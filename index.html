@@ -158,8 +158,44 @@
       </div>
       <div class="offcanvas-body">
 
+        <div class="form-floating mb-3">
+          <input id="offcanvas-user-restore-user-login" class="form-control" type="text" placeholder="User login">
+          <label for="offcanvas-user-restore-user-login">User login</label>
+          <div id="offcanvas-user-restore-user-login-error" class="form-text text-danger d-none"></div>
+        </div>
+
         <div id="offcanvas-user-restore-text-1" class="mb-3 form-text">
           Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists, etc.
+        </div>
+
+        <div class="form-floating mb-3">
+          <input id="offcanvas-user-restore-user-pass" class="form-control" type="password" placeholder="User password">
+          <label for="offcanvas-user-restore-user-pass">User password</label>
+          <div id="offcanvas-user-restore-user-pass-error" class="form-text text-danger d-none"></div>
+        </div>
+
+        <button id="offcanvas-user-restore-submit" class="btn btn-primary" type="button" disabled>
+          Go ahead
+        </button>
+
+        <div id="offcanvas-user-restore-spinner" class="spinner-border spinner-border-sm text-primary d-none" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Offcanvas user restore after -->
+
+    <div id="offcanvas-user-restore-after" class="offcanvas offcanvas-end" tabindex="-1" aria-labelledby="offcanvas-user-restore-after-title">
+      <div class="offcanvas-header">
+        <h5 id="offcanvas-user-restore-after-title" class="offcanvas-title">User restore after</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+
+        <div id="offcanvas-user-restore-after-text-1" class="mb-3 form-text">
+          Offcanvas is a sidebar component that can be toggled via JavaScript to appear from the left, right, top, or bottom edge of the viewport.
         </div>
 
       </div>
