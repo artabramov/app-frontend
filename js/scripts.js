@@ -202,6 +202,7 @@ $(document).ready(function(){
             url: APP_URL + 'token/',
             dataType: 'json',
             success: function(msg) {
+                console.log(msg);
                 if($.isEmptyObject(msg.errors)) {
                     $.cookie('user-token', '', { expires: -1 });
                     USER_TOKEN = '';
