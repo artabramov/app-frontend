@@ -2,8 +2,8 @@ const APP_URL = 'http://localhost/app/';
 //const APP_URL = 'http://localhost:5000/';
 
 // -- user --
-let USER_TOKEN = "eyJ1c2VyX2lkIjogNzIsICJ1c2VyX25hbWUiOiAiQXJ0ZW0gQWJyYW1vdiIsICJ1c2VyX3N0YXR1cyI6ICJhZG1pbiIsICJ0b2tlbl9zaWduYXR1cmUiOiAicXUxMzY3dTI5akJwZldCaEF4MUJCS1BSM285ekZabXBRa1Z3aGJRNjhma21ZWHlpSklDaW9BOUEzc1lVSjdxaEx2R3hYSnFZRjE0YmJCdjZnSkRGZlV0ZjJid0lCV2FORDVhVU1rY2FWbWZhZnRWRjJpVDAzdnM1MXhETkI0YlMiLCAidG9rZW5fZXhwaXJlcyI6IDE2NTc0Njk1MzMuMTM4MzE4fQ==";
-//let USER_TOKEN = !$.cookie('user-token') ? '' : $.cookie('user-token');
+//let USER_TOKEN = "eyJ1c2VyX2lkIjogNzIsICJ1c2VyX25hbWUiOiAiQXJ0ZW0gQWJyYW1vdiIsICJ1c2VyX3N0YXR1cyI6ICJhZG1pbiIsICJ0b2tlbl9zaWduYXR1cmUiOiAicXUxMzY3dTI5akJwZldCaEF4MUJCS1BSM285ekZabXBRa1Z3aGJRNjhma21ZWHlpSklDaW9BOUEzc1lVSjdxaEx2R3hYSnFZRjE0YmJCdjZnSkRGZlV0ZjJid0lCV2FORDVhVU1rY2FWbWZhZnRWRjJpVDAzdnM1MXhETkI0YlMiLCAidG9rZW5fZXhwaXJlcyI6IDE2NTc0Njk1MzMuMTM4MzE4fQ==";
+let USER_TOKEN = !$.cookie('user-token') ? '' : $.cookie('user-token');
 let USER_DATA = !USER_TOKEN ? {} : JSON.parse(atob(USER_TOKEN));
 console.log(USER_TOKEN);
 
