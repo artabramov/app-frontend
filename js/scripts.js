@@ -2,8 +2,8 @@
 const APP_URL = 'http://localhost/app/';
 
 // -- user token & user --
-let USER_TOKEN = "eyJ1c2VyX2lkIjogNzIsICJ0b2tlbl9zaWduYXR1cmUiOiAibWQ0dGhjdnp0cGdOMk1oVUNsVVBBT25KMmNLQXhVaXpwemVOcjJRQWVmRzl0eHRHeFZIVnNxcnkzVjJ1eGxvY0FRQWl0eTdvd1djVlpZYUhqRHRYNVQ0SU1VSXp6bWxNdlFwOEViYnB0SjVMMFJYR21jbk5nRGZYV0syQVdLaFQiLCAidG9rZW5fZXhwaXJlcyI6IDE2NTc2MzA2MTcuNjU5NjN9";
-//let USER_TOKEN = !$.cookie('user-token') ? '' : $.cookie('user-token');
+//let USER_TOKEN = "eyJ1c2VyX2lkIjogNzIsICJ0b2tlbl9zaWduYXR1cmUiOiAibWQ0dGhjdnp0cGdOMk1oVUNsVVBBT25KMmNLQXhVaXpwemVOcjJRQWVmRzl0eHRHeFZIVnNxcnkzVjJ1eGxvY0FRQWl0eTdvd1djVlpZYUhqRHRYNVQ0SU1VSXp6bWxNdlFwOEViYnB0SjVMMFJYR21jbk5nRGZYV0syQVdLaFQiLCAidG9rZW5fZXhwaXJlcyI6IDE2NTc2MzA2MTcuNjU5NjN9";
+let USER_TOKEN = !$.cookie('user-token') ? '' : $.cookie('user-token');
 console.log(USER_TOKEN);
 let USER = {};
 
