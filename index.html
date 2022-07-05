@@ -56,11 +56,11 @@
                   John Doe
                 </a>
                 <ul id="navbar-user-dropdown" class="dropdown-menu dropdown-menu-end dropdown-menu-dark" aria-labelledby="navbar-user-name">
-                  <li><a id="navbar-user-select" class="dropdown-item" href="#">Select</a></li>
+                  <li><a id="navbar-user-select" class="dropdown-item" href="#" data-user-id="">Select</a></li>
                   <li><a id="navbar-user-update" class="dropdown-item" href="#offcanvas-user-update" data-bs-toggle="offcanvas">Update</a></li>
                   <li><a id="navbar-user-signout" class="dropdown-item" href="#">Signout</a></li>
                   <li><a id="navbar-temp" class="dropdown-item" href="#">Temp</a></li>
-                  <li><a id="navbar-user-select" class="dropdown-item" href="#" onclick="show_form_user_select(1);">Select another user</a></li>
+                  <li><a id="navbar-user-select" class="dropdown-item" href="#">Select another user</a></li>
                 </ul>
               </li>
             </ul>
@@ -232,7 +232,7 @@
         </div>
 
         <div id="offcanvas-user-signin-text-2" class="mb-3 form-text">
-          Have you run out of attempts to use a one-time code? Use master password to <a id="offcanvas-user-signin-user-restore" href="#">restore them</a>.
+          Have you run out of attempts to use a one-time code? Use master password to <a id="offcanvas-user-signin-restore" href="#">restore them</a>.
         </div>
 
         <button id="offcanvas-user-signin-submit" class="btn btn-primary" type="button">
@@ -264,7 +264,7 @@
 
     <!-- Offcanvas user select -->
 
-    <div id="offcanvas-user-select" class="offcanvas offcanvas-end" tabindex="-1" aria-labelledby="offcanvas-user-select-title">
+    <div id="offcanvas-user-select" class="offcanvas offcanvas-start" tabindex="-1" aria-labelledby="offcanvas-user-select-title">
       <div class="offcanvas-header">
         <h5 id="offcanvas-user-select-title" class="offcanvas-title">User select</h5>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>

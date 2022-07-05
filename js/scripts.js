@@ -7,11 +7,6 @@ let USER_TOKEN = "eyJ1c2VyX2lkIjogNzIsICJ1c2VyX25hbWUiOiAiQXJ0ZW0gQWJyYW1vdiIsIC
 let USER_DATA = !USER_TOKEN ? {} : JSON.parse(atob(USER_TOKEN));
 console.log(USER_TOKEN);
 
-// -- update navbar on onload --
-$(document).ready(function(){
-    update_navbar();
-});
-
 // -- i18n --
 $(document).ready(function(){
     $.each(I18N, function(key, value){
@@ -34,10 +29,9 @@ function update_navbar() {
         $('#navbar-search-submit').addClass('d-none');
         $('#navbar-register').removeClass('d-none');
         $('#navbar-signin').removeClass('d-none');
-        $('#navbar-user-name').text('');
         $('#navbar-user').addClass('d-none');
-
-        $('#navbar-user-select').on('click', function() {});
+        $('#navbar-user-name').text('');
+        $('#navbar-user-select').attr('data-user-id', '0');
 
     } else {
         $('#navbar-users').removeClass('d-none');
@@ -48,13 +42,15 @@ function update_navbar() {
         $('#navbar-register').addClass('d-none');
         $('#navbar-signin').addClass('d-none');
         $('#navbar-user-name').text(USER_DATA.user_name);
+        $('#navbar-user-select').attr('data-user-id', USER_DATA.user_id);
         $('#navbar-user').removeClass('d-none');
-
-        $('#navbar-user-select').on('click', function() {
-            show_form_user_select(USER_DATA.user_id);
-        });
     }
 }
+
+$(document).ready(function(){
+    update_navbar();
+});
+
 
 // -- form --
 function enable_toggle(form_id) {
@@ -118,20 +114,6 @@ function hide_form(form_id) {
 
 function show_form(form_id) {
     $(form_id).offcanvas('show');
-}
-
-function show_form_user_select(user_id) {
-
-    if(user_id == USER_DATA.user_id) {
-        $('#offcanvas-user-select').removeClass('offcanvas-start');
-        $('#offcanvas-user-select').addClass('offcanvas-end');
-    } else {
-        $('#offcanvas-user-select').addClass('offcanvas-start');
-        $('#offcanvas-user-select').removeClass('offcanvas-end');
-    }
-
-    console.log(user_id);
-    show_form('#offcanvas-user-select');
 }
 
 // -- user register --
@@ -236,7 +218,7 @@ $(document).ready(function(){
 
 // -- user signin > user restore --
 $(document).ready(function(){
-    $('#offcanvas-user-signin-user-restore').click(function(){
+    $('#offcanvas-user-signin-restore').click(function(){
         hide_form('#offcanvas-user-signin');
         show_form('#offcanvas-user-restore');
     });
@@ -277,6 +259,29 @@ $(document).ready(function(){
         });
     });
 });
+
+// -- user select --
+$(document).ready(function(){
+    let form_id = '#offcanvas-user-select'
+    $('#navbar-user-select').click(function(){
+        //show_form(form_id);
+        //console.log($(this).data('user-id'));
+        let user_id = $(this).data('user-id');
+
+        $.ajax({
+            method: 'GET',
+            headers: {'User-Token': USER_TOKEN},
+            url: APP_URL + 'user/' + user_id + '/',
+            dataType: 'json',
+            success: function(msg) {
+                console.log(msg);
+            }
+        });
+
+
+    });
+});
+
 
 // -- temp --
 $(document).ready(function(){
