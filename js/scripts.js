@@ -110,6 +110,8 @@ function update_navbar() {
                 hide_navbar();
             }
         });
+    } else {
+        hide_navbar();
     }
 }
 
