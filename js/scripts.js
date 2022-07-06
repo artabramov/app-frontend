@@ -2,10 +2,15 @@
 const APP_URL = 'http://localhost/app/';
 
 // -- user token & user --
-//let USER_TOKEN = "eyJ1c2VyX2lkIjogNzIsICJ0b2tlbl9zaWduYXR1cmUiOiAibWQ0dGhjdnp0cGdOMk1oVUNsVVBBT25KMmNLQXhVaXpwemVOcjJRQWVmRzl0eHRHeFZIVnNxcnkzVjJ1eGxvY0FRQWl0eTdvd1djVlpZYUhqRHRYNVQ0SU1VSXp6bWxNdlFwOEViYnB0SjVMMFJYR21jbk5nRGZYV0syQVdLaFQiLCAidG9rZW5fZXhwaXJlcyI6IDE2NTc2MzA2MTcuNjU5NjN9";
-let USER_TOKEN = !$.cookie('user-token') ? '' : $.cookie('user-token');
+let USER_TOKEN = "eyJ1c2VyX2lkIjogNzIsICJ0b2tlbl9zaWduYXR1cmUiOiAiNHRHdEdYZ2QxZG5yQUZZN3YwMmsyN05ONXlmSjlOek9lcFR4cHVjOGRkczFoNlo0WWVuS0hScU5GZ3gyNzhmc2lhSTdCRndjZmNnMjN2cTVIdXl5SHBMdUhLd2NDdkY2eWhNM0EwN29XaEtDdmtaSXZRQ2pqWGFHdDVYREtibEEiLCAidG9rZW5fZXhwaXJlcyI6IDE2NTc3MjgxNDIuMzI3OTY1N30=";
+//let USER_TOKEN = !$.cookie('user-token') ? '' : $.cookie('user-token');
 console.log(USER_TOKEN);
 let USER = {};
+
+let POSTS_LIMIT = 2;
+let POSTS_OFFSET = 0;
+let POSTS_STATUS = 'done';
+let POSTS_VOLUME_ID = 0;
 
 // -- i18n --
 $(document).ready(function(){
@@ -24,6 +29,7 @@ function hide_navbar() {
     $('#navbar-users').addClass('d-none');
     $('#navbar-volumes').addClass('d-none');
     $('#navbar-categories').addClass('d-none');
+    $('#navbar-reports').addClass('d-none');
     $('#navbar-search-input').addClass('d-none');
     $('#navbar-search-submit').addClass('d-none');
 
@@ -48,6 +54,7 @@ function show_navbar() {
     $('#navbar-users').removeClass('d-none');
     $('#navbar-volumes').removeClass('d-none');
     $('#navbar-categories').removeClass('d-none');
+    $('#navbar-reports').removeClass('d-none');
     $('#navbar-search-input').removeClass('d-none');
     $('#navbar-search-submit').removeClass('d-none');
 
@@ -156,6 +163,7 @@ function hide_tabs() {
     $('#tab-users').addClass('d-none');
     $('#tab-volumes').addClass('d-none');
     $('#tab-categories').addClass('d-none');
+    $('#tab-reports').addClass('d-none');
     $('#tab-posts').addClass('d-none');
     $('#tab-comments').addClass('d-none');
 }
@@ -185,7 +193,7 @@ function update_volumes(offset) {
                         '<tr>' +
                         '<th scope="row">' + volume.id + '</th>' +
                         '<td>' + volume.created + '</td>' +
-                        '<td>' + volume.volume_title + '</a></td>' +
+                        '<td><a href="#" onclick="show_tab_posts(' + volume.id + ');">' + volume.volume_title + '</a></td>' +
                         '<td>' + volume.volume_currency + '</td>' +
                         '<td>' + volume.volume_sum + '</td>' +
                         '</tr>'
@@ -215,7 +223,83 @@ $(document).ready(function() {
         hide_tabs();
         $('#tab-categories').removeClass('d-none');
     });
+
+    $('#navbar-reports').click(function(){
+        hide_tabs();
+        $('#tab-reports').removeClass('d-none');
+    });
 });
+
+
+// -- POSTS --
+$(document).ready(function(){
+    $('#tab-posts-group-statuses :button').click(function(){
+        console.log($(this).attr('data-post-status'));
+        POSTS_STATUS = $(this).attr('data-post-status');
+        update_tab_posts_group_statuses();
+    });
+});
+
+function update_tab_posts_group_statuses() {
+    let buttons = $('#tab-posts-group-statuses :button');
+    buttons.each(function(value) {
+        if($(this).attr('data-post-status') == POSTS_STATUS) {
+            $(this).addClass('active');
+        } else {
+            $(this).removeClass('active');
+        }
+    });
+}
+
+function show_tab_posts(volume_id) {
+    hide_tabs();
+    $('#tab-posts').removeClass('d-none');
+    //$('#tab-posts-title').text(volume_title);
+    POSTS_STATUS = 'done';
+    POSTS_VOLUME_ID = volume_id
+    POSTS_OFFSET = 0;
+    update_table_posts(POSTS_OFFSET);
+    update_tab_posts_group_statuses();
+}
+
+function update_table_posts(offset) {
+    $('#tab-posts-table').find('tbody').text('');
+    $('#tab-posts-pagination').find('ul').text('');
+
+    POSTS_OFFSET = offset;
+
+    $.ajax({
+        type: 'GET',
+        headers: {'User-Token': USER_TOKEN},
+        url: APP_URL + 'posts/' + POSTS_OFFSET + '/?volume_id=' + POSTS_VOLUME_ID + '&post_status=' + POSTS_STATUS,
+        dataType: 'json',
+        cache: false,
+        processData: false, 
+        contentType: false,
+        success: function(msg) {
+            console.log(msg);
+
+            if($.isEmptyObject(msg.errors)) {
+                msg.data.posts.forEach(function(post) {
+                    console.log(post);
+
+                    $('#tab-posts-table').find('tbody').append(
+                        '<tr>' +
+                        '<th scope="row">' + post.id + '</th>' +
+                        '<td>' + post.created + '</td>' +
+                        '<td><a href="#">' + post.post_title + '</a></td>' +
+                        '<td>' + post.post_sum + '</td>' +
+                        '</tr>'
+                    );
+                });
+                
+                pagination('tab-posts-pagination', 'update_table_posts', POSTS_OFFSET, POSTS_LIMIT, msg.data.posts_count);
+
+            };
+        }
+    });
+}
+
 
 // -- form --
 function enable_toggle(form_id) {

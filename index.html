@@ -37,6 +37,9 @@
                 <a id="navbar-categories" class="nav-link d-none" href="#">Categories</a>
               </li>
               <li class="nav-item">
+                <a id="navbar-reports" class="nav-link d-none" href="#">Reports</a>
+              </li>
+              <li class="nav-item">
                 <form class="d-flex" role="search">
                     <input id="navbar-search-input" class="form-control me-2 d-none" type="search" placeholder="search!" aria-label="Search">
                     <button id="navbar-search-submit" class="btn btn-outline-light d-none" type="submit">Search</button>
@@ -510,11 +513,42 @@
       <a id="tab-categories-insert" class="btn btn-outline-primary" href="#offcanvas-category-insert" data-bs-toggle="offcanvas">Insert category</a>
     </div>
 
+    <!-- Reports -->
+
+    <div id="tab-reports" class="container-fluid d-none">
+      <h1 id="tab-reports-title" class="d-inline">Reports</h1>
+    </div>
+
     <!-- Posts -->
 
     <div id="tab-posts" class="container-fluid d-none">
       <h1 id="tab-posts-title" class="d-inline">Posts</h1>
       <a id="tab-posts-insert" class="btn btn-outline-primary" href="#offcanvas-post-insert" data-bs-toggle="offcanvas">Insert post</a>
+    
+      <div id="tab-posts-group-statuses" class="btn-group" role="group" aria-label="Posts statuses">
+        <button data-post-status="draft" type="button" class="btn btn-primary">Draft</button>
+        <button data-post-status="todo" type="button" class="btn btn-primary">Todo</button>
+        <button data-post-status="doing" type="button" class="btn btn-primary">Doing</button>
+        <button data-post-status="done" type="button" class="btn btn-primary">Done</button>
+      </div>
+
+      <table id="tab-posts-table" class="table">
+        <thead>
+          <tr>
+            <th id="tab-posts-th-id" scope="col">id</th>
+            <th id="tab-posts-th-created" scope="col">created</th>
+            <th id="tab-posts-th-post-title" scope="col">post_title</th>
+            <th id="tab-posts-th-post-sum" scope="col">post_sum</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    
+      <nav id="tab-posts-pagination" aria-label="Posts pagination" class="d-none">
+        <ul class="pagination">
+        </ul>
+      </nav>
+    
     </div>
 
     <!-- Comments -->
