@@ -3,113 +3,175 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
+    <title>App</title>
 
-    <!-- CSS -->
     <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <link href="./css/styles.css" rel="stylesheet">
+    <link href="./icons/bootstrap-icons.css" rel="stylesheet">
 
     <!-- jQuery first, then Popper and Bootstrap, then other -->
     <script type='text/javascript' src='./js/jquery-3.6.0.js'></script>
     <script type='text/javascript' src='./js/jquery.cookie.min.js'></script>
     <script type='text/javascript' src='./js/popper.min.js'></script>
     <script type='text/javascript' src='./js/bootstrap.min.js'></script>
-    <script type='text/javascript' src="./js/scripts.js"></script>
-    <script type='text/javascript' src="./js/i18n.js"></script>
+
+    <script type='text/javascript' src='./js/app/app.js'></script>
+    <script type='text/javascript' src='./js/app/i18n.js'></script>
+    <script type='text/javascript' src='./js/i18n/en.js'></script>
+    <script type='text/javascript' src='./js/i18n/ru.js'></script>
+    <script type='text/javascript' src='./js/i18n/es.js'></script>
+
+    <script type='text/javascript' src='./js/app/user.js'></script>
+    <script type='text/javascript' src='./js/app/volume.js'></script>
 
   </head>
-  <body>
+  <body class="d-flex flex-column min-vh-100">
+
     <!-- Navbar -->
-    <nav id="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-nav" aria-controls="navbar-nav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbar-nav">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
 
-            <ul class="navbar-nav me-auto">
-              <li class="nav-item">
-                <a id="navbar-users" class="nav-link d-none" href="#">Users</a>
-              </li>
-              <li class="nav-item">
-                <a id="navbar-volumes" class="nav-link d-none" href="#">Volumes</a>
-              </li>
-              <li class="nav-item">
-                <a id="navbar-categories" class="nav-link d-none" href="#">Categories</a>
-              </li>
-              <li class="nav-item">
-                <a id="navbar-reports" class="nav-link d-none" href="#">Reports</a>
-              </li>
-              <li class="nav-item">
-                <form class="d-flex" role="search">
-                    <input id="navbar-search-input" class="form-control me-2 d-none" type="search" placeholder="search!" aria-label="Search">
-                    <button id="navbar-search-submit" class="btn btn-outline-light d-none" type="submit">Search</button>
-                  </form>
-              </li>
-            </ul>
+        <!--
+        <a class="navbar-brand" href="#">
+          <i class="bi bi-arrow-clockwise"></i>
+        </a>
+        -->
 
-            <ul class="navbar-nav ml-auto">
-              <li class="nav-item">
-                  <a id="navbar-register" class="btn btn-outline-light d-none" href="#offcanvas-user-register" data-bs-toggle="offcanvas">Register</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-nav" aria-controls="navbar-nav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div id="navbar-nav" class="collapse navbar-collapse">
+          <ul class="navbar-nav me-auto">
+
+            <li id="navbar-users" class="nav-item d-none">
+              <a class="nav-link" data-i18n="navbar-users" href="#">
+                Users
+              </a>
+            </li>
+
+            <li id="navbar-volumes" class="nav-item d-none">
+              <a class="nav-link" data-i18n="navbar-volumes" href="#">
+                Volumes
+              </a>
+            </li>
+
+            <li id="navbar-categories" class="nav-item d-none">
+              <a class="nav-link" data-i18n="navbar-categories" href="#">
+                Categories
+              </a>
+            </li>
+
+            <li id="navbar-reports" class="nav-item d-none">
+              <a class="nav-link" data-i18n="navbar-reports" href="#">
+                Reports
+              </a>
+            </li>
+
+            <li id="navbar-search" class="nav-item ms-4 d-none">
+              <form class="d-flex" role="search">
+                  <input class="form-control me-2 app-search" type="search" placeholder="search posts" aria-label="Search">
+                  <button class="btn btn-outline-light" data-i18n="navbar-search" type="button">
+                    Search
+                  </button>
+                </form>
+            </li>
+
+          </ul>
+          <ul class="navbar-nav ml-auto">
+
+            <li id="navbar-i18n" class="nav-item dropdown me-4 d-none">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                english
+              </a>
+              <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbar-i18n">
+              </ul>
+            </li>
+
+            <li id="navbar-register" class="nav-item d-none">
+              <a class="btn btn-outline-light" data-i18n="navbar-user-register" href="#offcanvas-user-register" data-bs-toggle="offcanvas">
+                Register
+              </a>
+            </li>
+
+            <li id="navbar-signin" class="nav-item d-none">
+              <a class="nav-link" data-i18n="navbar-user-signin" href="#offcanvas-user-signin" data-bs-toggle="offcanvas">
+                Signin
+              </a>
+            </li>
+
+            <li id="navbar-user" class="nav-item dropdown d-none">
+              <a id="navbar-user-login" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                dummy
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark" aria-labelledby="navbar-user-login">
+
+                <li>
+                  <a class="dropdown-item" data-i18n="navbar-user-update" href="#offcanvas-user-update" data-bs-toggle="offcanvas">
+                    Update user
+                  </a>
                 </li>
-                <li class="nav-item">
-                  <a id="navbar-signin" class="nav-link d-none" href="#offcanvas-user-signin" data-bs-toggle="offcanvas">Signin</a>
+                
+                <li>
+                  <a class="dropdown-item" data-i18n="navbar-user-pass" href="#offcanvas-user-pass" data-bs-toggle="offcanvas">
+                    Change password
+                  </a>
                 </li>
-              <li id="navbar-user" class="nav-item dropdown d-none">
-                <a id="navbar-user-name" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  John Doe
-                </a>
-                <ul id="navbar-user-dropdown" class="dropdown-menu dropdown-menu-end dropdown-menu-dark" aria-labelledby="navbar-user-name">
-                  <li><a id="navbar-user-self" class="dropdown-item" href="#offcanvas-user-self" data-bs-toggle="offcanvas">Select self user</a></li>
-                  <li><a id="navbar-user-update" class="dropdown-item" href="#offcanvas-user-update" data-bs-toggle="offcanvas">Update self user</a></li>
-                  <li><a id="navbar-user-repass" class="dropdown-item" href="#offcanvas-user-repass" data-bs-toggle="offcanvas">Change password</a></li>
-                  <li><a id="navbar-user-signout" class="dropdown-item" href="#">Signout</a></li>
-                  <li><a id="navbar-token" class="dropdown-item" href="#">Log self user</a></li>
-                  <li><a id="navbar-user-select" class="dropdown-item" href="#" data-user-id="73">Select user 73</a></li>
-                </ul>
-              </li>
-            </ul>
+                
+                <li>
+                  <a class="dropdown-item" data-i18n="navbar-user-signout" href="#">
+                    Signout
+                  </a>
+                </li>
 
-          </div>
+              </ul>
+            </li>
+
+          </ul>
+
         </div>
-      </nav>
+      </div>
+    </nav>
 
     <!-- Offcanvas user register -->
     <div id="offcanvas-user-register" class="offcanvas offcanvas-end" tabindex="-1" aria-labelledby="offcanvas-user-register-title">
       <div class="offcanvas-header">
-        <h5 id="offcanvas-user-register-title" class="offcanvas-title">Register</h5>
+        <h5 class="offcanvas-title" data-i18n="offcanvas-user-register-title">
+          User register
+        </h5>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
       <div class="offcanvas-body">
 
-        <div class="mb-3 form-text">
-          Containers are the most basic layout element in Bootstrap and are required when using our default grid system. 
-        </div>
-
         <div class="form-floating mb-3">
-          <input id="offcanvas-user-register-user-login" class="form-control" type="text" placeholder="Login">
-          <label for="offcanvas-user-register-user-login">Login</label>
+          <input id="offcanvas-user-register-user-login" class="form-control" type="text" placeholder="User login">
+          <label for="offcanvas-user-register-user-login" data-i18n="offcanvas-user-register-user-login">
+            User login
+          </label>
           <div id="offcanvas-user-register-user-login-error" class="form-text text-danger d-none"></div>
         </div>
 
+        <div class="mb-3 form-text" data-i18n="offcanvas-user-register-text-1">
+          Please keep your password secure and don't give it to anyone. Be careful not to forget your password. Don't use the same password everywhere.
+        </div>
+
         <div class="form-floating mb-3">
-          <input id="offcanvas-user-register-user-pass" class="form-control" type="password" placeholder="Master password">
-          <label for="offcanvas-user-register-user-pass">Master password</label>
+          <input id="offcanvas-user-register-user-pass" class="form-control" type="password" placeholder="User pass">
+          <label for="offcanvas-user-register-user-pass" data-i18n="offcanvas-user-register-user-pass">
+            User pass
+          </label>
           <div id="offcanvas-user-register-user-pass-error" class="form-text text-danger d-none"></div>
         </div>
 
-        <div class="form-floating mb-3">
-          <input id="offcanvas-user-register-user-name" class="form-control" type="text" placeholder="User name">
-          <label for="offcanvas-user-register-user-name">Name</label>
-          <div id="offcanvas-user-register-user-name-error" class="form-text text-danger d-none"></div>
+        <div class="mb-3 form-text" data-i18n="offcanvas-user-register-text-2">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque interdum nibh laoreet, dignissim turpis quis, posuere arcu. Ut cursus libero justo, in consectetur neque laoreet quis. Vivamus aliquam. 
         </div>
 
-        <div class="form-check form-switch">
-          <input id="offcanvas-user-register-check" class="form-check-input" type="checkbox" role="switch">
-          <label class="form-check-label" for="offcanvas-user-register-check">Default switch checkbox input </label> <a href="#">user agreement</a>
-        </div>
-
-        <button id="offcanvas-user-register-submit" class="btn btn-primary" type="button" disabled>
-          Primary
+        <button id="offcanvas-user-register-submit" class="btn btn-primary" type="button">
+          <span data-i18n="offcanvas-user-register-submit">
+            Go ahead
+          </span>
+          <i class="bi bi-arrow-right"></i>
         </button>
 
         <div id="offcanvas-user-register-spinner" class="spinner-border spinner-border-sm text-primary d-none" role="status">
@@ -122,20 +184,22 @@
     <!-- Offcanvas user register after -->
     <div id="offcanvas-user-register-after" class="offcanvas offcanvas-end" tabindex="-1" aria-labelledby="offcanvas-user-register-after-title">
       <div class="offcanvas-header">
-        <h5 id="offcanvas-user-register-after-title" class="offcanvas-title">User register after</h5>
+        <h5 class="offcanvas-title" data-i18n="offcanvas-user-register-after-title">
+          User register after
+        </h5>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
       <div class="offcanvas-body">
 
-        <div id="offcanvas-user-register-after-text-1" class="mb-3 form-text">
-          <a href="https://en.wikipedia.org/wiki/Time-based_one-time_password">One-time passwords</a> are used further. Scan the image below with an authentication app, such as Google Authenticator, on your phone and save your secret key.
+        <div class="mb-3 form-text" data-i18n="offcanvas-user-register-after-text-1">
+          One-time codes are used further instead of using a password. Scan the image below with an authentication app, such as Google Authenticator, on your phone and save your secret key.
         </div>
 
         <div class="mb-3 form-text text-center">
-          <img id="offcanvas-user-register-after-totp-image" src="#" alt="User TOTP">
+          <img id="offcanvas-user-register-after-totp-image" src="#" alt="TOTP image">
         </div>
 
-        <div id="offcanvas-user-register-after-text-2" class="mb-3 form-text">
+        <div class="mb-3 form-text" data-i18n="offcanvas-user-register-after-text-2">
           If you can't scan the image, type this key instead:
         </div>
 
@@ -143,104 +207,57 @@
           TOTP
         </div>
 
-        <div id="offcanvas-user-register-after-text-3" class="mb-3 form-text">
+        <div class="mb-3 form-text" data-i18n="offcanvas-user-register-after-text-3">
           Sign in will be available after the administrator approves your account.
         </div>
 
         <a id="offcanvas-user-register-after-submit" class="btn btn-primary" role="button" href="#offcanvas-user-signin" data-bs-toggle="offcanvas">
-          Go ahead
-        </a>
-
-      </div>
-    </div>
-
-    <!-- Offcanvas user restore -->
-
-    <div id="offcanvas-user-restore" class="offcanvas offcanvas-end" tabindex="-1" aria-labelledby="offcanvas-user-restore-title">
-      <div class="offcanvas-header">
-        <h5 id="offcanvas-user-restore-title" class="offcanvas-title">Restore</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-      </div>
-      <div class="offcanvas-body">
-
-        <div class="form-floating mb-3">
-          <input id="offcanvas-user-restore-user-login" class="form-control" type="text" placeholder="Login">
-          <label for="offcanvas-user-restore-user-login">Login</label>
-          <div id="offcanvas-user-restore-user-login-error" class="form-text text-danger d-none"></div>
-        </div>
-
-        <div id="offcanvas-user-restore-text-1" class="mb-3 form-text">
-          Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists, etc.
-        </div>
-
-        <div class="form-floating mb-3">
-          <input id="offcanvas-user-restore-user-pass" class="form-control" type="password" placeholder="Master password">
-          <label for="offcanvas-user-restore-user-pass">Master password</label>
-          <div id="offcanvas-user-restore-user-pass-error" class="form-text text-danger d-none"></div>
-        </div>
-
-        <button id="offcanvas-user-restore-submit" class="btn btn-primary" type="button">
-          Go ahead
-        </button>
-
-        <div id="offcanvas-user-restore-spinner" class="spinner-border spinner-border-sm text-primary d-none" role="status">
-          <span class="visually-hidden">Loading...</span>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- Offcanvas user restore after -->
-
-    <div id="offcanvas-user-restore-after" class="offcanvas offcanvas-end" tabindex="-1" aria-labelledby="offcanvas-user-restore-after-title">
-      <div class="offcanvas-header">
-        <h5 id="offcanvas-user-restore-after-title" class="offcanvas-title">User restore after</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-      </div>
-      <div class="offcanvas-body">
-
-        <div id="offcanvas-user-restore-after-text-1" class="mb-3 form-text">
-          Offcanvas is a sidebar component that can be toggled via JavaScript to appear from the left, right, top, or bottom edge of the viewport.
-        </div>
-
-        <a id="offcanvas-user-restore-after-submit" class="btn btn-primary" role="button" href="#offcanvas-user-signin" data-bs-toggle="offcanvas">
-          Go ahead
+          <span data-i18n="offcanvas-user-register-after-submit">Got it</span>
+          <i class="bi bi-arrow-right"></i>
         </a>
 
       </div>
     </div>
 
     <!-- Offcanvas user signin -->
-
     <div id="offcanvas-user-signin" class="offcanvas offcanvas-end" tabindex="-1" aria-labelledby="offcanvas-user-signin-title">
       <div class="offcanvas-header">
-        <h5 id="offcanvas-user-signin-title" class="offcanvas-title">Signin</h5>
+        <h5 class="offcanvas-title" data-i18n="offcanvas-user-signin-title">
+          User signin
+        </h5>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
       <div class="offcanvas-body">
 
         <div class="form-floating mb-3">
-          <input id="offcanvas-user-signin-user-login" class="form-control" type="text" placeholder="Login">
-          <label for="offcanvas-user-signin-user-login">Login</label>
+          <input id="offcanvas-user-signin-user-login" class="form-control" type="text" placeholder="User login">
+          <label for="offcanvas-user-signin-user-login" data-i18n="offcanvas-user-signin-user-login">
+            User login
+          </label>
           <div id="offcanvas-user-signin-user-login-error" class="form-text text-danger d-none"></div>
         </div>
 
-        <div class="mb-3 form-text">
-          Use one-time password generated by the authentication app on your phone.
+        <div class="mb-3 form-text" data-i18n="offcanvas-user-signin-text-1">
+          Use one-time code generated by the authentication app on your phone.
         </div>
 
         <div class="form-floating mb-3">
-          <input id="offcanvas-user-signin-user-totp" class="form-control" type="text" placeholder="One-time password">
-          <label for="offcanvas-user-signin-user-totp">One-time password</label>
+          <input id="offcanvas-user-signin-user-totp" class="form-control" type="text" placeholder="One-time code">
+          <label for="offcanvas-user-signin-user-totp" data-i18n="offcanvas-user-signin-user-totp">
+            One-time code
+          </label>
           <div id="offcanvas-user-signin-user-totp-error" class="form-text text-danger d-none"></div>
         </div>
 
-        <div id="offcanvas-user-signin-text-2" class="mb-3 form-text">
-          Have you run out of attempts to use a one-time code? Use master password to <a id="offcanvas-user-signin-restore" href="#">restore them</a>.
+        <div class="mb-3 form-text" data-i18n="offcanvas-user-signin-text-2">
+          Have you run out of attempts to use a one-time code? You can use master password to restore them.
         </div>
 
         <button id="offcanvas-user-signin-submit" class="btn btn-primary" type="button">
-          Go ahead
+          <span data-i18n="offcanvas-user-signin-submit">
+            Go ahead
+          </span>
+          <i class="bi bi-arrow-right"></i>
         </button>
 
         <div id="offcanvas-user-signin-spinner" class="spinner-border spinner-border-sm text-primary d-none" role="status">
@@ -251,39 +268,49 @@
     </div>
 
     <!-- Offcanvas user update -->
-
     <div id="offcanvas-user-update" class="offcanvas offcanvas-end" tabindex="-1" aria-labelledby="offcanvas-user-update-title">
       <div class="offcanvas-header">
-        <h5 id="offcanvas-user-update-title" class="offcanvas-title">User update</h5>
+        <h5 class="offcanvas-title" data-i18n="offcanvas-user-update-title">
+          User update
+        </h5>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
       <div class="offcanvas-body">
 
-        <div class="form-floating mb-3">
-          <input id="offcanvas-user-update-user-name" class="form-control" type="text" placeholder="User name">
-          <label for="offcanvas-user-update-user-name">User name</label>
-          <div id="offcanvas-user-update-user-name-error" class="form-text text-danger d-none"></div>
+        <div class="mb-3">
+          <small class="text-muted" data-i18n="offcanvas-user-update-user-login">
+            User login
+          </small>
+          <div id="offcanvas-user-update-user-login">
+            dummy
+          </div>
         </div>
 
         <div class="form-floating mb-2">
-          <textarea id="offcanvas-user-update-user-summary" class="form-control" style="height: 120px" maxlength="127" placeholder="User summary"></textarea>
-          <label for="offcanvas-user-update-user-summary">User summary</label>
+          <textarea id="offcanvas-user-update-user-summary" class="form-control" style="height: 128px" maxlength="127" placeholder="User summary"></textarea>
+          <label for="offcanvas-user-update-user-summary" data-i18n="offcanvas-user-update-user-summary">
+            User summary
+          </label>
+          <div id="offcanvas-user-update-user-summary-error" class="form-text text-danger d-none"></div>
         </div>
 
         <div class="mb-3">
-          <small id="offcanvas-user-update-image-label" class="text-muted">User image</small>
-          <input id="offcanvas-user-update-image-input" class="form-control" type="file">
+          <small class="text-muted" data-i18n="offcanvas-user-update-user-image">
+            User image
+          </small>
+          <input id="offcanvas-user-update-user-file" class="form-control" type="file">
+          <div id="offcanvas-user-update-user-file-error" class="form-text text-danger d-none"></div>
         </div>
 
-        <div id="offcanvas-user-update-image" class="mb-3 d-none">
-          <img id="offcanvas-user-update-image-img" src="" class="rounded mx-auto d-block img-fluid" alt="User image">
+        <div class="mb-3">
+          <img id="offcanvas-user-update-user-image" src="" class="rounded mx-auto d-block img-fluid" alt="User image">
         </div>
 
         <button id="offcanvas-user-update-submit" class="btn btn-primary" type="button">
-          Go ahead
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
-            <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
-          </svg>
+          <span data-i18n="offcanvas-user-update-submit">
+            Done
+          </span>
+          <i class="bi bi-arrow-right"></i>
         </button>
 
         <div id="offcanvas-user-update-spinner" class="spinner-border spinner-border-sm text-primary d-none" role="status">
@@ -293,272 +320,197 @@
       </div>
     </div>
 
-    <!-- Offcanvas user repass -->
-
-    <div id="offcanvas-user-repass" class="offcanvas offcanvas-end" tabindex="-1" aria-labelledby="offcanvas-user-repass-title">
+    <!-- Offcanvas user update after -->
+    <div id="offcanvas-user-update-after" class="offcanvas offcanvas-end" tabindex="-1" aria-labelledby="offcanvas-user-update-after-title">
       <div class="offcanvas-header">
-        <h5 id="offcanvas-user-repass-title" class="offcanvas-title">User repass</h5>
+        <h5 class="offcanvas-title" data-i18n="offcanvas-user-update-after-title">
+          User updated
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+
+        <div class="mb-3 form-text" data-i18n="offcanvas-user-update-after-text-1">
+          Great, you've update your data.
+        </div>
+
+        <button id="offcanvas-user-update-after-submit" class="btn btn-primary" type="button">
+          <span data-i18n="offcanvas-user-update-after-submit">
+            Got it
+          </span>
+          <i class="bi bi-x-lg"></i>
+        </button>
+
+      </div>
+    </div>
+
+    <!-- Offcanvas user pass -->
+    <div id="offcanvas-user-pass" class="offcanvas offcanvas-end" tabindex="-1" aria-labelledby="offcanvas-user-pass-title">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" data-i18n="offcanvas-user-pass-title">
+          User pass
+        </h5>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
       <div class="offcanvas-body">
 
         <div class="form-floating mb-3">
-          <input id="offcanvas-user-repass-user-pass" class="form-control" type="password" placeholder="Old master password">
-          <label for="offcanvas-user-repass-user-pass">Old master password</label>
-          <div id="offcanvas-user-repass-user-pass-error" class="form-text text-danger d-none"></div>
+          <input id="offcanvas-user-pass-user-pass" class="form-control" type="password" placeholder="Old password">
+          <label for="offcanvas-user-pass-user-pass" data-i18n="offcanvas-user-pass-user-pass">
+            Current password
+          </label>
+          <div id="offcanvas-user-pass-user-pass-error" class="form-text text-danger d-none"></div>
+        </div>
+
+        <div class="mb-3 form-text" data-i18n="offcanvas-user-pass-text-1">
+          Please keep your password secure and don't give it to anyone. Be careful not to forget your password. Don't use the same password everywhere.
         </div>
 
         <div class="form-floating mb-3">
-          <input id="offcanvas-user-repass-user-repass" class="form-control" type="password" placeholder="New master password">
-          <label for="offcanvas-user-repass-user-repass">New master password</label>
-          <div id="offcanvas-user-repass-user-repass-error" class="form-text text-danger d-none"></div>
+          <input id="offcanvas-user-pass-user-repass" class="form-control" type="password" placeholder="New master password">
+          <label for="offcanvas-user-pass-user-repass" data-i18n="offcanvas-user-pass-user-repass">
+            New password
+          </label>
+          <div id="offcanvas-user-pass-user-repass-error" class="form-text text-danger d-none"></div>
         </div>
 
-        <button id="offcanvas-user-repass-submit" class="btn btn-primary" type="button">
-          Go ahead
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
-            <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
-          </svg>
+        <button id="offcanvas-user-pass-submit" class="btn btn-primary" type="button">
+          <span data-i18n="offcanvas-user-pass-submit">
+            Done
+          </span>
+          <i class="bi bi-arrow-right"></i>
         </button>
 
-        <div id="offcanvas-user-repass-spinner" class="spinner-border spinner-border-sm text-primary d-none" role="status">
+        <div id="offcanvas-user-pass-spinner" class="spinner-border spinner-border-sm text-primary d-none" role="status">
           <span class="visually-hidden">Loading...</span>
         </div>
 
       </div>
     </div>
 
-    <!-- Offcanvas user repass after -->
-
-    <div id="offcanvas-user-repass-after" class="offcanvas offcanvas-end" tabindex="-1" aria-labelledby="offcanvas-user-repass-after-title">
+    <!-- Offcanvas user pass after -->
+    <div id="offcanvas-user-pass-after" class="offcanvas offcanvas-end" tabindex="-1" aria-labelledby="offcanvas-user-pass-after-title">
       <div class="offcanvas-header">
-        <h5 id="offcanvas-user-repass-after-title" class="offcanvas-title">User repass after</h5>
+        <h5 class="offcanvas-title" data-i18n="offcanvas-user-pass-after-title">
+          Password changed
+        </h5>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
       <div class="offcanvas-body">
 
-        <div class="mb-3 form-text">
-          Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists, etc.
+        <div class="mb-3 form-text" data-i18n="offcanvas-user-pass-after-text-1">
+          Great, you've changed your password. Please don't forget it.
         </div>
 
-        <button id="offcanvas-user-repass-after-submit" class="btn btn-primary" type="button">
-          Got it
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
-            <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
-          </svg>
+        <button id="offcanvas-user-pass-after-submit" class="btn btn-primary" type="button">
+          <span data-i18n="offcanvas-user-pass-after-submit">
+            Got it
+          </span>
+          <i class="bi bi-x-lg"></i>
         </button>
 
       </div>
     </div>
 
-    <!-- Offcanvas user self -->
+    <div class="container-fluid p-4">
 
-    <div id="offcanvas-user-self" class="offcanvas offcanvas-end" tabindex="-1" aria-labelledby="offcanvas-user-self-title">
-      <div class="offcanvas-header">
-        <h5 id="offcanvas-user-self-title" class="offcanvas-title">User self</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      <!-- Tab outer -->
+      <div id="tab-outer" class="container-fluid d-none">
+        <h1 class="d-inline" data-i18n="tab-outer-title">
+          Outer
+        </h1>
       </div>
-      <div class="offcanvas-body">
 
-        <div id="offcanvas-user-self-user-name-label" class="mb-0 form-text">
-          User name
-        </div>
+      <!-- Tab help -->
+      <div id="tab-help" class="container-fluid d-none">
+        <h1 class="d-inline" data-i18n="tab-help-title">
+          Help
+        </h1>
+      </div>
 
-        <div id="offcanvas-user-self-user-name" class="mb-3 form-text fw-bold">
-          John Doe
-        </div>
+      <!-- Tab users -->
+      <div id="tab-users" class="container-fluid d-none">
+        <h1 class="d-inline" data-i18n="tab-users-title">
+          Users
+        </h1>
+      </div>
 
-        <div id="offcanvas-user-self-user-login-label" class="mb-0 form-text">
-          User login
-        </div>
+      <!-- Tab volumes -->
+      <div id="tab-volumes" class="container-fluid d-none">
+        <h1 class="d-inline" data-i18n="tab-volumes-title">
+          Volumes
+        </h1>
 
-        <div id="offcanvas-user-self-user-login" class="mb-3 form-text fw-bold">
-          dummy
-        </div>
-
-        <div id="offcanvas-user-self-user-summary-label" class="mb-0 form-text">
-          User summary
-        </div>
-
-        <div id="offcanvas-user-self-user-summary" class="mb-3 form-text fw-bold">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam id volutpat urna. Cras risus ipsum, molestie id dolor nec vel.
-        </div>
-
-        <div id="offcanvas-user-self-image-label" class="mb-0 form-text">
-          User image
-        </div>
-
-        <div id="offcanvas-user-self-image" class="mb-3 d-none">
-          <img id="offcanvas-user-self-image-img" src="" class="rounded mx-auto d-block img-fluid" alt="User image">
-        </div>
+        <table id="tab-volumes-rows" class="table">
+          <thead>
+            <tr>
+              <th data-i18n="tab-volumes-rows-id" scope="col">id</th>
+              <th data-i18n="tab-volumes-rows-created" scope="col">Created</th>
+              <th data-i18n="tab-volumes-rows-volume-title" scope="col">Volume title</th>
+              <th data-i18n="tab-volumes-rows-volume-currency" scope="col">Volume currency</th>
+              <th data-i18n="tab-volumes-rows-volume-sum" scope="col">Volume sum</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
 
       </div>
+
+      <!-- Tab categories -->
+      <div id="tab-categories" class="container-fluid d-none">
+        <h1 class="d-inline" data-i18n="tab-categories-title">
+          Categories
+        </h1>
+      </div>
+
+      <!-- Tab reports -->
+      <div id="tab-reports" class="container-fluid d-none">
+        <h1 class="d-inline" data-i18n="tab-reports-title">
+          Reports
+        </h1>
+      </div>
+
     </div>
 
-    <!-- Offcanvas user select -->
+    <!-- Footer -->
+    <footer class="mt-auto bg-dark text-light">
+      <div class="d-flex pt-2">
+        <ul class="nav list-inline mx-auto justify-content-center">
 
-    <div id="offcanvas-user-select" class="offcanvas offcanvas-start" tabindex="-1" aria-labelledby="offcanvas-user-select-title">
-      <div class="offcanvas-header">
-        <h5 id="offcanvas-user-select-title" class="offcanvas-title">User select</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-      </div>
-      <div class="offcanvas-body">
+          <li id="footer-outer" class="nav-item p-2">
+            <a class="link-secondary text-decoration-none" data-i18n="footer-help" href="#">
+              Outer
+            </a>
+          </li>
 
-        <div id="offcanvas-user-select-text-1" class="mb-3 form-text">
-          User name
-        </div>
+          <li id="footer-help" class="nav-item p-2">
+            <a class="link-secondary text-decoration-none" data-i18n="footer-help" href="#">
+              Help
+            </a>
+          </li>
 
-        <div id="offcanvas-user-select-user-name" class="mb-3 form-text fw-bold">
-          John Doe
-        </div>
-
-      </div>
-    </div>
-
-
-    <!-- Offcanvas volume insert -->
-
-    <div id="offcanvas-volume-insert" class="offcanvas offcanvas-start" tabindex="-1" aria-labelledby="offcanvas-volume-insert-title">
-      <div class="offcanvas-header">
-        <h5 id="offcanvas-volume-insert-title" class="offcanvas-title">Volume insert</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-      </div>
-      <div class="offcanvas-body">
-        <div class="mb-3 form-text">
-          Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists, etc.
-        </div>
-      </div>
-    </div>
-
-    <!-- Offcanvas category insert -->
-
-    <div id="offcanvas-category-insert" class="offcanvas offcanvas-start" tabindex="-1" aria-labelledby="offcanvas-category-insert-title">
-      <div class="offcanvas-header">
-        <h5 id="offcanvas-category-insert-title" class="offcanvas-title">Category insert</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-      </div>
-      <div class="offcanvas-body">
-
-        <div class="mb-3 form-text">
-          Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists, etc.
-        </div>
-
-      </div>
-    </div>
-
-    <!-- Offcanvas post insert -->
-
-    <div id="offcanvas-post-insert" class="offcanvas offcanvas-start" tabindex="-1" aria-labelledby="offcanvas-post-insert-title">
-      <div class="offcanvas-header">
-        <h5 id="offcanvas-post-insert-title" class="offcanvas-title">Post insert</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-      </div>
-      <div class="offcanvas-body">
-        <div class="mb-3 form-text">
-          Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists, etc.
-        </div>
-      </div>
-    </div>
-
-    <!-- Offcanvas comment insert -->
-
-    <div id="offcanvas-comment-insert" class="offcanvas offcanvas-start" tabindex="-1" aria-labelledby="offcanvas-comment-insert-title">
-      <div class="offcanvas-header">
-        <h5 id="offcanvas-comment-insert-title" class="offcanvas-title">Comment insert</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-      </div>
-      <div class="offcanvas-body">
-        <div class="mb-3 form-text">
-          Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists, etc.
-        </div>
-      </div>
-    </div>
-
-    <!-- Users -->
-
-    <div id="tab-users" class="container-fluid d-none">
-      <h1 id="tab-users-title" class="d-inline">Users</h1>
-    </div>
-
-    <!-- Volumes -->
-
-    <div id="tab-volumes" class="container-fluid d-none">
-      <h1 id="tab-volumes-title" class="d-inline">Volumes</h1>
-      <a id="tab-volumes-insert" class="btn btn-outline-primary" href="#offcanvas-volume-insert" data-bs-toggle="offcanvas">Insert volume</a>
-    
-      <table id="tab-volumes-table" class="table">
-        <thead>
-          <tr>
-            <th id="tab-volumes-th-id" scope="col">id</th>
-            <th id="tab-volumes-th-created" scope="col">created</th>
-            <th id="tab-volumes-th-volume-title" scope="col">volume_title</th>
-            <th id="tab-volumes-th-volume-currency" scope="col">volume_currency</th>
-            <th id="tab-volumes-th-volume-sum" scope="col">volume_sum</th>
-          </tr>
-        </thead>
-        <tbody></tbody>
-      </table>
-    
-      <nav id="tab-volumes-pagination" aria-label="Volumes pagination" class="d-none">
-        <ul class="pagination">
         </ul>
-      </nav>
-
-    </div>
-
-    <!-- Categories -->
-
-    <div id="tab-categories" class="container-fluid d-none">
-      <h1 id="tab-categories-title" class="d-inline">Categories</h1>
-      <a id="tab-categories-insert" class="btn btn-outline-primary" href="#offcanvas-category-insert" data-bs-toggle="offcanvas">Insert category</a>
-    </div>
-
-    <!-- Reports -->
-
-    <div id="tab-reports" class="container-fluid d-none">
-      <h1 id="tab-reports-title" class="d-inline">Reports</h1>
-    </div>
-
-    <!-- Posts -->
-
-    <div id="tab-posts" class="container-fluid d-none">
-      <h1 id="tab-posts-title" class="d-inline">Posts</h1>
-      <a id="tab-posts-insert" class="btn btn-outline-primary" href="#offcanvas-post-insert" data-bs-toggle="offcanvas">Insert post</a>
-    
-      <div id="tab-posts-group-statuses" class="btn-group" role="group" aria-label="Posts statuses">
-        <button data-post-status="draft" type="button" class="btn btn-outline-primary">Draft</button>
-        <button data-post-status="todo" type="button" class="btn btn-outline-primary">Todo</button>
-        <button data-post-status="doing" type="button" class="btn btn-outline-primary">Doing</button>
-        <button data-post-status="done" type="button" class="btn btn-outline-primary">Done</button>
       </div>
 
-      <table id="tab-posts-table" class="table">
-        <thead>
-          <tr>
-            <th id="tab-posts-th-id" scope="col">id</th>
-            <th id="tab-posts-th-created" scope="col">created</th>
-            <th id="tab-posts-th-post-title" scope="col">post_title</th>
-            <th id="tab-posts-th-post-sum" scope="col">post_sum</th>
-          </tr>
-        </thead>
-        <tbody></tbody>
-      </table>
-    
-      <nav id="tab-posts-pagination" aria-label="Posts pagination" class="d-none">
-        <ul class="pagination">
-        </ul>
-      </nav>
-    
-    </div>
+      <div class="text-center pb-3">
+        © 2021-2022
+        <a class="link-secondary" href="https://mdbootstrap.com/">dummy</a>
+        &mdash; 
+        <span data-i18n="footer-rights">all rights reserved.</span>
+      </div>
 
-    <!-- Comments -->
-
-    <div id="tab-comments" class="container-fluid d-none">
-      <h1 id="tab-comments-title" class="d-inline">Comments</h1>
-      <a id="tab-comments-insert" class="btn btn-outline-primary" href="#offcanvas-comment-insert" data-bs-toggle="offcanvas">Insert comment</a>
-    </div>
+    </footer>
 
     <!-- End -->
 
   </body>
 </html>
+
+
+
+
+
+
+
+
+
