@@ -14,6 +14,7 @@ const I18N_ru =
         '11': 'ноября',
         '12': 'декабря'
     },
+    
     '_sizes': {
         '0': 'б', 
         '1': 'кб', 
@@ -24,6 +25,12 @@ const I18N_ru =
         '6': 'Эб', 
         '7': 'Зб', 
         '8': 'Йб'
+    },
+
+    '_currencies': {
+        'RUB': 'RUB (российский рубль)',
+        'USD': 'USD (доллар США)',
+        'EUR': 'EUR (европейский евро)',
     },
 
     '_errors': {
@@ -88,6 +95,21 @@ const I18N_ru =
     'offcanvas-user-pass-after-title': 'Пароль изменен',
     'offcanvas-user-pass-after-text-1': 'Отлично, вы изменили свой пароль. Пожалуйста, не забудьте его.',
     'offcanvas-user-pass-after-submit': 'Готово',
+
+    'offcanvas-volume-insert-title': 'Добавление хранилища',
+    'offcanvas-volume-insert-volume-title': 'Название хранилища',
+    'offcanvas-volume-insert-volume-summary': 'Краткая информация',
+    'offcanvas-volume-insert-text-1': 'Выберите основную валюту. В ней будут производиться все операции внутри хранилища.',
+    'offcanvas-volume-insert-volume-currency': 'Валюта хранилища',
+    'offcanvas-volume-insert-submit': 'Готово',
+
+    'tab-volumes-title': 'Хранилища',
+    'tab-volumes-insert': 'Добавить хранилище',
+    'tab-volumes-rows-created': 'Создано',
+    'tab-volumes-rows-volume-title': 'Название хранилища',
+    'tab-volumes-rows-posts-count': 'Записей',
+    'tab-volumes-rows-volume-currency': 'Валюта',
+    'tab-volumes-rows-volume-sum': 'Сумма',
 
     'footer-help': 'Помощь',
     'footer-rights': 'все права защищены.',

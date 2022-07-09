@@ -14,6 +14,7 @@ let I18N_en =
         '11': 'November',
         '12': 'December'
     },
+
     '_sizes': {
         '0': 'B', 
         '1': 'kB', 
@@ -24,6 +25,12 @@ let I18N_en =
         '6': 'EB', 
         '7': 'ZB', 
         '8': 'YB'
+    },
+
+    '_currencies': {
+        'RUB': 'RUB (russian ruble)',
+        'USD': 'USD (US dollar)',
+        'EUR': 'EUR (european euro)',
     },
 
 }

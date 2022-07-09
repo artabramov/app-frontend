@@ -14,6 +14,7 @@ const I18N_es =
         '11': 'ноября',
         '12': 'декабря'
     },
+
     '_sizes': {
         '0': 'б', 
         '1': 'кб', 
@@ -25,6 +26,13 @@ const I18N_es =
         '7': 'Зб', 
         '8': 'Йб'
     },
+
+    '_currencies': {
+        'RUB': 'RUB (Rublo ruso)',
+        'USD': 'USD (dólar estadounidense)',
+        'EUR': 'EUR (euro europeo)',
+    },
+
     '_navbar-search': 'поиск записей',
     'navbar-users': 'Usuarios',
     'navbar-volumes': 'Bóvedas',

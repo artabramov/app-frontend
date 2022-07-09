@@ -28,7 +28,7 @@ function translateUI() {
         // ---- toggle language in navbar ----
         $('#navbar-i18n').find('a.dropdown-toggle').text(LANGUAGES[LOCALE]);
 
-        // ---- translate UI ----
+        // ---- common UI elements ----
         I18N = eval('I18N_' + LOCALE);
         $.each(I18N, function(key, value){
             if(!key.startsWith('_')) {
@@ -48,6 +48,12 @@ function translateUI() {
             }
         });
 
-        // ---- translate uncommon UI elements ----
+        // ---- uncommon UI elements ----
         $('#navbar-search').find('input[type="search"]').attr('placeholder', I18N['_navbar-search']);
+
+        // ---- currencies ----
+        $.each(I18N['_currencies'], function(key, value){
+            $('body').find('[data-i18n="offcanvas-volume-insert-volume-currency-' + key + '"]').text(value);
+            $('body').find('[data-i18n="offcanvas-volume-update-volume-currency-' + key + '"]').text(value);
+        });
 }

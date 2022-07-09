@@ -30,7 +30,7 @@ function hide_offcanvas(offcanvas_id) {
 }
 
 function clear_inputs(offcanvas_id) {
-    let inputs = $(offcanvas_id + ' :input');
+    let inputs = $(offcanvas_id + ' :input[type=text], textarea');
     inputs.each(function(value) {
         let id = '#' + $(this).attr('id');
         $(id).val('');
@@ -145,6 +145,7 @@ function hide_tabs() {
 // ---- events ----
 
 $(document).ready(function(){
+    // start page
     $('#tab-outer').removeClass('d-none');
 
     // user auth
@@ -193,6 +194,14 @@ $(document).ready(function(){
     // change pass after
     $('#offcanvas-user-pass-after-submit').click(function(){
         hide_offcanvas('#offcanvas-user-pass-after');
+    });
+
+    // volume insert
+    $('#offcanvas-volume-insert-submit').click(function(){
+        let volume_title = $('#offcanvas-volume-insert-volume-title').val();
+        let volume_summary = $('#offcanvas-volume-insert-volume-summary').val();
+        let volume_currency = $('#offcanvas-volume-insert-volume-currency').val();
+        volume_insert(volume_title, volume_summary, volume_currency);
     });
 
     // show tab users

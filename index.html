@@ -412,6 +412,56 @@
       </div>
     </div>
 
+    <!-- Offcanvas volume insert -->
+    <div id="offcanvas-volume-insert" class="offcanvas offcanvas-start" tabindex="-1" aria-labelledby="offcanvas-volume-insert-title">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" data-i18n="offcanvas-volume-insert-title">
+          Insert volume
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+
+        <div class="form-floating mb-3">
+          <input id="offcanvas-volume-insert-volume-title" class="form-control" type="text" placeholder="Volume insert">
+          <label for="offcanvas-volume-insert-volume-title" data-i18n="offcanvas-volume-insert-volume-title">
+            Volume title
+          </label>
+          <div id="offcanvas-volume-insert-volume-title-error" class="form-text text-danger d-none"></div>
+        </div>
+
+        <div class="form-floating mb-2">
+          <textarea id="offcanvas-volume-insert-volume-summary" class="form-control" style="height: 128px" maxlength="127" placeholder="Volume summary"></textarea>
+          <label for="offcanvas-volume-insert-volume-summary" data-i18n="offcanvas-volume-insert-volume-summary">
+            Volume summary
+          </label>
+          <div id="offcanvas-volume-insert-volume-summary-error" class="form-text text-danger d-none"></div>
+        </div>
+
+        <div class="mb-3 form-text" data-i18n="offcanvas-volume-insert-text-1">
+          Choose the main currency. In this currency, all operations within this volume will be made.
+        </div>
+
+        <div class="mb-3 form-floating">
+          <select id="offcanvas-volume-insert-volume-currency" class="form-select" aria-label="Volume currency">
+            <option value="USD" data-i18n="offcanvas-volume-insert-volume-currency-usd">USD (US dollar)</option>
+            <option value="EUR" data-i18n="offcanvas-volume-insert-volume-currency-eur">EUR (European euro)</option>
+            <option value="RUB" data-i18n="offcanvas-volume-insert-volume-currency-rub">RUB (Russian ruble)</option>
+          </select>
+          <label for="offcanvas-volume-insert-volume-currency" data-i18n="offcanvas-volume-insert-volume-currency">Volume currency</label>
+          <div id="offcanvas-volume-insert-volume-currency-error" class="form-text text-danger d-none"></div>
+        </div>
+
+        <button id="offcanvas-volume-insert-submit" class="btn btn-primary" type="button">
+          <span data-i18n="offcanvas-volume-insert-submit">
+            Done
+          </span>
+          <i class="bi bi-arrow-right"></i>
+        </button>
+
+      </div>
+    </div>
+
     <div class="container-fluid p-4">
 
       <!-- Tab outer -->
@@ -440,13 +490,20 @@
         <h1 class="d-inline" data-i18n="tab-volumes-title">
           Volumes
         </h1>
+        <button id="tab-volumes-insert" class="btn btn-outline-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas-volume-insert">
+          <span data-i18n="tab-volumes-insert">
+            Add volume
+          </span>
+          <i class="bi bi-plus-circle"></i>
+        </button>
 
         <table id="tab-volumes-rows" class="table">
           <thead>
             <tr>
-              <th data-i18n="tab-volumes-rows-id" scope="col">id</th>
+              <th scope="col">#</th>
               <th data-i18n="tab-volumes-rows-created" scope="col">Created</th>
               <th data-i18n="tab-volumes-rows-volume-title" scope="col">Volume title</th>
+              <th data-i18n="tab-volumes-rows-posts-count" scope="col">Posts count</th>
               <th data-i18n="tab-volumes-rows-volume-currency" scope="col">Volume currency</th>
               <th data-i18n="tab-volumes-rows-volume-sum" scope="col">Volume sum</th>
             </tr>
