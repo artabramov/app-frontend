@@ -14,7 +14,7 @@ $(document).ready(function(){
         ));
     });
 
-    // ---- listen for toggle language in navbar ----
+    // ---- toggle language in navbar ----
     $('#navbar-i18n').find('ul li a').click(function () {
         LOCALE = $(this).attr('data-language');
         $.cookie('user-locale', LOCALE, { expires: 365 });
@@ -34,15 +34,18 @@ function translateUI() {
             if(!key.startsWith('_')) {
                 let el = $('body').find('[data-i18n="' + key + '"]');
 
+                // remove tooltip if exists
+                if(el.data('bs.tooltip')) {
+                    el.tooltip('dispose');
+                }
+
                 // no tooltips
                 if (typeof value == 'string') {
                     el.text(value);
-                    el.tooltip('dispose');
 
                 // tooltips
                 } else {
                     el.text(value[0]);
-                    el.tooltip('dispose');
                     el.tooltip({title: value[1], delay: { show: 1000 }});
                 }
             }

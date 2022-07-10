@@ -45,6 +45,10 @@ const I18N_ru =
     'navbar-volumes': 'Хранилища',
     'navbar-categories': 'Категории',
     'navbar-reports': 'Отчеты',
+    'qwerty': 'Добавить',
+    'navbar-add-volume': 'Хранилище',
+    'navbar-add-category': 'Категорию',
+    'navbar-add-post': 'Запись',
     'navbar-search': ['Найти', 'Поиск записей по названию или метке.'],
     '_navbar-search': 'поиск записей',
 
@@ -102,6 +106,11 @@ const I18N_ru =
     'offcanvas-volume-insert-text-1': 'Выберите основную валюту. В ней будут производиться все операции внутри хранилища.',
     'offcanvas-volume-insert-volume-currency': 'Валюта хранилища',
     'offcanvas-volume-insert-submit': 'Готово',
+
+    'offcanvas-category-insert-title': 'Добавление категории',
+    'offcanvas-category-insert-category-title': 'Название категории',
+    'offcanvas-category-insert-category-summary': 'Краткая информация',
+    'offcanvas-category-insert-submit': 'Готово',
 
     'tab-volumes-title': 'Хранилища',
     'tab-volumes-insert': 'Добавить хранилище',

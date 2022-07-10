@@ -88,6 +88,7 @@ function update_navbar(user_data) {
         $('#navbar-volumes').removeClass('d-none');
         $('#navbar-categories').removeClass('d-none');
         $('#navbar-reports').removeClass('d-none');
+        $('#navbar-add').removeClass('d-none');
         $('#navbar-search').removeClass('d-none');
         
         $('#navbar-i18n').removeClass('d-none');
@@ -108,6 +109,7 @@ function update_navbar(user_data) {
         $('#navbar-volumes').addClass('d-none');
         $('#navbar-categories').addClass('d-none');
         $('#navbar-reports').addClass('d-none');
+        $('#navbar-add').addClass('d-none');
         $('#navbar-search').addClass('d-none');
 
         $('#navbar-i18n').removeClass('d-none');
@@ -202,6 +204,13 @@ $(document).ready(function(){
         let volume_summary = $('#offcanvas-volume-insert-volume-summary').val();
         let volume_currency = $('#offcanvas-volume-insert-volume-currency').val();
         volume_insert(volume_title, volume_summary, volume_currency);
+    });
+
+    // category insert
+    $('#offcanvas-category-insert-submit').click(function(){
+        let category_title = $('#offcanvas-category-insert-category-title').val();
+        let category_summary = $('#offcanvas-category-insert-category-summary').val();
+        category_insert(category_title, category_summary);
     });
 
     // show tab users

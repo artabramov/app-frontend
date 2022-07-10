@@ -23,6 +23,7 @@
 
     <script type='text/javascript' src='./js/app/user.js'></script>
     <script type='text/javascript' src='./js/app/volume.js'></script>
+    <script type='text/javascript' src='./js/app/category.js'></script>
 
   </head>
   <body class="d-flex flex-column min-vh-100">
@@ -62,13 +63,36 @@
               </a>
             </li>
 
-            <li id="navbar-reports" class="nav-item d-none">
+            <li id="navbar-reports" class="nav-item pe-5 d-none">
               <a class="nav-link" data-i18n="navbar-reports" href="#">
                 Reports
               </a>
             </li>
 
-            <li id="navbar-search" class="nav-item ms-4 d-none">
+            <li id="navbar-add" class="nav-item dropdown pe-5 d-none">
+              <a class="btn btn-outline-light dropdown-toggle" data-i18n="qwerty" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Add
+              </a>
+              <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbar-add">
+                <li>
+                  <a class="dropdown-item" data-i18n="navbar-add-volume" href="#offcanvas-volume-insert" data-bs-toggle="offcanvas">
+                    Volume
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" data-i18n="navbar-add-category" href="#offcanvas-category-insert" data-bs-toggle="offcanvas">
+                    Category
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" data-i18n="navbar-add-post" href="#offcanvas-post-insert" data-bs-toggle="offcanvas">
+                    Post
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <li id="navbar-search" class="nav-item d-none">
               <form class="d-flex" role="search">
                   <input class="form-control me-2 app-search" type="search" placeholder="search posts" aria-label="Search">
                   <button class="btn btn-outline-light" data-i18n="navbar-search" type="button">
@@ -80,50 +104,43 @@
           </ul>
           <ul class="navbar-nav ml-auto">
 
-            <li id="navbar-i18n" class="nav-item dropdown me-4 d-none">
+            <li id="navbar-i18n" class="nav-item dropdown pe-5 d-none">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 english
               </a>
               <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbar-i18n">
               </ul>
             </li>
-
             <li id="navbar-register" class="nav-item d-none">
               <a class="btn btn-outline-light" data-i18n="navbar-user-register" href="#offcanvas-user-register" data-bs-toggle="offcanvas">
                 Register
               </a>
             </li>
-
             <li id="navbar-signin" class="nav-item d-none">
               <a class="nav-link" data-i18n="navbar-user-signin" href="#offcanvas-user-signin" data-bs-toggle="offcanvas">
                 Signin
               </a>
             </li>
-
             <li id="navbar-user" class="nav-item dropdown d-none">
               <a id="navbar-user-login" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 dummy
               </a>
               <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark" aria-labelledby="navbar-user-login">
-
                 <li>
                   <a class="dropdown-item" data-i18n="navbar-user-update" href="#offcanvas-user-update" data-bs-toggle="offcanvas">
                     Update user
                   </a>
                 </li>
-                
                 <li>
                   <a class="dropdown-item" data-i18n="navbar-user-pass" href="#offcanvas-user-pass" data-bs-toggle="offcanvas">
                     Change password
                   </a>
                 </li>
-                
                 <li>
                   <a class="dropdown-item" data-i18n="navbar-user-signout" href="#">
                     Signout
                   </a>
                 </li>
-
               </ul>
             </li>
 
@@ -454,6 +471,42 @@
 
         <button id="offcanvas-volume-insert-submit" class="btn btn-primary" type="button">
           <span data-i18n="offcanvas-volume-insert-submit">
+            Done
+          </span>
+          <i class="bi bi-arrow-right"></i>
+        </button>
+
+      </div>
+    </div>
+
+    <!-- Offcanvas category insert -->
+    <div id="offcanvas-category-insert" class="offcanvas offcanvas-start" tabindex="-1" aria-labelledby="offcanvas-category-insert-title">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" data-i18n="offcanvas-category-insert-title">
+          Insert category
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+
+        <div class="form-floating mb-3">
+          <input id="offcanvas-category-insert-category-title" class="form-control" type="text" placeholder="Category insert">
+          <label for="offcanvas-category-insert-category-title" data-i18n="offcanvas-category-insert-category-title">
+            Category title
+          </label>
+          <div id="offcanvas-category-insert-category-title-error" class="form-text text-danger d-none"></div>
+        </div>
+
+        <div class="form-floating mb-2">
+          <textarea id="offcanvas-category-insert-category-summary" class="form-control" style="height: 128px" maxlength="127" placeholder="Category summary"></textarea>
+          <label for="offcanvas-category-insert-category-summary" data-i18n="offcanvas-category-insert-category-summary">
+            Category summary
+          </label>
+          <div id="offcanvas-Category-insert-category-summary-error" class="form-text text-danger d-none"></div>
+        </div>
+
+        <button id="offcanvas-category-insert-submit" class="btn btn-primary" type="button">
+          <span data-i18n="offcanvas-category-insert-submit">
             Done
           </span>
           <i class="bi bi-arrow-right"></i>
