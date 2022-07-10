@@ -114,11 +114,20 @@ const I18N_ru =
 
     'tab-volumes-title': 'Хранилища',
     'tab-volumes-insert': 'Добавить хранилище',
+    'tab-volumes-empty': 'Хранилищ еще нет.',
     'tab-volumes-rows-created': 'Создано',
     'tab-volumes-rows-volume-title': 'Название хранилища',
     'tab-volumes-rows-posts-count': 'Записей',
     'tab-volumes-rows-volume-currency': 'Валюта',
     'tab-volumes-rows-volume-sum': 'Сумма',
+
+    'tab-categories-title': 'Категории',
+    'tab-categories-insert': 'Добавить категорию',
+    'tab-categories-empty': 'Категорий еще нет.',
+    'tab-categories-rows-created': 'Создано',
+    'tab-categories-rows-category-title': 'Название категории',
+
+    'tab-posts-title': 'Записи',
 
     'footer-help': 'Помощь',
     'footer-rights': 'все права защищены.',

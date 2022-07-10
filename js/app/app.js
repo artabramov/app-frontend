@@ -136,12 +136,19 @@ function hide_tabs() {
     $('#tab-users').addClass('d-none');
     $('#tab-volumes').addClass('d-none');
     $('#tab-categories').addClass('d-none');
-    //$('#tab-posts').addClass('d-none');
+    $('#tab-posts').addClass('d-none');
     //$('#tab-comments').addClass('d-none');
     $('#tab-reports').addClass('d-none');
 
     $('#tab-outer').addClass('d-none');
     $('#tab-help').addClass('d-none');
+}
+
+function show_posts(volume_id=0, post_status='', post_title='', post_tag='', offset=0) {
+    hide_tabs();
+    enable_links();
+    $('#tab-posts').removeClass('d-none');
+    posts_list(volume_id, post_status, post_title, post_tag, offset);
 }
 
 // ---- events ----
@@ -213,6 +220,12 @@ $(document).ready(function(){
         category_insert(category_title, category_summary);
     });
 
+    //volumes_dropdown('asfdsafd');
+    $('#offcanvas-post-insert').on('show.bs.offcanvas', function () {
+        //console.log('show');
+        volumes_dropdown('#offcanvas-post-insert-volume-id');
+    })
+
     // show tab users
     $('#navbar-users').click(function(){
         hide_tabs();
@@ -234,6 +247,7 @@ $(document).ready(function(){
     $('#navbar-categories').click(function(){
         hide_tabs();
         enable_links();
+        categories_list();
         $('#navbar-categories').find('a').addClass('disabled');
         $('#tab-categories').removeClass('d-none');
     });

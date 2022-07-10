@@ -24,6 +24,7 @@
     <script type='text/javascript' src='./js/app/user.js'></script>
     <script type='text/javascript' src='./js/app/volume.js'></script>
     <script type='text/javascript' src='./js/app/category.js'></script>
+    <script type='text/javascript' src='./js/app/post.js'></script>
 
   </head>
   <body class="d-flex flex-column min-vh-100">
@@ -502,11 +503,54 @@
           <label for="offcanvas-category-insert-category-summary" data-i18n="offcanvas-category-insert-category-summary">
             Category summary
           </label>
-          <div id="offcanvas-Category-insert-category-summary-error" class="form-text text-danger d-none"></div>
+          <div id="offcanvas-category-insert-category-summary-error" class="form-text text-danger d-none"></div>
         </div>
 
         <button id="offcanvas-category-insert-submit" class="btn btn-primary" type="button">
           <span data-i18n="offcanvas-category-insert-submit">
+            Done
+          </span>
+          <i class="bi bi-arrow-right"></i>
+        </button>
+
+      </div>
+    </div>
+
+    <!-- Offcanvas post insert -->
+    <div id="offcanvas-post-insert" class="offcanvas offcanvas-start" tabindex="-1" aria-labelledby="offcanvas-post-insert-title">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" data-i18n="offcanvas-post-insert-title">
+          Insert post
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+
+        <div class="mb-3 form-floating">
+          <select id="offcanvas-post-insert-volume-id" class="form-select" aria-label="Volume">
+          </select>
+          <label for="offcanvas-post-insert-volume-id" data-i18n="offcanvas-post-insert-volume-id">Volume</label>
+          <div id="offcanvas-post-insert-volume-id-error" class="form-text text-danger d-none"></div>
+        </div>
+
+        <div class="form-floating mb-3">
+          <input id="offcanvas-post-insert-post-title" class="form-control" type="text" placeholder="Post insert">
+          <label for="offcanvas-post-insert-post-title" data-i18n="offcanvas-post-insert-post-title">
+            Post title
+          </label>
+          <div id="offcanvas-post-insert-post-title-error" class="form-text text-danger d-none"></div>
+        </div>
+
+        <div class="form-floating mb-2">
+          <textarea id="offcanvas-post-insert-post-content" class="form-control" style="height: 256px" placeholder="Post content"></textarea>
+          <label for="offcanvas-post-insert-post-content" data-i18n="offcanvas-post-insert-post-content">
+            Post content
+          </label>
+          <div id="offcanvas-post-insert-post-content-error" class="form-text text-danger d-none"></div>
+        </div>
+
+        <button id="offcanvas-post-insert-submit" class="btn btn-primary" type="button">
+          <span data-i18n="offcanvas-post-insert-submit">
             Done
           </span>
           <i class="bi bi-arrow-right"></i>
@@ -543,12 +587,16 @@
         <h1 class="d-inline" data-i18n="tab-volumes-title">
           Volumes
         </h1>
+
         <button id="tab-volumes-insert" class="btn btn-outline-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas-volume-insert">
           <span data-i18n="tab-volumes-insert">
             Add volume
           </span>
-          <i class="bi bi-plus-circle"></i>
         </button>
+
+        <div id="tab-volumes-empty" class="d-none" data-i18n="tab-volumes-empty">
+          No volumes yet.
+        </div>
 
         <table id="tab-volumes-rows" class="table">
           <thead>
@@ -571,7 +619,49 @@
         <h1 class="d-inline" data-i18n="tab-categories-title">
           Categories
         </h1>
+
+        <button id="tab-categories-insert" class="btn btn-outline-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas-category-insert">
+          <span data-i18n="tab-categories-insert">
+            Add category
+          </span>
+        </button>
+
+        <div id="tab-categories-empty" class="d-none" data-i18n="tab-categories-empty">
+          No categories yet.
+        </div>
+
+        <table id="tab-categories-rows" class="table d-none">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th data-i18n="tab-categories-rows-created" scope="col">Created</th>
+              <th data-i18n="tab-categories-rows-category-title" scope="col">Category title</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+
       </div>
+
+      <!-- Tab posts -->
+      <div id="tab-posts" class="container-fluid d-none">
+        <h1 class="d-inline" data-i18n="tab-posts-title">
+          Posts
+        </h1>
+
+        <button id="tab-posts-insert" class="btn btn-outline-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas-post-insert">
+          <span data-i18n="tab-posts-insert">
+            Add post
+          </span>
+        </button>
+
+        <div id="tab-posts-empty" class="d-none" data-i18n="tab-posts-empty">
+          No posts yet.
+        </div>
+
+      </div>
+
+    </div>
 
       <!-- Tab reports -->
       <div id="tab-reports" class="container-fluid d-none">
