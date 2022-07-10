@@ -1,3 +1,32 @@
+// ---- populate dropdown ----
+function categories_dropdown(dropdown_id) {
+    $(dropdown_id).empty();
+    $(dropdown_id).append(
+        $('<option>').attr('value', '').text('')
+    );
+
+    $.ajax({
+        method: 'GET',
+        headers: {'user-token': USER_TOKEN},
+        url: APP_URL + 'categories/',
+        dataType: 'json',
+        success: function(msg) {
+            console.log(msg);
+
+            if($.isEmptyObject(msg.errors)) {
+                if (msg.data.categories.length > 0) {
+                    $.each(msg.data.categories, function(key, category){
+                        let el = $('<option>').attr('value', category.id).text(category.category_title);
+                        $(dropdown_id).append(el);
+                    });
+                }
+            }
+        },
+        error: function(xhr, status, error) {}
+    });
+}
+
+
 // ---- categories list ----
 function categories_list() {
     $('#tab-categories-rows').find('tbody').empty();
@@ -29,6 +58,7 @@ function categories_list() {
                         );
                     });
                 }
+                
             } else {}
         },
         error: function(xhr, status, error) {}

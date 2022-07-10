@@ -1,6 +1,9 @@
 // ---- populate dropdown ----
 function volumes_dropdown(dropdown_id) {
     $(dropdown_id).empty();
+    $(dropdown_id).append(
+        $('<option>').attr('value', '').text('')
+    );
 
     $.ajax({
         method: 'GET',
@@ -8,15 +11,14 @@ function volumes_dropdown(dropdown_id) {
         url: APP_URL + 'volumes/',
         dataType: 'json',
         success: function(msg) {
-            //console.log(msg);
-
             if($.isEmptyObject(msg.errors)) {
                 if (msg.data.volumes.length > 0) {
                     $.each(msg.data.volumes, function(key, value){
-                        console.log(key, value);
-                        $(dropdown_id).append(
-                            $('<option>').attr('value', value.id).text(value.volume_title)
-                        );
+                        let el = $('<option>').attr('value', value.id).text(value.volume_title);
+                        if(value.id == VOLUME_ID) {
+                            el.attr('selected', 'selected');
+                        }
+                        $(dropdown_id).append(el);
                     });
                 }
             }
@@ -60,6 +62,7 @@ function volumes_list() {
                         );
                     });
                 }
+                
             } else {}
         },
         error: function(xhr, status, error) {}

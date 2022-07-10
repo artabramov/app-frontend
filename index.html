@@ -517,7 +517,7 @@
     </div>
 
     <!-- Offcanvas post insert -->
-    <div id="offcanvas-post-insert" class="offcanvas offcanvas-start" tabindex="-1" aria-labelledby="offcanvas-post-insert-title">
+    <div id="offcanvas-post-insert" class="offcanvas offcanvas-start w-50" tabindex="-1" aria-labelledby="offcanvas-post-insert-title">
       <div class="offcanvas-header">
         <h5 class="offcanvas-title" data-i18n="offcanvas-post-insert-title">
           Insert post
@@ -533,8 +533,26 @@
           <div id="offcanvas-post-insert-volume-id-error" class="form-text text-danger d-none"></div>
         </div>
 
+        <div class="mb-3 form-floating">
+          <select id="offcanvas-post-insert-category-id" class="form-select" aria-label="Category">
+          </select>
+          <label for="offcanvas-post-insert-category-id" data-i18n="offcanvas-post-insert-category-id">Category</label>
+          <div id="offcanvas-post-insert-category-id-error" class="form-text text-danger d-none"></div>
+        </div>
+
+        <div class="mb-3 form-floating">
+          <select id="offcanvas-post-insert-post-status" class="form-select" aria-label="Post status">
+            <option value="draft" data-i18n="offcanvas-post-insert-post-status-draft">draft</option>
+            <option value="todo" data-i18n="offcanvas-post-insert-post-status-todo">todo</option>
+            <option value="doing" data-i18n="offcanvas-post-insert-post-status-doing">doing</option>
+            <option value="done" data-i18n="offcanvas-post-insert-post-status-done">done</option>
+          </select>
+          <label for="offcanvas-post-insert-post-status" data-i18n="offcanvas-post-insert-post-status">Post status</label>
+          <div id="offcanvas-post-insert-post-status-error" class="form-text text-danger d-none"></div>
+        </div>
+
         <div class="form-floating mb-3">
-          <input id="offcanvas-post-insert-post-title" class="form-control" type="text" placeholder="Post insert">
+          <input id="offcanvas-post-insert-post-title" class="form-control" type="text" placeholder="Post title">
           <label for="offcanvas-post-insert-post-title" data-i18n="offcanvas-post-insert-post-title">
             Post title
           </label>
@@ -542,11 +560,27 @@
         </div>
 
         <div class="form-floating mb-2">
-          <textarea id="offcanvas-post-insert-post-content" class="form-control" style="height: 256px" placeholder="Post content"></textarea>
+          <textarea id="offcanvas-post-insert-post-content" class="form-control" style="height: 160px" placeholder="Post content"></textarea>
           <label for="offcanvas-post-insert-post-content" data-i18n="offcanvas-post-insert-post-content">
             Post content
           </label>
           <div id="offcanvas-post-insert-post-content-error" class="form-text text-danger d-none"></div>
+        </div>
+
+        <div class="form-floating mb-3">
+          <input id="offcanvas-post-insert-post-sum" class="form-control" type="text" placeholder="Post sum">
+          <label for="offcanvas-post-insert-post-sum" data-i18n="offcanvas-post-insert-post-sum">
+            Post sum
+          </label>
+          <div id="offcanvas-post-insert-post-sum-error" class="form-text text-danger d-none"></div>
+        </div>
+
+        <div class="form-floating mb-3">
+          <input id="offcanvas-post-insert-post-tags" class="form-control" type="text" placeholder="Post tags">
+          <label for="offcanvas-post-insert-post-tags" data-i18n="offcanvas-post-insert-post-tags">
+            Post tags
+          </label>
+          <div id="offcanvas-post-insert-post-tags-error" class="form-text text-danger d-none"></div>
         </div>
 
         <button id="offcanvas-post-insert-submit" class="btn btn-primary" type="button">
@@ -658,6 +692,17 @@
         <div id="tab-posts-empty" class="d-none" data-i18n="tab-posts-empty">
           No posts yet.
         </div>
+
+        <table id="tab-posts-rows" class="table d-none">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th data-i18n="tab-posts-rows-created" scope="col">Created</th>
+              <th data-i18n="tab-posts-rows-post-title" scope="col">Post title</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
 
       </div>
 
