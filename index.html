@@ -679,8 +679,12 @@
 
       <!-- Tab posts -->
       <div id="tab-posts" class="container-fluid d-none">
-        <h1 class="d-inline" data-i18n="tab-posts-title">
-          Posts
+        <h1 class="d-inline">
+          <a class="link-secondary text-decoration-none" href="#">Category name</a>
+          <span class="text-secondary"> &rarr; </span>
+          <span data-i18n="tab-posts-title">
+            Posts
+          </span>
         </h1>
 
         <button id="tab-posts-insert" class="btn btn-outline-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas-post-insert">
@@ -688,6 +692,13 @@
             Add post
           </span>
         </button>
+
+        <div id="tab-posts-post-status" class="btn-group btn-group-outline d-none">
+          <a id="tab-posts-post-status-draft" href="#" class="btn btn-outline-primary">draft</a>
+          <a id="tab-posts-post-status-todo" href="#" class="btn btn-outline-primary">todo</a>
+          <a id="tab-posts-post-status-doing" href="#" class="btn btn-outline-primary">doing</a>
+          <a id="tab-posts-post-status-done" href="#" class="btn btn-outline-primary">done</a>
+        </div>
 
         <div id="tab-posts-empty" class="d-none" data-i18n="tab-posts-empty">
           No posts yet.
@@ -699,10 +710,16 @@
               <th scope="col">#</th>
               <th data-i18n="tab-posts-rows-created" scope="col">Created</th>
               <th data-i18n="tab-posts-rows-post-title" scope="col">Post title</th>
+              <th data-i18n="tab-posts-rows-post-sum" scope="col">Post sum</th>
             </tr>
           </thead>
           <tbody></tbody>
         </table>
+
+        <nav id="tab-posts-pagination" aria-label="Posts pagination" class="d-none">
+          <ul class="pagination">
+          </ul>
+        </nav>
 
       </div>
 

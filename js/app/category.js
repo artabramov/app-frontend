@@ -11,7 +11,7 @@ function categories_dropdown(dropdown_id) {
         url: APP_URL + 'categories/',
         dataType: 'json',
         success: function(msg) {
-            console.log(msg);
+            //console.log(msg);
 
             if($.isEmptyObject(msg.errors)) {
                 if (msg.data.categories.length > 0) {

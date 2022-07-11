@@ -19,8 +19,13 @@ let I18N = {};
 let USER_TOKEN = 'eyJ1c2VyX2lkIjogMSwgInRva2VuX3NpZ25hdHVyZSI6ICJtZE9kMHM4S0hyS1Z1SVBINFBIZHVUdmEzYWhuVFJkRFNWQXFEaW92cmdLMldDUE9YYTllTVVudWVBbnNUSjlXUjRKNkt0ek94R2YwNjNOZWZhNFR0RlZBZ3NZVjNNa1p0QlRqdWlNeHpZRzkwbWp0bFgwVUhIMzE4Vndtc1loMyIsICJ0b2tlbl9leHBpcmVzIjogMTY1Nzk2NTA0OS45NjM5NDN9';
 let USER_DATA = {};
 
-// current volume_id
-let VOLUME_ID = 0;
+// current values
+const POSTS_LIMIT = 2;
+let VOLUME_ID;
+let POST_STATUS;
+let POST_TITLE;
+let POST_TAG;
+let OFFSET;
 
 // ---- app core ----
 
@@ -154,6 +159,42 @@ function show_posts(volume_id=0, post_status='', post_title='', post_tag='', off
     enable_links();
     $('#tab-posts').removeClass('d-none');
     posts_list(volume_id, post_status, post_title, post_tag, offset);
+}
+
+// ---- pagination ----
+function pagination(id, func, offset, rows_count) {
+    let rows_on_page;
+    let args;
+    if (func == 'posts_list') {
+        rows_on_page = POSTS_LIMIT;
+        args = VOLUME_ID + ", " + "'" + POST_STATUS + "', '" + POST_TITLE + "', '" + POST_TAG + "'";
+    }
+
+    // pages
+    pages_count = Math.ceil( rows_count / rows_on_page );
+    page_active = Math.floor( offset / rows_on_page );
+    page_start = page_active > 1 ? page_active - 2 : 0;
+    page_end = page_active > pages_count - 3 ? pages_count - 1 : page_active + 2;
+
+    // show pagination
+    if( pages_count > 1 ) {
+        $('#' + id).removeClass('d-none');
+        $('#' + id).addClass('d-inline');
+
+        // prev
+        disabled = page_active == 0 ? ' disabled' : '';
+        $('#' + id).find('ul').append('<li class="page-item' + disabled + '"><a class="page-link" href="#" onClick="eval(\'' + func + '\')(' + args + ', ' + ((page_active - 1) * rows_on_page) + ');">Prev</a></li>');
+
+        // pages
+        for( i = page_start; i<=page_end; i++ ) {
+            active = i == page_active ? ' active' : '';
+            $('#' + id).find('ul').append('<li class="page-item' + active + '"><a class="page-link" href="#" onClick="eval(\'' + func + '\')(' + args + ', ' + (i * rows_on_page) + ');">' + i + '</a></li>');
+        }
+
+        // next
+        disabled = page_active == page_end ? ' disabled' : '';
+        $('#' + id).find('ul').append('<li class="page-item' + disabled + '"><a class="page-link" href="#" onClick="eval(\'' + func + '\')(' + args + ', ' + ((page_active + 1) * rows_on_page) + ');">Next</a></li>');
+    }
 }
 
 // ---- events ----
