@@ -51,6 +51,8 @@ const I18N_ru =
     'navbar-add-post': 'Запись',
     //'navbar-search': ['Найти', 'Поиск записей по названию или метке.'],
     'navbar-search': 'Найти',
+    'navbar-search-title': 'по записи',
+    'navbar-search-tag': 'по метке',
     '_navbar-search': 'поиск записей',
 
     'navbar-user-register': 'Зарегистрироваться',
@@ -143,7 +145,9 @@ const I18N_ru =
     'tab-categories-rows-category-title': 'Название категории',
 
     'tab-posts-title': 'Записи',
+    'tab-posts-insert': 'Добавить запись',
 
+    'footer-outer': 'Главная',
     'footer-help': 'Помощь',
     'footer-rights': 'все права защищены.',
 

@@ -103,11 +103,9 @@
                 -->
                 <button class="btn btn-outline-secondary dropdown-toggle" data-i18n="navbar-search" type="button" data-bs-toggle="dropdown" aria-expanded="false">Search</button>
                 <ul class="dropdown-menu dropdown-menu-end">
-                  <li><a class="dropdown-item" href="#">Action</a></li>
-                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li><a id="navbar-search-title" class="dropdown-item" data-i18n="navbar-search-title" href="#">by title</a></li>
+                  <li><a id="navbar-search-tag" class="dropdown-item" data-i18n="navbar-search-tag" href="#">by tag</a></li>
                 </ul>
-
-
               </div>
             </li>
 
@@ -439,6 +437,26 @@
       </div>
     </div>
 
+    <!-- Offcanvas user select -->
+    <div id="offcanvas-user-select" class="offcanvas offcanvas-start" tabindex="-1" aria-labelledby="offcanvas-user-select-title">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" data-i18n="offcanvas-user-select-title">
+          User select
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+
+        <button id="offcanvas-user-select-submit" class="btn btn-primary" type="button">
+          <span data-i18n="offcanvas-user-select-submit">
+            Got it
+          </span>
+          <i class="bi bi-x-lg"></i>
+        </button>
+
+      </div>
+    </div>
+
     <!-- Offcanvas volume insert -->
     <div id="offcanvas-volume-insert" class="offcanvas offcanvas-start" tabindex="-1" aria-labelledby="offcanvas-volume-insert-title">
       <div class="offcanvas-header">
@@ -718,7 +736,9 @@
             <tr>
               <th scope="col">#</th>
               <th data-i18n="tab-posts-rows-created" scope="col">Created</th>
+              <th data-i18n="tab-posts-rows-user" scope="col">User</th>
               <th data-i18n="tab-posts-rows-post-title" scope="col">Post title</th>
+              <th data-i18n="tab-posts-rows-post-tags" scope="col">Post tags</th>
               <th data-i18n="tab-posts-rows-post-sum" scope="col">Post sum</th>
             </tr>
           </thead>
@@ -749,7 +769,7 @@
         <ul class="nav list-inline mx-auto justify-content-center">
 
           <li id="footer-outer" class="nav-item p-2">
-            <a class="link-secondary text-decoration-none" data-i18n="footer-help" href="#">
+            <a class="link-secondary text-decoration-none" data-i18n="footer-outer" href="#">
               Outer
             </a>
           </li>
@@ -772,16 +792,7 @@
 
     </footer>
 
-    <!-- End -->
+    <!-- That's all -->
 
   </body>
 </html>
-
-
-
-
-
-
-
-
-

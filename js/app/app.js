@@ -224,8 +224,21 @@ function pagination(id, func, args, offset, rows_count, rows_limit) {
     }
 }
 
-// ---- events ----
+// ---- make tags list ----
+function tags_list(tags) {
+    let tags_str = '';
+    tags.forEach(function(tag) {
+        if(tags_str != '') {
+            tags_str += ', ';
+        }
+        //tags_str += '<a href="#" onclick=\'console.log("click tag");\'>' + tag + '</a>';
+        tags_str += '<a href="#" onclick="show_posts(0, \'\', \'\', \'' + tag + '\', 0);">' + tag + '</a>';
+        //show_posts(0, '', '', '', 0)
+    });
+    return tags_str;
+}
 
+// ---- events ----
 $(document).ready(function(){
     // start page
     $('#tab-outer').removeClass('d-none');
@@ -363,13 +376,20 @@ $(document).ready(function(){
         $('#tab-help').removeClass('d-none');
     });
 
+    // click search by title
+    $('#navbar-search-title').click(function(){
+        if($('#navbar-search :input').val()) {
+            show_posts(0, '', $('#navbar-search :input').val(), '', 0);
+            $('#navbar-search :input').val('');
+        }
+    });
+
+    // click search by tag
+    $('#navbar-search-tag').click(function(){
+        if($('#navbar-search :input').val()) {
+            show_posts(0, '', '', $('#navbar-search :input').val(), 0);
+            $('#navbar-search :input').val('');
+        }
+    });
+
 });
-
-// ---- GO! ----
-
-$(document).ready(function(){
-    //SELF_USER = new User();
-});
-
-
-

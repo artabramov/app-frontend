@@ -9,11 +9,19 @@ function posts_list(volume_id=0, post_status='', post_title='', post_tag='', off
         update_post_status('#tab-posts-post-status', volume_id, post_status);
 
     } else if(post_title) {
-        var url = '';
+        VOLUME_ID = 0;
+        var url = APP_URL + 'posts/' + offset + '/?post_title=' + post_title;
         $('#tab-posts-post-status').addClass('d-none');
 
     } else if (post_tag) {
-        var url = '';
+        VOLUME_ID = 0;
+        var url = APP_URL + 'posts/' + offset + '/?post_tag=' + post_tag;
+        $('#tab-posts-post-status').addClass('d-none');
+    
+    // uncommon case
+    } else {
+        VOLUME_ID = 0;
+        var url = APP_URL + 'posts/' + offset + '/';
         $('#tab-posts-post-status').addClass('d-none');
     }
 
@@ -23,7 +31,7 @@ function posts_list(volume_id=0, post_status='', post_title='', post_tag='', off
         url: url,
         dataType: 'json',
         success: function(msg) {
-            console.log(msg);
+            //console.log(msg);
 
             if($.isEmptyObject(msg.errors)) {
                 if (msg.data.posts.length == 0) {
@@ -39,7 +47,9 @@ function posts_list(volume_id=0, post_status='', post_title='', post_tag='', off
                             '<tr>' +
                             '<th scope="row">' + post.id + '</th>' +
                             '<td>' + post.created + '</td>' +
+                            '<td><a href="#offcanvas-user-select" data-bs-toggle="offcanvas">' + post.user.user_login + '</a></td>' +
                             '<td>' + post.post_title + '</td>' +
+                            '<td>' + tags_list(post.tags) + '</td>' +
                             '<td>' + post.post_sum + '</td>' +
                             '</tr>'
                         );
