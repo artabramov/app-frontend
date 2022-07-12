@@ -96,9 +96,18 @@
             <li id="navbar-search" class="nav-item d-none">
               <div class="input-group">
                 <input class="form-control app-search" type="search" placeholder="search posts" aria-label="Search">
+                <!--
                 <button class="btn btn-outline-light" data-i18n="navbar-search" type="button">
                   Search
                 </button>
+                -->
+                <button class="btn btn-outline-secondary dropdown-toggle" data-i18n="navbar-search" type="button" data-bs-toggle="dropdown" aria-expanded="false">Search</button>
+                <ul class="dropdown-menu dropdown-menu-end">
+                  <li><a class="dropdown-item" href="#">Action</a></li>
+                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                </ul>
+
+
               </div>
             </li>
 

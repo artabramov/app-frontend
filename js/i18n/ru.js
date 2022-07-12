@@ -41,7 +41,7 @@ const I18N_ru =
         'Length must be between 2 and 128.': 'Длина должна быть от 2 до 128 символов.',
     },
     
-    'navbar-users': 'Пользователи',
+    'navbar-users': ['Пользователи', 'Содержимое текстовой подсказки для раздела пользователей.'],
     'navbar-volumes': 'Хранилища',
     'navbar-categories': 'Категории',
     'navbar-reports': 'Отчеты',
@@ -49,7 +49,8 @@ const I18N_ru =
     'navbar-add-volume': 'Хранилище',
     'navbar-add-category': 'Категорию',
     'navbar-add-post': 'Запись',
-    'navbar-search': ['Найти', 'Поиск записей по названию или метке.'],
+    //'navbar-search': ['Найти', 'Поиск записей по названию или метке.'],
+    'navbar-search': 'Найти',
     '_navbar-search': 'поиск записей',
 
     'navbar-user-register': 'Зарегистрироваться',
