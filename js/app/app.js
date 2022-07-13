@@ -16,14 +16,15 @@ let I18N = {};
 
 // self user
 //let USER_TOKEN = $.cookie('user-token') ? $.cookie('user-token'): '';
-let USER_TOKEN = 'eyJ1c2VyX2lkIjogMSwgInRva2VuX3NpZ25hdHVyZSI6ICJtZE9kMHM4S0hyS1Z1SVBINFBIZHVUdmEzYWhuVFJkRFNWQXFEaW92cmdLMldDUE9YYTllTVVudWVBbnNUSjlXUjRKNkt0ek94R2YwNjNOZWZhNFR0RlZBZ3NZVjNNa1p0QlRqdWlNeHpZRzkwbWp0bFgwVUhIMzE4Vndtc1loMyIsICJ0b2tlbl9leHBpcmVzIjogMTY1Nzk2NTA0OS45NjM5NDN9';
+let USER_TOKEN = 'eyJ1c2VyX2lkIjogMiwgInRva2VuX3NpZ25hdHVyZSI6ICJwQ0Yyb0dYdkdPU0tvaTNkamVhSTd2MzRaM1p6Mkh6bVY4TVlLNmRyVFEzN0FKdVhXRG9YMGxFV1JpRkJiRFpXb3ZHdTJMRGxmeWNKWkZiWXp3d1E4TFpxSHcza2JTV0JEUDUyM0xTNjdGRE1IYUk0ZEU4bGxqVUVKamt4b0o2UiIsICJ0b2tlbl9leHBpcmVzIjogMTY1ODM0NzQ2OC45MTYzNDU0fQ==';
 let USER_DATA = {};
 
 // rows limit on page
 const ROWS_LIMIT = 2;
 
-// current volume
+// current entities
 let VOLUME_ID;
+let POST_ID;
 
 // ---- app core ----
 
@@ -139,24 +140,31 @@ function enable_links() {
 }
 
 function hide_tabs() {
+    VOLUME_ID = 0;
     $('#tab-users').addClass('d-none');
     $('#tab-volumes').addClass('d-none');
     $('#tab-categories').addClass('d-none');
     $('#tab-posts').addClass('d-none');
-    //$('#tab-comments').addClass('d-none');
+    $('#tab-comments').addClass('d-none');
     $('#tab-reports').addClass('d-none');
-
     $('#tab-outer').addClass('d-none');
     $('#tab-help').addClass('d-none');
-
-    VOLUME_ID = 0;
 }
 
+// show tab posts
 function show_posts(volume_id=0, post_status='', post_title='', post_tag='', offset=0) {
     hide_tabs();
     enable_links();
     $('#tab-posts').removeClass('d-none');
     posts_list(volume_id, post_status, post_title, post_tag, offset);
+}
+
+// show tab comments
+function show_comments(post_id, offset=0) {
+    hide_tabs();
+    enable_links();
+    $('#tab-comments').removeClass('d-none');
+    comments_list(post_id, offset);
 }
 
 // ---- update post status switch ----
@@ -231,9 +239,7 @@ function tags_list(tags) {
         if(tags_str != '') {
             tags_str += ', ';
         }
-        //tags_str += '<a href="#" onclick=\'console.log("click tag");\'>' + tag + '</a>';
         tags_str += '<a href="#" onclick="show_posts(0, \'\', \'\', \'' + tag + '\', 0);">' + tag + '</a>';
-        //show_posts(0, '', '', '', 0)
     });
     return tags_str;
 }
@@ -324,8 +330,13 @@ $(document).ready(function(){
 
         if(!volume_id) {volume_id = 0;}
         if(!category_id) {category_id = 0;}
-        //console.log(volume_id, category_id, post_status);
         post_insert(volume_id, category_id, post_status, post_title, post_content, post_sum, post_tags);
+    });
+
+    // comment insert
+    $('#offcanvas-comment-insert-submit').click(function(){
+        let comment_content = $('#offcanvas-comment-insert-comment-content').val();
+        comment_insert(POST_ID, comment_content);
     });
 
     // show tab users

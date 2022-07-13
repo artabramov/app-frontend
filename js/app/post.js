@@ -7,16 +7,19 @@ function posts_list(volume_id=0, post_status='', post_title='', post_tag='', off
         var url = APP_URL + 'posts/' + offset + '/?volume_id=' + volume_id + '&post_status=' + post_status;
         VOLUME_ID = volume_id;
         update_post_status('#tab-posts-post-status', volume_id, post_status);
+        $('#tab-posts-title').text('TITLE');
 
     } else if(post_title) {
         VOLUME_ID = 0;
         var url = APP_URL + 'posts/' + offset + '/?post_title=' + post_title;
         $('#tab-posts-post-status').addClass('d-none');
+        $('#tab-posts-title').text('BY TITLE');
 
     } else if (post_tag) {
         VOLUME_ID = 0;
         var url = APP_URL + 'posts/' + offset + '/?post_tag=' + post_tag;
         $('#tab-posts-post-status').addClass('d-none');
+        $('#tab-posts-title').text('BY TAG');
     
     // uncommon case
     } else {
@@ -48,9 +51,10 @@ function posts_list(volume_id=0, post_status='', post_title='', post_tag='', off
                             '<th scope="row">' + post.id + '</th>' +
                             '<td>' + post.created + '</td>' +
                             '<td><a href="#offcanvas-user-select" data-bs-toggle="offcanvas">' + post.user.user_login + '</a></td>' +
-                            '<td>' + post.post_title + '</td>' +
+                            '<td><a href="#" onclick="show_comments(\'' + post.id + '\', 0);">' + post.post_title + '</a></td>' +
                             '<td>' + tags_list(post.tags) + '</td>' +
                             '<td>' + post.post_sum + '</td>' +
+                            '<td>' + post.meta.comments_count + '</td>' +
                             '</tr>'
                         );
                     });

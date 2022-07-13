@@ -25,6 +25,7 @@
     <script type='text/javascript' src='./js/app/volume.js'></script>
     <script type='text/javascript' src='./js/app/category.js'></script>
     <script type='text/javascript' src='./js/app/post.js'></script>
+    <script type='text/javascript' src='./js/app/comment.js'></script>
 
   </head>
   <body class="d-flex flex-column min-vh-100">
@@ -101,7 +102,7 @@
                   Search
                 </button>
                 -->
-                <button class="btn btn-outline-secondary dropdown-toggle" data-i18n="navbar-search" type="button" data-bs-toggle="dropdown" aria-expanded="false">Search</button>
+                <button class="btn btn-outline-light dropdown-toggle" data-i18n="navbar-search" type="button" data-bs-toggle="dropdown" aria-expanded="false">Search</button>
                 <ul class="dropdown-menu dropdown-menu-end">
                   <li><a id="navbar-search-title" class="dropdown-item" data-i18n="navbar-search-title" href="#">by title</a></li>
                   <li><a id="navbar-search-tag" class="dropdown-item" data-i18n="navbar-search-tag" href="#">by tag</a></li>
@@ -449,9 +450,9 @@
 
         <button id="offcanvas-user-select-submit" class="btn btn-primary" type="button">
           <span data-i18n="offcanvas-user-select-submit">
-            Got it
+            Change role
           </span>
-          <i class="bi bi-x-lg"></i>
+          <i class="bi bi-arrow-right"></i>
         </button>
 
       </div>
@@ -620,6 +621,35 @@
       </div>
     </div>
 
+    <!-- Offcanvas comment insert -->
+    <div id="offcanvas-comment-insert" class="offcanvas offcanvas-start" tabindex="-1" aria-labelledby="offcanvas-comment-insert-title">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" data-i18n="offcanvas-comment-insert-title">
+          Insert comment
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+
+        <div class="form-floating mb-2">
+          <textarea id="offcanvas-comment-insert-comment-content" class="form-control" style="height: 128px" placeholder="Comment content"></textarea>
+          <label for="offcanvas-comment-insert-comment-content" data-i18n="offcanvas-comment-insert-comment-content">
+            Comment content
+          </label>
+          <div id="offcanvas-comment-insert-comment-content-error" class="form-text text-danger d-none"></div>
+        </div>
+
+        <button id="offcanvas-comment-insert-submit" class="btn btn-primary" type="button">
+          <span data-i18n="offcanvas-comment-insert-submit">
+            Done
+          </span>
+          <i class="bi bi-arrow-right"></i>
+        </button>
+
+      </div>
+    </div>
+
+    <!-- Tabs -->
     <div class="container-fluid p-4">
 
       <!-- Tab outer -->
@@ -706,12 +736,8 @@
 
       <!-- Tab posts -->
       <div id="tab-posts" class="container-fluid d-none">
-        <h1 class="d-inline">
-          <a class="link-secondary text-decoration-none" href="#">Category name</a>
-          <span class="text-secondary"> &rarr; </span>
-          <span data-i18n="tab-posts-title">
-            Posts
-          </span>
+        <h1 id="tab-posts-title" class="d-inline" data-i18n="tab-posts-title">
+          Posts
         </h1>
 
         <button id="tab-posts-insert" class="btn btn-outline-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas-post-insert">
@@ -740,6 +766,7 @@
               <th data-i18n="tab-posts-rows-post-title" scope="col">Post title</th>
               <th data-i18n="tab-posts-rows-post-tags" scope="col">Post tags</th>
               <th data-i18n="tab-posts-rows-post-sum" scope="col">Post sum</th>
+              <th data-i18n="tab-posts-rows-comments-count" scope="col">Comments count</th>
             </tr>
           </thead>
           <tbody></tbody>
@@ -752,7 +779,45 @@
 
       </div>
 
-    </div>
+      <!-- Tab comments -->
+      <div id="tab-comments" class="container-fluid d-none">
+        <h1 id="tab-comments-post-title">
+          Post title
+        </h1>
+
+        <div id="tab-comments-post-content">
+          Post content.
+        </div>
+
+        <h1 class="d-inline" data-i18n="tab-comments-title">
+          Comments
+        </h1>
+
+        <button id="tab-comments-insert" class="btn btn-outline-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas-comment-insert">
+          <span data-i18n="tab-comments-insert">
+            Add comment
+          </span>
+        </button>
+
+        <button id="tab-comments-uploads-insert" class="btn btn-outline-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas-uploads-insert">
+          <span data-i18n="tab-comments-uploads-insert">
+            Upload files
+          </span>
+        </button>
+
+        <div id="tab-comments-empty" class="d-none" data-i18n="tab-comments-empty">
+          No comments yet.
+        </div>
+
+        <div id="tab-comments-rows" class="d-none">
+        </div>
+
+        <nav id="tab-comments-pagination" aria-label="Comments pagination" class="d-none">
+          <ul class="pagination">
+          </ul>
+        </nav>
+
+      </div>
 
       <!-- Tab reports -->
       <div id="tab-reports" class="container-fluid d-none">

@@ -103,6 +103,9 @@ const I18N_ru =
     'offcanvas-user-pass-after-text-1': 'Отлично, вы изменили свой пароль. Пожалуйста, не забудьте его.',
     'offcanvas-user-pass-after-submit': 'Готово',
 
+    'offcanvas-user-select-title': 'Просмотр пользователя',
+    'offcanvas-user-select-submit': 'Изменить роль',
+
     'offcanvas-volume-insert-title': 'Добавление хранилища',
     'offcanvas-volume-insert-volume-title': 'Название хранилища',
     'offcanvas-volume-insert-volume-summary': 'Краткая информация',
@@ -146,6 +149,10 @@ const I18N_ru =
 
     'tab-posts-title': 'Записи',
     'tab-posts-insert': 'Добавить запись',
+
+    'tab-comments-title': 'Комментарии',
+    'tab-comments-insert': 'Добавить комментарий',
+    'tab-comments-emtpy': 'Еще нет ни одного комментария.',
 
     'footer-outer': 'Главная',
     'footer-help': 'Помощь',
