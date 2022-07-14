@@ -26,6 +26,7 @@
     <script type='text/javascript' src='./js/app/category.js'></script>
     <script type='text/javascript' src='./js/app/post.js'></script>
     <script type='text/javascript' src='./js/app/comment.js'></script>
+    <script type='text/javascript' src='./js/app/upload.js'></script>
 
   </head>
   <body class="d-flex flex-column min-vh-100">
@@ -649,6 +650,34 @@
       </div>
     </div>
 
+    <!-- Offcanvas upload files -->
+    <div id="offcanvas-uploads-insert" class="offcanvas offcanvas-start" tabindex="-1" aria-labelledby="offcanvas-uploads-insert-title">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" data-i18n="offcanvas-uploads-insert-title">
+          Insert uploads
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+
+        <div class="mb-3">
+          <small class="text-muted" data-i18n="offcanvas-uploads-insert-user-files">
+            User files
+          </small>
+          <input id="offcanvas-uploads-insert-user-files" class="form-control" type="file" multiple="multiple">
+          <div id="offcanvas-uploads-insert-user-files-error" class="form-text text-danger d-none"></div>
+        </div>
+
+        <button id="offcanvas-uploads-insert-submit" class="btn btn-primary" type="button">
+          <span data-i18n="offcanvas-uploads-insert-submit">
+            Upload
+          </span>
+          <i class="bi bi-arrow-right"></i>
+        </button>
+
+      </div>
+    </div>
+
     <!-- Tabs -->
     <div class="container-fluid p-4">
 
@@ -736,15 +765,12 @@
 
       <!-- Tab posts -->
       <div id="tab-posts" class="container-fluid d-none">
-        <h1 id="tab-posts-title" class="d-inline" data-i18n="tab-posts-title">
-          Posts
+        <h1>
+          <span id="tab-posts-title-by-volume" class="d-none" data-i18n="tab-posts-title-by-volume">Posts of volume</span>
+          <span id="tab-posts-title-by-title" class="d-none" data-i18n="tab-posts-title-by-title">Posts by title</span>
+          <span id="tab-posts-title-by-tag" class="d-none" data-i18n="tab-posts-title-by-tag">Posts by tag</span>
+          <span id="tab-posts-title-object" class="d-none">object</span>
         </h1>
-
-        <button id="tab-posts-insert" class="btn btn-outline-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas-post-insert">
-          <span data-i18n="tab-posts-insert">
-            Add post
-          </span>
-        </button>
 
         <div id="tab-posts-post-status" class="btn-group btn-group-outline d-none">
           <a id="tab-posts-post-status-draft" href="#" class="btn btn-outline-primary">draft</a>
@@ -752,6 +778,12 @@
           <a id="tab-posts-post-status-doing" href="#" class="btn btn-outline-primary">doing</a>
           <a id="tab-posts-post-status-done" href="#" class="btn btn-outline-primary">done</a>
         </div>
+
+        <button id="tab-posts-insert" class="btn btn-outline-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas-post-insert">
+          <span data-i18n="tab-posts-insert">
+            Add post
+          </span>
+        </button>
 
         <div id="tab-posts-empty" class="d-none" data-i18n="tab-posts-empty">
           No posts yet.
@@ -781,41 +813,63 @@
 
       <!-- Tab comments -->
       <div id="tab-comments" class="container-fluid d-none">
-        <h1 id="tab-comments-post-title">
-          Post title
+        <h1>
+          <a id="tab-comments-volume-title" class="link-secondary" href="#">
+            Volume title
+          </a>
+          <i class="bi bi-arrow-right h3"></i>
+          <span id="tab-comments-post-title">
+            Post title
+          </span>
         </h1>
 
         <div id="tab-comments-post-content">
           Post content.
         </div>
 
-        <h1 class="d-inline" data-i18n="tab-comments-title">
-          Comments
-        </h1>
 
-        <button id="tab-comments-insert" class="btn btn-outline-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas-comment-insert">
-          <span data-i18n="tab-comments-insert">
-            Add comment
-          </span>
-        </button>
+        <div class="container-fluid p-0">
+          <div class="row">
 
-        <button id="tab-comments-uploads-insert" class="btn btn-outline-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas-uploads-insert">
-          <span data-i18n="tab-comments-uploads-insert">
-            Upload files
-          </span>
-        </button>
+            <div class="col-8">
+              <h1 data-i18n="tab-comments-title">
+                Comments
+              </h1>
+      
+              <button id="tab-comments-insert" class="btn btn-outline-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas-comment-insert">
+                <span data-i18n="tab-comments-insert">
+                  Add comment
+                </span>
+              </button>
+      
+              <div id="tab-comments-empty" class="d-none" data-i18n="tab-comments-empty">
+                No comments yet.
+              </div>
+      
+              <div id="tab-comments-rows" class="d-none">
+              </div>
+      
+              <nav id="tab-comments-pagination" aria-label="Comments pagination" class="d-none">
+                <ul class="pagination">
+                </ul>
+              </nav>
+            </div>
 
-        <div id="tab-comments-empty" class="d-none" data-i18n="tab-comments-empty">
-          No comments yet.
+            <div class="col-4">
+              <h1 data-i18n="tab-comments-uploads-title">
+                Uploaded files
+              </h1>
+
+              <button id="tab-comments-uploads-insert" class="btn btn-outline-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas-uploads-insert">
+                <span data-i18n="tab-comments-uploads-insert">
+                  Upload files
+                </span>
+              </button>
+
+            </div>
+
+          </div>
         </div>
-
-        <div id="tab-comments-rows" class="d-none">
-        </div>
-
-        <nav id="tab-comments-pagination" aria-label="Comments pagination" class="d-none">
-          <ul class="pagination">
-          </ul>
-        </nav>
 
       </div>
 

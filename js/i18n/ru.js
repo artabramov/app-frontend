@@ -51,7 +51,7 @@ const I18N_ru =
     'navbar-add-post': 'Запись',
     //'navbar-search': ['Найти', 'Поиск записей по названию или метке.'],
     'navbar-search': 'Найти',
-    'navbar-search-title': 'по записи',
+    'navbar-search-title': 'по названию',
     'navbar-search-tag': 'по метке',
     '_navbar-search': 'поиск записей',
 
@@ -147,11 +147,15 @@ const I18N_ru =
     'tab-categories-rows-created': 'Создано',
     'tab-categories-rows-category-title': 'Название категории',
 
-    'tab-posts-title': 'Записи',
+    'tab-posts-title-by-volume': 'Записи хранилища',
+    'tab-posts-title-by-title': 'Записи по названию',
+    'tab-posts-title-by-tag': 'Записи по метке',
     'tab-posts-insert': 'Добавить запись',
 
     'tab-comments-title': 'Комментарии',
+    'tab-comments-uploads-title': 'Загруженные файлы',
     'tab-comments-insert': 'Добавить комментарий',
+    'tab-comments-uploads-insert': 'Загрузить файлы',
     'tab-comments-emtpy': 'Еще нет ни одного комментария.',
 
     'footer-outer': 'Главная',

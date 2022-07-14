@@ -12,9 +12,12 @@ function comments_list(post_id, offset=0) {
         url: APP_URL + 'post/' + post_id + '/',
         dataType: 'json',
         success: function(msg) {
-            console.log(msg);
+            //console.log(msg);
 
             if($.isEmptyObject(msg.errors)) {
+                $('#tab-comments-volume-title').text(msg.data.post.volume.volume_title);
+                $('#tab-comments-volume-title').attr('onclick', 'show_posts(' + msg.data.post.volume_id + ', \'' + msg.data.post.post_status + '\', \'\', \'\', 0, \'' + msg.data.post.volume.volume_title + '\');');
+                //
                 $('#tab-comments-post-title').text(msg.data.post.post_title);
                 $('#tab-comments-post-content').text(msg.data.post.post_content);
             }

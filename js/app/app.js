@@ -152,11 +152,11 @@ function hide_tabs() {
 }
 
 // show tab posts
-function show_posts(volume_id=0, post_status='', post_title='', post_tag='', offset=0) {
+function show_posts(volume_id=0, post_status='', post_title='', post_tag='', offset=0, volume_title='') {
     hide_tabs();
     enable_links();
     $('#tab-posts').removeClass('d-none');
-    posts_list(volume_id, post_status, post_title, post_tag, offset);
+    posts_list(volume_id, post_status, post_title, post_tag, offset, volume_title);
 }
 
 // show tab comments
@@ -168,7 +168,7 @@ function show_comments(post_id, offset=0) {
 }
 
 // ---- update post status switch ----
-function update_post_status(id, volume_id, post_status) {
+function update_post_status(id, volume_id, post_status, volume_title) {
         $(id).removeClass('d-none');
         $(id + '-draft').removeClass('active');
         $(id + '-todo').removeClass('active');
@@ -189,13 +189,13 @@ function update_post_status(id, volume_id, post_status) {
         }
         
         $(id + '-draft').off('click');
-        $(id + '-draft').on('click', function() {posts_list(volume_id, 'draft', '', '', 0)});
+        $(id + '-draft').on('click', function() {posts_list(volume_id, 'draft', '', '', 0, volume_title)});
         $(id + '-todo').off('click');
-        $(id + '-todo').on('click', function() {posts_list(volume_id, 'todo', '', '', 0)});
+        $(id + '-todo').on('click', function() {posts_list(volume_id, 'todo', '', '', 0, volume_title)});
         $(id + '-doing').off('click');
-        $(id + '-doing').on('click', function() {posts_list(volume_id, 'doing', '', '', 0)});
+        $(id + '-doing').on('click', function() {posts_list(volume_id, 'doing', '', '', 0, volume_title)});
         $(id + '-done').off('click');
-        $(id + '-done').on('click', function() {posts_list(volume_id, 'done', '', '', 0)});
+        $(id + '-done').on('click', function() {posts_list(volume_id, 'done', '', '', 0, volume_title)});
 }
 
 // ---- pagination ----
@@ -242,6 +242,13 @@ function tags_list(tags) {
         tags_str += '<a href="#" onclick="show_posts(0, \'\', \'\', \'' + tag + '\', 0);">' + tag + '</a>';
     });
     return tags_str;
+}
+
+function hide_tab_posts_title() {
+    $('#tab-posts-title-by-volume').addClass('d-none');
+    $('#tab-posts-title-by-title').addClass('d-none');
+    $('#tab-posts-title-by-tag').addClass('d-none');
+    $('#tab-posts-title-object').addClass('d-none');
 }
 
 // ---- events ----
@@ -337,6 +344,12 @@ $(document).ready(function(){
     $('#offcanvas-comment-insert-submit').click(function(){
         let comment_content = $('#offcanvas-comment-insert-comment-content').val();
         comment_insert(POST_ID, comment_content);
+    });
+
+    // uploads insert
+    $('#offcanvas-uploads-insert-submit').click(function(){
+        let user_files = $('#offcanvas-uploads-insert-user-files').prop('files');
+        uploads_insert(POST_ID, user_files);
     });
 
     // show tab users

@@ -54,7 +54,7 @@ function volumes_list() {
                             '<tr>' +
                             '<th scope="row">' + volume.id + '</th>' +
                             '<td>' + volume.created + '</td>' +
-                            '<td><a href="#" onclick="show_posts(' + volume.id + ', \'doing\');">' + volume.volume_title + '</a></td>' +
+                            '<td><a href="#" onclick="show_posts(' + volume.id + ', \'doing\', \'\', \'\', 0, \'' + volume.volume_title + '\');">' + volume.volume_title + '</a></td>' +
                             '<td>' + posts_count + '</td>' +
                             '<td>' + volume.volume_currency + '</td>' +
                             '<td class="fw-bold">' + volume.volume_sum + '</td>' +

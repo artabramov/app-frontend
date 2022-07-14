@@ -42,7 +42,7 @@ function user_signin(user_login, user_totp) {
         url: APP_URL + 'token/?user_login=' + user_login + '&user_totp=' + user_totp,
         dataType: 'json',
         success: function(msg) {
-            console.log(msg);
+            //console.log(msg);
 
             if($.isEmptyObject(msg.errors)) {
                 hide_offcanvas(offcanvas_id);
@@ -170,7 +170,7 @@ function update_pass(user_pass, user_repass){
         url: APP_URL + 'pass/?user_pass=' + user_pass + '&user_repass=' + user_repass,
         dataType: 'json',
         success: function(msg) {
-            console.log(msg);
+            //console.log(msg);
 
             if($.isEmptyObject(msg.errors)) {
                 hide_offcanvas(offcanvas_id);
