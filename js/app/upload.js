@@ -6,14 +6,13 @@ function uploads_insert(post_id, user_files) {
     hide_errors(offcanvas_id);
     disable_submit(offcanvas_id);
 
-    console.log(user_files);
+    
     if(!$.isEmptyObject(user_files)) {
         var formData = new FormData();
-        //user_files.forEach(function(user_file) {
-        //    formData.append('user_files', user_file);
-        //});
-        formData.append('user_files', user_files);
-
+        Array.from(user_files).forEach(function(user_file) {
+            formData.append('user_files', user_file);
+            console.log(user_file);
+        });
 
         $.ajax({
             method: 'POST',

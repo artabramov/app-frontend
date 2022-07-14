@@ -348,7 +348,7 @@ $(document).ready(function(){
 
     // uploads insert
     $('#offcanvas-uploads-insert-submit').click(function(){
-        let user_files = $('#offcanvas-uploads-insert-user-files').prop('files');
+        let user_files = $('#offcanvas-uploads-insert-user-files')[0].files;
         uploads_insert(POST_ID, user_files);
     });
 
