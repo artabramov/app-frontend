@@ -299,6 +299,7 @@ $(document).ready(function(){
     $('#navbar-user-signout').click(function(){
         USER_TOKEN = '';
         USER_DATA = {};
+        $.cookie('user-token', '', { expires: -1 });
         update_navbar();
         hide_tabs();
         $('#tab-outer').removeClass('d-none');
