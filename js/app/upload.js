@@ -11,7 +11,7 @@ function uploads_insert(post_id, user_files) {
         var formData = new FormData();
         Array.from(user_files).forEach(function(user_file) {
             formData.append('user_files', user_file);
-            console.log(user_file);
+            //console.log(user_file);
         });
 
         $.ajax({
@@ -25,7 +25,7 @@ function uploads_insert(post_id, user_files) {
             url: APP_URL + 'uploads/?post_id=' + post_id,
             dataType: 'json',
             success: function(msg) {
-                console.log(msg);
+                //console.log(msg);
 
                 if($.isEmptyObject(msg.errors)) {
                     //hide_offcanvas(offcanvas_id);

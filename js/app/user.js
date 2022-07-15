@@ -201,7 +201,7 @@ function user_select(user_id) {
         url: APP_URL + 'user/' + user_id + '/',
         dataType: 'json',
         success: function(msg) {
-            console.log(msg);
+            //console.log(msg);
 
             if($.isEmptyObject(msg.errors)) {
                 $(offcanvas_id + '-user-login').text(msg.data.user.user_login);
@@ -245,7 +245,7 @@ function users_list(offset=0) {
         url: APP_URL + 'users/' + offset + '/',
         dataType: 'json',
         success: function(msg) {
-            console.log(msg);
+            //console.log(msg);
 
             if($.isEmptyObject(msg.errors)) {
                 if (msg.data.users.length == 0) {
