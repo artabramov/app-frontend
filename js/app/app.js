@@ -275,8 +275,10 @@ $(document).ready(function(){
 
     // user auth
     //if(!$.isEmptyObject(USER_TOKEN)) {
-    if(USER_TOKEN) {
+    if(USER_TOKEN != '') {
         user_auth();
+    } else {
+        update_navbar();
     }
 
     // user register
