@@ -206,6 +206,7 @@ function user_select(user_id) {
             if($.isEmptyObject(msg.errors)) {
                 $(offcanvas_id + '-user-login').text(msg.data.user.user_login);
                 $(offcanvas_id + '-user-status').text(msg.data.user.user_status);
+                $(offcanvas_id + '-created').text(msg.data.user.created);
 
                 if (msg.data.user.user_summary) {
                     $(offcanvas_id + '-user-summary').text(msg.data.user.user_summary);

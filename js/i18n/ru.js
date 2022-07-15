@@ -105,6 +105,10 @@ const I18N_ru =
 
     'offcanvas-user-select-title': 'Просмотр пользователя',
     'offcanvas-user-select-user-login': 'Логин пользователя',
+    'offcanvas-user-select-user-status': 'Статус пользователя',
+    'offcanvas-user-select-user-summary': 'Информация о пользователе',
+    'offcanvas-user-select-user-image': 'Изображение пользователя',
+    'offcanvas-user-select-created': 'Дата регистрации',
     'offcanvas-user-select-submit': 'Изменить роль',
 
     'offcanvas-volume-insert-title': 'Добавление хранилища',
@@ -152,6 +156,8 @@ const I18N_ru =
     'tab-posts-title-by-title': 'Записи с названием',
     'tab-posts-title-by-tag': 'Записи с меткой',
     'tab-posts-insert': 'Добавить запись',
+    'tab-posts-volume-update': 'Изменить хранилище',
+    'tab-posts-volume-delete': 'Удалить хранилище',
 
     'tab-comments-title': 'Комментарии',
     'tab-comments-uploads-title': 'Загруженные файлы',
