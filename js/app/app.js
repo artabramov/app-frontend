@@ -295,6 +295,15 @@ $(document).ready(function(){
         user_signin(user_login, user_totp);
     });
 
+    // user signout
+    $('#navbar-user-signout').click(function(){
+        USER_TOKEN = '';
+        USER_DATA = {};
+        update_navbar();
+        hide_tabs();
+        $('#tab-outer').removeClass('d-none');
+    });
+
     // user update
     $('#offcanvas-user-update-submit').click(function(){
         let user_summary = $('#offcanvas-user-update-user-summary').val();
