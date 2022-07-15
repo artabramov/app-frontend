@@ -274,7 +274,8 @@ $(document).ready(function(){
     $('#tab-outer').removeClass('d-none');
 
     // user auth
-    if(!$.isEmptyObject(USER_TOKEN)) {
+    //if(!$.isEmptyObject(USER_TOKEN)) {
+    if(USER_TOKEN) {
         user_auth();
     }
 
