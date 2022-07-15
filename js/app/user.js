@@ -189,3 +189,89 @@ function update_pass(user_pass, user_repass){
         }
     });
 }
+
+// ---- user select ----
+function user_select(user_id) {
+    let token_data = JSON.parse(atob(USER_TOKEN));
+    let offcanvas_id = '#offcanvas-user-select';
+
+    $.ajax({
+        method: 'GET',
+        headers: {'user-token': USER_TOKEN},
+        url: APP_URL + 'user/' + user_id + '/',
+        dataType: 'json',
+        success: function(msg) {
+            console.log(msg);
+
+            if($.isEmptyObject(msg.errors)) {
+                $(offcanvas_id + '-user-login').text(msg.data.user.user_login);
+                $(offcanvas_id + '-user-status').text(msg.data.user.user_status);
+
+                if (msg.data.user.user_summary) {
+                    $(offcanvas_id + '-user-summary').text(msg.data.user.user_summary);
+                    $(offcanvas_id + '-row-user-summary').removeClass('d-none');
+                } else {
+                    $(offcanvas_id + '-user-summary').text('');
+                    $(offcanvas_id + '-row-user-summary').addClass('d-none');
+                }
+
+                if(msg.data.user.meta.image_link) {
+                    $(offcanvas_id + '-user-image').prop('src', msg.data.user.meta.image_link);
+                    $(offcanvas_id + '-user-image').removeClass('d-none');
+                    $(offcanvas_id + '-row-user-image').removeClass('d-none');
+                } else {
+                    $(offcanvas_id + '-user-image').prop('src', '');
+                    $(offcanvas_id + '-user-image').addClass('d-none');
+                    $(offcanvas_id + '-row-user-image').addClass('d-none');
+                }
+                //USER_DATA = msg.data.user;
+            } else {
+                //USER_DATA = {};
+            }
+            //update_navbar(USER_DATA);
+        },
+        error: function(xhr, status, error) {}
+    });
+}
+
+// ---- user list ----
+function users_list(offset=0) {
+    $('#tab-users-rows').find('tbody').empty();
+    $('#tab-users-pagination').find('ul').empty();
+
+    $.ajax({
+        method: 'GET',
+        headers: {'user-token': USER_TOKEN},
+        url: APP_URL + 'users/' + offset + '/',
+        dataType: 'json',
+        success: function(msg) {
+            console.log(msg);
+
+            if($.isEmptyObject(msg.errors)) {
+                if (msg.data.users.length == 0) {
+                    $('#tab-users-rows').addClass('d-none');
+
+                } else {
+                    $('#tab-users-rows').removeClass('d-none');
+                
+                    msg.data.users.forEach(function(user) {
+                        $('#tab-users-rows').find('tbody').append(
+                            '<tr>' +
+                            '<th scope="row">' + user.id + '</th>' +
+                            '<td>' + user.created + '</td>' +
+                            '<td><a href="#" onclick="show_offcanvas_user_select(' + user.id + ');">' + user.user_login + '</a></td>' +
+                            '<td>' + user.user_status + '</td>' +
+                            '</tr>'
+                        );
+                    });
+                    
+                    pagination('tab-users-pagination', 'users_list', [], offset, msg.data.users_count, ROWS_LIMIT);
+                }
+
+            } else {}
+            
+        },
+        error: function(xhr, status, error) {}
+    });
+}
+

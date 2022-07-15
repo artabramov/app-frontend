@@ -104,6 +104,7 @@ const I18N_ru =
     'offcanvas-user-pass-after-submit': 'Готово',
 
     'offcanvas-user-select-title': 'Просмотр пользователя',
+    'offcanvas-user-select-user-login': 'Логин пользователя',
     'offcanvas-user-select-submit': 'Изменить роль',
 
     'offcanvas-volume-insert-title': 'Добавление хранилища',
@@ -148,8 +149,8 @@ const I18N_ru =
     'tab-categories-rows-category-title': 'Название категории',
 
     'tab-posts-title-by-volume': 'Записи хранилища',
-    'tab-posts-title-by-title': 'Записи по названию',
-    'tab-posts-title-by-tag': 'Записи по метке',
+    'tab-posts-title-by-title': 'Записи с названием',
+    'tab-posts-title-by-tag': 'Записи с меткой',
     'tab-posts-insert': 'Добавить запись',
 
     'tab-comments-title': 'Комментарии',
@@ -157,6 +158,11 @@ const I18N_ru =
     'tab-comments-insert': 'Добавить комментарий',
     'tab-comments-uploads-insert': 'Загрузить файлы',
     'tab-comments-emtpy': 'Еще нет ни одного комментария.',
+
+    'tab-users-title': 'Пользователи',
+    'tab-users-rows-created': 'Дата создания',
+    'tab-users-rows-user-login': 'Логин',
+    'tab-users-rows-user-status': 'Статус',
 
     'footer-outer': 'Главная',
     'footer-help': 'Помощь',

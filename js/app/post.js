@@ -60,7 +60,7 @@ function posts_list(volume_id=0, post_status='', post_title='', post_tag='', off
                             '<tr>' +
                             '<th scope="row">' + post.id + '</th>' +
                             '<td>' + post.created + '</td>' +
-                            '<td><a href="#offcanvas-user-select" data-bs-toggle="offcanvas">' + post.user.user_login + '</a></td>' +
+                            '<td><a href="#" onclick="show_offcanvas_user_select(' + post.user_id + ');">' + post.user.user_login + '</a></td>' +
                             '<td><a href="#" onclick="show_comments(\'' + post.id + '\', 0);">' + post.post_title + '</a></td>' +
                             '<td>' + tags_list(post.tags) + '</td>' +
                             '<td>' + post.post_sum + '</td>' +

@@ -313,6 +313,14 @@
           </div>
         </div>
 
+        <div class="mb-3">
+          <small class="text-muted" data-i18n="offcanvas-user-update-user-status">
+            User status
+          </small>
+          <div id="offcanvas-user-update-user-status">
+          </div>
+        </div>
+
         <div class="form-floating mb-2">
           <textarea id="offcanvas-user-update-user-summary" class="form-control" style="height: 128px" maxlength="127" placeholder="User summary"></textarea>
           <label for="offcanvas-user-update-user-summary" data-i18n="offcanvas-user-update-user-summary">
@@ -448,6 +456,38 @@
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
       <div class="offcanvas-body">
+
+        <div class="mb-3">
+          <small class="text-muted" data-i18n="offcanvas-user-select-user-login">
+            User login
+          </small>
+          <div id="offcanvas-user-select-user-login">
+            dummy
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <small class="text-muted" data-i18n="offcanvas-user-select-user-status">
+            User status
+          </small>
+          <div id="offcanvas-user-select-user-status">
+          </div>
+        </div>
+
+        <div id="offcanvas-user-select-row-user-summary" class="mb-3">
+          <small class="text-muted" data-i18n="offcanvas-user-select-user-summary">
+            User summary
+          </small>
+          <div id="offcanvas-user-select-user-summary">
+          </div>
+        </div>
+
+        <div id="offcanvas-user-select-row-user-image" class="mb-3">
+          <small class="text-muted" data-i18n="offcanvas-user-select-user-image">
+            User image
+          </small>
+          <img id="offcanvas-user-select-user-image" src="" class="rounded mx-auto d-block img-fluid" alt="User image">
+        </div>
 
         <button id="offcanvas-user-select-submit" class="btn btn-primary" type="button">
           <span data-i18n="offcanvas-user-select-submit">
@@ -700,6 +740,24 @@
         <h1 class="d-inline" data-i18n="tab-users-title">
           Users
         </h1>
+
+        <table id="tab-users-rows" class="table d-none">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th data-i18n="tab-users-rows-created" scope="col">Created</th>
+              <th data-i18n="tab-users-rows-user-login" scope="col">User login</th>
+              <th data-i18n="tab-users-rows-user-status" scope="col">User status</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+
+        <nav id="tab-users-pagination" aria-label="Users pagination" class="d-none">
+          <ul class="pagination">
+          </ul>
+        </nav>
+
       </div>
 
       <!-- Tab volumes -->

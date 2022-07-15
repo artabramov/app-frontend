@@ -105,10 +105,15 @@ function update_navbar(user_data) {
         $('#navbar-register').addClass('d-none');
         $('#navbar-signin').addClass('d-none');
 
+        $('#offcanvas-user-update-user-login').text(user_data.user_login);
+        $('#offcanvas-user-update-user-status').text(user_data.user_status);
         $('#offcanvas-user-update-user-summary').text(user_data.user_summary);
         if(USER_DATA.meta.image_link) {
             $('#offcanvas-user-update-user-image').prop('src', USER_DATA.meta.image_link);
             $('#offcanvas-user-update-user-image').removeClass('d-none');
+        } else {
+            $('#offcanvas-user-update-user-image').prop('src', '');
+            $('#offcanvas-user-update-user-image').addClass('d-none');
         }
 
     } else {
@@ -126,6 +131,8 @@ function update_navbar(user_data) {
         $('#navbar-register').removeClass('d-none');
         $('#navbar-signin').removeClass('d-none');
 
+        $('#offcanvas-user-update-user-login').text('');
+        $('#offcanvas-user-update-user-status').text('');
         $('#offcanvas-user-update-user-summary').text('');
         $('#offcanvas-user-update-user-image').prop('src', '');
         $('#offcanvas-user-update-user-image').addClass('d-none');
@@ -165,6 +172,11 @@ function show_comments(post_id, offset=0) {
     enable_links();
     $('#tab-comments').removeClass('d-none');
     comments_list(post_id, offset);
+}
+
+// show tab users
+function show_tab_users(offset=0) {
+    users_list(offset);
 }
 
 // ---- update post status switch ----
@@ -249,6 +261,11 @@ function hide_tab_posts_title() {
     $('#tab-posts-title-by-title').addClass('d-none');
     $('#tab-posts-title-by-tag').addClass('d-none');
     $('#tab-posts-title-object').addClass('d-none');
+}
+
+function show_offcanvas_user_select(user_id) {
+    user_select(user_id);    
+    show_offcanvas('#offcanvas-user-select');
 }
 
 // ---- events ----
@@ -356,6 +373,7 @@ $(document).ready(function(){
     $('#navbar-users').click(function(){
         hide_tabs();
         enable_links();
+        show_tab_users(0);
         $('#navbar-users').find('a').addClass('disabled');
         $('#tab-users').removeClass('d-none');
     });
