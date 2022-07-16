@@ -1,6 +1,6 @@
 // ---- comments list ----
 function comments_list(post_id, offset=0) {
-    refresh_tab('comments_list', post_id + ', ' + offset);
+    //refresh_tab('comments_list', post_id + ', ' + offset);
     $('#tab-comments-rows').empty();
     $('#tab-comments-pagination').find('ul').empty();
 
@@ -60,6 +60,40 @@ function comments_list(post_id, offset=0) {
         },
         error: function(xhr, status, error) {}
     });
+
+    /*
+    // select uploads
+    $.ajax({
+        method: 'GET',
+        headers: {'user-token': USER_TOKEN},
+        url: APP_URL + '/uploads/' + post_id + '/',
+        dataType: 'json',
+        success: function(msg) {
+            console.log(msg);
+
+            if($.isEmptyObject(msg.errors)) {
+                if (msg.data.uploads.length == 0) {
+                    $('#tab-comments-uploads-rows').addClass('d-none');
+                    $('#tab-comments-uploads-empty').removeClass('d-none');
+
+                } else {
+                    $('#tab-comments-uploads-rows').removeClass('d-none');
+                    $('#tab-comments-uploads-empty').addClass('d-none');
+                
+                    msg.data.uploads.forEach(function(upload) {
+                        $('#tab-comments-uploads-rows').append(
+                            '<p><a href="' + upload.upload_link + '" target="_blank">' + upload.upload_name + '</a> ' + filesize(upload.upload_size, I18N._sizes) + '</p>'
+                        );
+                    });
+                }
+
+            } else {}
+            
+        },
+        error: function(xhr, status, error) {}
+    });
+    */
+   uploads_list(post_id);
 }
 
 // ---- comment insert ----

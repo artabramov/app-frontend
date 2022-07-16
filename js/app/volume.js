@@ -27,6 +27,33 @@ function volumes_dropdown(dropdown_id) {
     });
 }
 
+// ---- populate offcanvas volume update ----
+function fill_offcanvas_volume_update(volume_id) {
+    let offcanvas_id = '#offcanvas-volume-update';
+
+    $.ajax({
+        method: 'GET',
+        headers: {'user-token': USER_TOKEN},
+        url: APP_URL + 'volume/' + volume_id + '/',
+        dataType: 'json',
+        success: function(msg) {
+            console.log(msg);
+
+            if($.isEmptyObject(msg.errors)) {
+                $(offcanvas_id + '-volume-id').val(msg.data.volume.id);
+                $(offcanvas_id + '-volume-title').val(msg.data.volume.volume_title);
+                $(offcanvas_id + '-volume-summary').val(msg.data.volume.volume_summary);
+                $(offcanvas_id + '-volume-currency').val(msg.data.volume.volume_currency);
+
+            } else {
+                //USER_DATA = {};
+            }
+            //update_navbar(USER_DATA);
+        },
+        error: function(xhr, status, error) {}
+    });
+}
+
 // ---- volumes list ----
 function volumes_list() {
     $('#tab-volumes-rows').find('tbody').empty();
@@ -92,6 +119,38 @@ function volume_insert(volume_title, volume_summary, volume_currency) {
                 clear_inputs(offcanvas_id);
                 enable_submit(offcanvas_id);
                 volumes_list();
+
+            } else {
+                show_errors(offcanvas_id, msg.errors);
+                enable_submit(offcanvas_id);
+            }
+        },
+        error: function(xhr, status, error) {
+            enable_submit(offcanvas_id);
+        }
+    });
+}
+
+// ---- volume update ----
+function volume_update(volume_id, volume_title, volume_summary, volume_currency) {
+    let offcanvas_id = '#offcanvas-volume-update';
+    hide_errors(offcanvas_id);
+    disable_submit(offcanvas_id);
+
+    $.ajax({
+        method: 'PUT',
+        headers: {'user-token': USER_TOKEN},
+        url: APP_URL + 'volume/' + volume_id + '/?volume_title=' + volume_title + '&volume_summary=' + volume_summary + '&volume_currency=' + volume_currency,
+        dataType: 'json',
+        success: function(msg) {
+            //console.log(msg);
+
+            if($.isEmptyObject(msg.errors)) {
+                hide_offcanvas(offcanvas_id);
+                clear_inputs(offcanvas_id);
+                enable_submit(offcanvas_id);
+                show_posts(volume_id, 'doing', '', '', 0, volume_title);
+                //volumes_list();
 
             } else {
                 show_errors(offcanvas_id, msg.errors);

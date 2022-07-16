@@ -557,6 +557,58 @@
       </div>
     </div>
 
+    <!-- Offcanvas volume update -->
+    <div id="offcanvas-volume-update" class="offcanvas offcanvas-start" tabindex="-1" aria-labelledby="offcanvas-volume-update-title">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" data-i18n="offcanvas-volume-update-title">
+          Update volume
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+
+        <input id="offcanvas-volume-update-volume-id" type="hidden">
+
+        <div class="form-floating mb-3">
+          <input id="offcanvas-volume-update-volume-title" class="form-control" type="text" placeholder="Volume update">
+          <label for="offcanvas-volume-update-volume-title" data-i18n="offcanvas-volume-update-volume-title">
+            Volume title
+          </label>
+          <div id="offcanvas-volume-update-volume-title-error" class="form-text text-danger d-none"></div>
+        </div>
+
+        <div class="form-floating mb-2">
+          <textarea id="offcanvas-volume-update-volume-summary" class="form-control" style="height: 128px" maxlength="127" placeholder="Volume summary"></textarea>
+          <label for="offcanvas-volume-update-volume-summary" data-i18n="offcanvas-volume-update-volume-summary">
+            Volume summary
+          </label>
+          <div id="offcanvas-volume-update-volume-summary-error" class="form-text text-danger d-none"></div>
+        </div>
+
+        <div class="mb-3 form-text" data-i18n="offcanvas-volume-update-text-1">
+          Choose the main currency. In this currency, all operations within this volume will be made.
+        </div>
+
+        <div class="mb-3 form-floating">
+          <select id="offcanvas-volume-update-volume-currency" class="form-select" aria-label="Volume currency">
+            <option value="USD" data-i18n="offcanvas-volume-update-volume-currency-usd">USD (US dollar)</option>
+            <option value="EUR" data-i18n="offcanvas-volume-update-volume-currency-eur">EUR (European euro)</option>
+            <option value="RUB" data-i18n="offcanvas-volume-update-volume-currency-rub">RUB (Russian ruble)</option>
+          </select>
+          <label for="offcanvas-volume-update-volume-currency" data-i18n="offcanvas-volume-update-volume-currency">Volume currency</label>
+          <div id="offcanvas-volume-update-volume-currency-error" class="form-text text-danger d-none"></div>
+        </div>
+
+        <button id="offcanvas-volume-update-submit" class="btn btn-primary" type="button">
+          <span data-i18n="offcanvas-volume-update-submit">
+            Done
+          </span>
+          <i class="bi bi-arrow-right"></i>
+        </button>
+
+      </div>
+    </div>
+
     <!-- Offcanvas category insert -->
     <div id="offcanvas-category-insert" class="offcanvas offcanvas-start" tabindex="-1" aria-labelledby="offcanvas-category-insert-title">
       <div class="offcanvas-header">
@@ -879,6 +931,8 @@
               <th data-i18n="tab-posts-rows-post-tags" scope="col">Post tags</th>
               <th data-i18n="tab-posts-rows-post-sum" scope="col">Post sum</th>
               <th data-i18n="tab-posts-rows-comments-count" scope="col">Comments count</th>
+              <th data-i18n="tab-posts-rows-uploads-count" scope="col">Uploads count</th>
+              <th data-i18n="tab-posts-rows-uploads-size" scope="col">Uploads size</th>
             </tr>
           </thead>
           <tbody></tbody>
@@ -920,6 +974,7 @@
                 <span data-i18n="tab-comments-insert">
                   Add comment
                 </span>
+                <i class="bi bi-plus"></i>
               </button>
       
               <div id="tab-comments-empty" class="d-none" data-i18n="tab-comments-empty">
@@ -944,7 +999,15 @@
                 <span data-i18n="tab-comments-uploads-insert">
                   Upload files
                 </span>
+                <i class="bi bi-arrow-up"></i>
               </button>
+
+              <div id="tab-comments-uploads-empty" class="d-none" data-i18n="tab-comments-uploads-empty">
+                No uploads yet.
+              </div>
+
+              <div id="tab-comments-uploads-rows" class="d-none">
+              </div>
 
             </div>
 

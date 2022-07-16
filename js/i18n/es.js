@@ -1,5 +1,6 @@
 const I18N_es =
 {
+    '_today': 'Este Dia',
     '_months': {
         '1': 'января',
         '2': 'февраля',

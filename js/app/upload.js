@@ -25,13 +25,13 @@ function uploads_insert(post_id, user_files) {
             url: APP_URL + 'uploads/?post_id=' + post_id,
             dataType: 'json',
             success: function(msg) {
-                //console.log(msg);
+                console.log(msg);
 
                 if($.isEmptyObject(msg.errors)) {
-                    //hide_offcanvas(offcanvas_id);
+                    hide_offcanvas(offcanvas_id);
                     clear_inputs(offcanvas_id);
                     enable_submit(offcanvas_id);
-                    //comments_list(post_id, 0);
+                    uploads_list(post_id);
 
                 } else {
                     show_errors(offcanvas_id, msg.errors);
@@ -43,4 +43,39 @@ function uploads_insert(post_id, user_files) {
             }
         });
     }
+}
+
+// ---- uploads list ----
+function uploads_list(post_id) {
+    $('#tab-comments-uploads-rows').empty();
+
+    $.ajax({
+        method: 'GET',
+        headers: {'user-token': USER_TOKEN},
+        url: APP_URL + '/uploads/' + post_id + '/',
+        dataType: 'json',
+        success: function(msg) {
+            console.log(msg);
+
+            if($.isEmptyObject(msg.errors)) {
+                if (msg.data.uploads.length == 0) {
+                    $('#tab-comments-uploads-rows').addClass('d-none');
+                    $('#tab-comments-uploads-empty').removeClass('d-none');
+
+                } else {
+                    $('#tab-comments-uploads-rows').removeClass('d-none');
+                    $('#tab-comments-uploads-empty').addClass('d-none');
+                
+                    msg.data.uploads.forEach(function(upload) {
+                        $('#tab-comments-uploads-rows').append(
+                            '<p><a href="' + upload.upload_link + '" target="_blank">' + upload.upload_name + '</a> ' + filesize(upload.upload_size, I18N._sizes) + '</p>'
+                        );
+                    });
+                }
+
+            } else {}
+            
+        },
+        error: function(xhr, status, error) {}
+    });
 }

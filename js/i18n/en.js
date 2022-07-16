@@ -1,5 +1,6 @@
 let I18N_en =
 {
+    '_today': 'Today',
     '_months': {
         '1': 'January',
         '2': 'February',

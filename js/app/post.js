@@ -13,6 +13,9 @@ function posts_list(volume_id=0, post_status='', post_title='', post_tag='', off
         $('#tab-posts-title-by-volume').text(volume_title);
         $('#tab-posts-title-by-volume').removeClass('d-none');
 
+        $('#tab-posts-volume-update').off('click');
+        $('#tab-posts-volume-update').on('click', function() {show_offcanvas_volume_update(volume_id)});
+
     } else if(post_title) {
         VOLUME_ID = 0;
         var url = APP_URL + 'posts/' + offset + '/?post_title=' + post_title;
@@ -59,12 +62,14 @@ function posts_list(volume_id=0, post_status='', post_title='', post_tag='', off
                         $('#tab-posts-rows').find('tbody').append(
                             '<tr>' +
                             '<th scope="row">' + post.id + '</th>' +
-                            '<td>' + post.created + '</td>' +
+                            '<td>' + datetime(post.created) + '</td>' +
                             '<td><a href="#" onclick="show_offcanvas_user_select(' + post.user_id + ');">' + post.user.user_login + '</a></td>' +
                             '<td><a href="#" onclick="show_comments(\'' + post.id + '\', 0);">' + post.post_title + '</a></td>' +
                             '<td>' + tags_list(post.tags) + '</td>' +
                             '<td>' + post.post_sum + '</td>' +
                             '<td>' + post.meta.comments_count + '</td>' +
+                            '<td>' + post.meta.uploads_count + '</td>' +
+                            '<td>' + post.meta.uploads_size + '</td>' +
                             '</tr>'
                         );
                     });

@@ -10,6 +10,7 @@ const LANGUAGES = {
 
 // current locale
 let LOCALE = $.cookie('user-lang') ? $.cookie('user-locale') : 'en';
+const TIMEZONE = 'Europe/Moscow';
 
 // current translation
 let I18N = {};
@@ -273,14 +274,86 @@ function show_offcanvas_user_select(user_id) {
     show_offcanvas('#offcanvas-user-select');
 }
 
+function show_offcanvas_volume_update(volume_id) {
+    //console.log('fuck');
+    fill_offcanvas_volume_update(volume_id);
+    show_offcanvas('#offcanvas-volume-update');
+}
+
+function volume_update(volume_id, volume_title, volume_summary, volume_currency) {
+    //console.log(volume_summary);
+    volume_update(volume_id, volume_title, volume_summary, volume_currency);
+}
+
 // regular refresh
 function refresh_tab(func, args) {
     clearInterval(INTERVAL_FUNC);
     INTERVAL_FUNC = setInterval(function() {
-        console.log(func + '(' + args + ')')
+        //console.log(func + '(' + args + ')')
         eval(func + '(' + args + ')')
     }, INTERVAL_TIME);
 }
+
+/**
+ * Format bytes as human-readable text.
+ * 
+ * @param bytes Number of bytes.
+ * @param dp Number of decimal places to display.
+ * 
+ * @return Formatted string.
+ */
+ function filesize(bytes, sizes) {
+
+    const thresh=1024;
+    const dp=1;
+
+    if(bytes == 0) {
+        return '0';
+
+    } else if (Math.abs(bytes) < thresh) {
+        return bytes + ' ' + sizes[0];
+    }
+
+    let u = 0;
+    const r = 10**dp;
+
+    do {
+        bytes /= thresh;
+        ++u;
+    } while (Math.round(Math.abs(bytes) * r) / r >= thresh && u < sizes.length - 1);
+
+    return bytes.toFixed(dp) + ' ' + sizes[u];
+}
+
+function datetime(datetime) {
+
+    var currentDate = new Date();
+    var currentDay = currentDate.getUTCDate();
+    var currentMonth = currentDate.getUTCMonth() + 1; //months from 1-12
+    var currentYear = currentDate.getUTCFullYear();
+    
+    //var dt = new Date(datetime + '.000+00:00');
+    var dt = new Date(datetime * 1000);
+    var dt2 = dt.toLocaleString('en-GB', { timeZone: TIMEZONE })
+    var match = dt2.match(/([0-9]+)/g);
+  
+    var localDay = parseInt(match[0]);
+    var localMonth = parseInt(match[1]);
+    var localYear = parseInt(match[2]);
+    var localHours = parseInt(match[3]);
+    var localMinutes = parseInt(match[4]);
+  
+    if(localYear == currentYear && localMonth == currentMonth && localDay == currentDay) {
+      return I18N['_today'] + ' ' + ('0' + localHours).slice(-2) + ':' + ('0' + localMinutes).slice(-2);
+  
+    } else if(localYear == currentYear) {
+      return localDay + ' ' + I18N['_months'][localMonth] + ', ' + ('0' + localHours).slice(-2) + ':' + ('0' + localMinutes).slice(-2);
+  
+    } else {
+      return localDay + ' ' + I18N['_months'][localMonth] + ' ' + localYear + ', ' + ('0' + localHours).slice(-2) + ':' + ('0' + localMinutes).slice(-2);
+    }
+  
+  }
 
 // ---- events ----
 $(document).ready(function(){
@@ -356,6 +429,16 @@ $(document).ready(function(){
         let volume_summary = $('#offcanvas-volume-insert-volume-summary').val();
         let volume_currency = $('#offcanvas-volume-insert-volume-currency').val();
         volume_insert(volume_title, volume_summary, volume_currency);
+    });
+
+    // volume update
+    $('#offcanvas-volume-update-submit').click(function(){
+        let volume_id = $('#offcanvas-volume-update-volume-id').val();
+        let volume_title = $('#offcanvas-volume-update-volume-title').val();
+        let volume_summary = $('#offcanvas-volume-update-volume-summary').val();
+        let volume_currency = $('#offcanvas-volume-update-volume-currency').val();
+        console.log(volume_summary);
+        volume_update(volume_id, volume_title, volume_summary, volume_currency);
     });
 
     // category insert
