@@ -1,5 +1,6 @@
 // ---- comments list ----
 function comments_list(post_id, offset=0) {
+    refresh_tab('comments_list', post_id + ', ' + offset);
     $('#tab-comments-rows').empty();
     $('#tab-comments-pagination').find('ul').empty();
 

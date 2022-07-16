@@ -14,6 +14,10 @@ let LOCALE = $.cookie('user-lang') ? $.cookie('user-locale') : 'en';
 // current translation
 let I18N = {};
 
+// regular refresh
+let INTERVAL_FUNC;
+let INTERVAL_TIME = 10000; // 10 seconds 
+
 // self user
 //let USER_TOKEN = $.cookie('user-token') ? $.cookie('user-token'): '';
 let USER_TOKEN = 'eyJ1c2VyX2lkIjogMiwgInRva2VuX3NpZ25hdHVyZSI6ICJwQ0Yyb0dYdkdPU0tvaTNkamVhSTd2MzRaM1p6Mkh6bVY4TVlLNmRyVFEzN0FKdVhXRG9YMGxFV1JpRkJiRFpXb3ZHdTJMRGxmeWNKWkZiWXp3d1E4TFpxSHcza2JTV0JEUDUyM0xTNjdGRE1IYUk0ZEU4bGxqVUVKamt4b0o2UiIsICJ0b2tlbl9leHBpcmVzIjogMTY1ODM0NzQ2OC45MTYzNDU0fQ==';
@@ -256,6 +260,7 @@ function tags_list(tags) {
     return tags_str;
 }
 
+// hide title on tab posts
 function hide_tab_posts_title() {
     $('#tab-posts-title-by-volume').addClass('d-none');
     $('#tab-posts-title-by-title').addClass('d-none');
@@ -268,8 +273,19 @@ function show_offcanvas_user_select(user_id) {
     show_offcanvas('#offcanvas-user-select');
 }
 
+// regular refresh
+function refresh_tab(func, args) {
+    clearInterval(INTERVAL_FUNC);
+    INTERVAL_FUNC = setInterval(function() {
+        console.log(func + '(' + args + ')')
+        eval(func + '(' + args + ')')
+    }, INTERVAL_TIME);
+}
+
 // ---- events ----
 $(document).ready(function(){
+    //refresh_tab('temp', '"A"');
+
     // start page
     $('#tab-outer').removeClass('d-none');
 
