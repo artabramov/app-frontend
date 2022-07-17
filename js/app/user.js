@@ -142,7 +142,7 @@ function upload_image(user_file) {
                     hide_errors(offcanvas_id);
                     enable_submit(offcanvas_id);
 
-                    $(offcanvas_id + '-user-image').prop('src', msg.data.image_link);
+                    $(offcanvas_id + '-user-image').prop('src', msg.data.user_image);
                     $(offcanvas_id + '-user-image').removeClass('d-none');
                     $(offcanvas_id + '-user-file').val('');
     
@@ -216,8 +216,8 @@ function user_select(user_id) {
                     $(offcanvas_id + '-row-user-summary').addClass('d-none');
                 }
 
-                if(msg.data.user.meta.image_link) {
-                    $(offcanvas_id + '-user-image').prop('src', msg.data.user.meta.image_link);
+                if(msg.data.user.user_image) {
+                    $(offcanvas_id + '-user-image').prop('src', msg.data.user.user_image);
                     $(offcanvas_id + '-user-image').removeClass('d-none');
                     $(offcanvas_id + '-row-user-image').removeClass('d-none');
                 } else {
