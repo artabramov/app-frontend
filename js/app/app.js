@@ -21,7 +21,7 @@ let INTERVAL_TIME = 10000; // 10 seconds
 
 // self user
 //let USER_TOKEN = $.cookie('user-token') ? $.cookie('user-token'): '';
-let USER_TOKEN = 'eyJ1c2VyX2lkIjogMiwgInRva2VuX3NpZ25hdHVyZSI6ICJwQ0Yyb0dYdkdPU0tvaTNkamVhSTd2MzRaM1p6Mkh6bVY4TVlLNmRyVFEzN0FKdVhXRG9YMGxFV1JpRkJiRFpXb3ZHdTJMRGxmeWNKWkZiWXp3d1E4TFpxSHcza2JTV0JEUDUyM0xTNjdGRE1IYUk0ZEU4bGxqVUVKamt4b0o2UiIsICJ0b2tlbl9leHBpcmVzIjogMTY1ODM0NzQ2OC45MTYzNDU0fQ==';
+let USER_TOKEN = "eyJ1c2VyX2lkIjogMSwgInRva2VuX3NpZ25hdHVyZSI6ICJwcjJFV3pNaUpqVGQ2U2lORTRodkhTNWd1R3hpN2pkSDE5UzVOQW1BR3NNTENUSUYwclo3dUFNYjFaa3JRbm0ySm02UFNXNFlKaUQzTjBkUEFIR0dEYTl5SFhyZWtkNU94Rko2ckRkZWVSc2NxY25oUmpGZXBYcUlabWljaVc4SyIsICJ0b2tlbl9leHBpcmVzIjogMTY1ODc4MDcwOC44MTk2MjJ9";
 let USER_DATA = {};
 
 // rows limit on page
@@ -280,6 +280,12 @@ function show_offcanvas_volume_update(volume_id) {
     show_offcanvas('#offcanvas-volume-update');
 }
 
+function show_offcanvas_volume_delete(volume_id) {
+    //console.log('fuck');
+    //fill_offcanvas_volume_delete(volume_id);
+    show_offcanvas('#offcanvas-volume-delete');
+}
+
 function volume_update(volume_id, volume_title, volume_summary, volume_currency) {
     //console.log(volume_summary);
     volume_update(volume_id, volume_title, volume_summary, volume_currency);
@@ -437,8 +443,13 @@ $(document).ready(function(){
         let volume_title = $('#offcanvas-volume-update-volume-title').val();
         let volume_summary = $('#offcanvas-volume-update-volume-summary').val();
         let volume_currency = $('#offcanvas-volume-update-volume-currency').val();
-        console.log(volume_summary);
+        //console.log(volume_summary);
         volume_update(volume_id, volume_title, volume_summary, volume_currency);
+    });
+
+    // volume delete
+    $('#offcanvas-volume-delete-submit').click(function(){
+        console.log('volume delete');
     });
 
     // category insert

@@ -15,6 +15,7 @@ function posts_list(volume_id=0, post_status='', post_title='', post_tag='', off
 
         $('#tab-posts-volume-update').off('click');
         $('#tab-posts-volume-update').on('click', function() {show_offcanvas_volume_update(volume_id)});
+        $('#tab-posts-volume-delete').on('click', function() {show_offcanvas_volume_delete(volume_id)});
 
     } else if(post_title) {
         VOLUME_ID = 0;
