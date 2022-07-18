@@ -59,6 +59,10 @@ function disable_submit(offcanvas_id) {
     $(offcanvas_id + '-spinner').removeClass('d-none');
 }
 
+function click_switch(offcanvas_id) {
+
+}
+
 function show_errors(offcanvas_id, errors) {
     for(let key in errors) {
         let error = errors[key];
@@ -447,11 +451,6 @@ $(document).ready(function(){
         volume_update(volume_id, volume_title, volume_summary, volume_currency);
     });
 
-    // volume delete
-    $('#offcanvas-volume-delete-submit').click(function(){
-        console.log('volume delete');
-    });
-
     // category insert
     $('#offcanvas-category-insert-submit').click(function(){
         let category_title = $('#offcanvas-category-insert-category-title').val();
@@ -554,6 +553,15 @@ $(document).ready(function(){
         if($('#navbar-search :input').val()) {
             show_posts(0, '', '', $('#navbar-search :input').val(), 0);
             $('#navbar-search :input').val('');
+        }
+    });
+
+    // offcanvas volume_delete switch
+    $('#offcanvas-volume-delete-switch').on('click', function(){
+        if ($('#offcanvas-volume-delete-switch').prop('checked')) {
+            $('#offcanvas-volume-delete-submit').prop('disabled', false);
+        } else {
+            $('#offcanvas-volume-delete-submit').prop('disabled', true);
         }
     });
 
