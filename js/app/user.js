@@ -74,7 +74,7 @@ function user_auth() {
         url: APP_URL + 'user/' + token_data.user_id + '/',
         dataType: 'json',
         success: function(msg) {
-            console.log(msg);
+            //console.log(msg);
 
             if($.isEmptyObject(msg.errors)) {
                 USER_DATA = msg.data.user;
@@ -235,6 +235,30 @@ function user_select(user_id) {
     });
 }
 
+// ---- get user status (and fill offcanvas user_status) ----
+function user_status(user_id) {
+    let token_data = JSON.parse(atob(USER_TOKEN));
+    let offcanvas_id = '#offcanvas-user-status';
+
+    $.ajax({
+        method: 'GET',
+        headers: {'user-token': USER_TOKEN},
+        url: APP_URL + 'user/' + user_id + '/',
+        dataType: 'json',
+        success: function(msg) {
+            //console.log(msg);
+
+            if($.isEmptyObject(msg.errors)) {
+                $(offcanvas_id + '-user-login').text(msg.data.user.user_login);
+                $(offcanvas_id + '-' + msg.data.user.user_status).prop('checked', true);
+
+            } else {
+            }
+        },
+        error: function(xhr, status, error) {}
+    });
+}
+
 // ---- user list ----
 function users_list(offset=0) {
     $('#tab-users-rows').find('tbody').empty();
@@ -261,7 +285,7 @@ function users_list(offset=0) {
                             '<th scope="row">' + user.id + '</th>' +
                             '<td>' + user.created + '</td>' +
                             '<td><a href="#" onclick="show_offcanvas_user_select(' + user.id + ');">' + user.user_login + '</a></td>' +
-                            '<td>' + user.user_status + '</td>' +
+                            '<td><a href="#" onclick="show_offcanvas_user_status(' + user.id + ');">' + user.user_status + '</a></td>' +
                             '</tr>'
                         );
                     });
@@ -273,6 +297,37 @@ function users_list(offset=0) {
             
         },
         error: function(xhr, status, error) {}
+    });
+}
+
+// ---- update user status ----
+function update_user_status(user_id, user_status) {
+    let offcanvas_id = '#offcanvas-user-status';
+    hide_errors(offcanvas_id);
+    disable_submit(offcanvas_id);
+
+    $.ajax({
+        method: 'PUT',
+        headers: {'user-token': USER_TOKEN},
+        url: APP_URL + 'user/' + user_id + '/?user_status=' + user_status,
+        dataType: 'json',
+        success: function(msg) {
+            console.log(msg);
+
+            if($.isEmptyObject(msg.errors)) {
+                hide_offcanvas(offcanvas_id);
+                hide_errors(offcanvas_id);
+                enable_submit(offcanvas_id);
+                show_offcanvas(offcanvas_id + '-after');
+
+            } else {
+                show_errors(offcanvas_id, msg.errors);
+                enable_submit(offcanvas_id);
+            }
+        },
+        error: function(xhr, status, error) {
+            enable_submit(offcanvas_id);
+        }
     });
 }
 

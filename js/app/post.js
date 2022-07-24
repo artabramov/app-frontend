@@ -157,6 +157,38 @@ function post_update(post_id, volume_id, category_id, post_status, post_title, p
     });
 }
 
+// ---- post delete ----
+function post_delete(post_id) {
+    let offcanvas_id = '#offcanvas-post-delete';
+    hide_errors(offcanvas_id);
+    disable_submit(offcanvas_id);
+
+    $.ajax({
+        method: 'DELETE',
+        headers: {'user-token': USER_TOKEN},
+        url: APP_URL + 'post/' + post_id + '/',
+        dataType: 'json',
+        success: function(msg) {
+            console.log(msg);
+
+            if($.isEmptyObject(msg.errors)) {
+                hide_offcanvas(offcanvas_id);
+                enable_submit(offcanvas_id);
+                //show_posts(volume_id, 'doing', '', '', 0, volume_title);
+                //volumes_list();
+                //hide_tabs();
+                $('#navbar-posts').click();
+
+            } else {
+                show_errors(offcanvas_id, msg.errors);
+                enable_submit(offcanvas_id);
+            }
+        },
+        error: function(xhr, status, error) {
+            enable_submit(offcanvas_id);
+        }
+    });
+}
 
 // ---- populate offcanvas post update ----
 function fill_offcanvas_post_update(post_id) {
@@ -177,7 +209,7 @@ function fill_offcanvas_post_update(post_id) {
                 $(offcanvas_id + '-post-content').val(msg.data.post.post_content);
                 $(offcanvas_id + '-post-sum').val(msg.data.post.post_sum);
                 $(offcanvas_id + '-post-tags').val(tags_string(msg.data.post.tags));
-                volumes_dropdown(offcanvas_id + '-volume-id', msg.data.post.volume_id);
+                $(offcanvas_id + '-volume-title').text(msg.data.post.volume.volume_title);
                 categories_dropdown(offcanvas_id + '-category-id', msg.data.post.category_id);
 
             } else {

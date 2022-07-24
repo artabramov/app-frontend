@@ -308,6 +308,27 @@ function show_offcanvas_post_update(post_id) {
     show_offcanvas('#offcanvas-post-update');
 }
 
+function show_offcanvas_user_status(user_id) {
+    $('#offcanvas-user-status-user-id').val(user_id);
+    //$('#offcanvas-user-status-user-login').text(user_login);
+    user_status(user_id);
+    show_offcanvas('#offcanvas-user-status');
+    //console.log(user_id);
+}
+
+function show_offcanvas_category_update(category_id) {
+    fill_offcanvas_category_update(category_id);
+    show_offcanvas('#offcanvas-category-update');
+    //console.log(category_id);
+}
+
+function show_offcanvas_category_delete(category_id) {
+    //console.log(category_id);
+    $('#offcanvas-category-delete-category-id').val(category_id);
+    show_offcanvas('#offcanvas-category-delete');   
+}
+
+
 // regular refresh (not used)
 function refresh_tab(func, args) {
     clearInterval(INTERVAL_FUNC);
@@ -316,6 +337,17 @@ function refresh_tab(func, args) {
         eval(func + '(' + args + ')')
     }, INTERVAL_TIME);
 }
+
+// show actions
+function show_actions(actions_id) {
+    $(actions_id).removeClass('d-none');
+}
+
+// hide actions
+function hide_actions(actions_id) {
+    $(actions_id).addClass('d-none');
+}
+
 
 /**
  * Format bytes as human-readable text.
@@ -446,6 +478,20 @@ $(document).ready(function(){
         hide_offcanvas('#offcanvas-user-pass-after');
     });
 
+    // update user status
+    $('#offcanvas-user-status-submit').click(function(){
+        //hide_offcanvas('#offcanvas-user-pass-after');
+        let user_id = $('#offcanvas-user-status-user-id').val();
+        let user_status = $('input[name="offcanvas-user-status-user-status"]:checked').val();
+        update_user_status(user_id, user_status);
+    });
+
+    // update user status after
+    $('#offcanvas-user-status-after-submit').click(function(){
+        hide_offcanvas('#offcanvas-user-status-after');
+        users_list();
+    });
+
     // volume insert
     $('#offcanvas-volume-insert-submit').click(function(){
         let volume_title = $('#offcanvas-volume-insert-volume-title').val();
@@ -471,11 +517,34 @@ $(document).ready(function(){
         volume_delete(VOLUME_ID);
     });
 
+    // category delete
+    $('#offcanvas-category-delete-submit').click(function(){
+        let category_id = $('#offcanvas-category-delete-category-id').val();
+        //console.log(VOLUME_ID);
+        category_delete(category_id);
+    });
+
+    // post delete
+    $('#offcanvas-post-delete-submit').click(function(){
+        //let volume_id = $('#offcanvas-volume-delete-volume-id').val();
+        //console.log(VOLUME_ID);
+        post_delete(POST_ID);
+    });
+
     // category insert
     $('#offcanvas-category-insert-submit').click(function(){
         let category_title = $('#offcanvas-category-insert-category-title').val();
         let category_summary = $('#offcanvas-category-insert-category-summary').val();
         category_insert(category_title, category_summary);
+    });
+
+    // category update
+    $('#offcanvas-category-update-submit').click(function(){
+        let category_id = $('#offcanvas-category-update-category-id').val();
+        let category_title = $('#offcanvas-category-update-category-title').val();
+        let category_summary = $('#offcanvas-category-update-category-summary').val();
+        //console.log(category_id, category_title, category_summary);
+        category_update(category_id, category_title, category_summary);
     });
 
     // show offcanvas post insert
@@ -489,6 +558,14 @@ $(document).ready(function(){
         if ($('#offcanvas-volume-delete-switch').prop('checked')) {
             $('#offcanvas-volume-delete-switch').prop('checked', false);
             $('#offcanvas-volume-delete-submit').prop('disabled', true);
+        }
+    })
+
+    // hide offcanvas post delete
+    $('#offcanvas-post-delete').on('hide.bs.offcanvas', function () {
+        if ($('#offcanvas-post-delete-switch').prop('checked')) {
+            $('#offcanvas-post-delete-switch').prop('checked', false);
+            $('#offcanvas-post-delete-submit').prop('disabled', true);
         }
     })
 
@@ -616,5 +693,24 @@ $(document).ready(function(){
             $('#offcanvas-volume-delete-submit').prop('disabled', true);
         }
     });
+
+    // offcanvas category_delete switch
+    $('#offcanvas-category-delete-switch').on('click', function(){
+        if ($('#offcanvas-category-delete-switch').prop('checked')) {
+            $('#offcanvas-category-delete-submit').prop('disabled', false);
+        } else {
+            $('#offcanvas-category-delete-submit').prop('disabled', true);
+        }
+    });
+
+    // offcanvas post delete switch
+    $('#offcanvas-post-delete-switch').on('click', function(){
+        if ($('#offcanvas-post-delete-switch').prop('checked')) {
+            $('#offcanvas-post-delete-submit').prop('disabled', false);
+        } else {
+            $('#offcanvas-post-delete-submit').prop('disabled', true);
+        }
+    });
+
 
 });

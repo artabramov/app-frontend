@@ -175,7 +175,7 @@ function volume_delete(volume_id) {
         url: APP_URL + 'volume/' + volume_id + '/',
         dataType: 'json',
         success: function(msg) {
-            console.log(msg);
+            //console.log(msg);
 
             if($.isEmptyObject(msg.errors)) {
                 hide_offcanvas(offcanvas_id);

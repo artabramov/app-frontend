@@ -423,6 +423,7 @@
       </div>
     </div>
 
+
     <!-- Offcanvas user pass after -->
     <div id="offcanvas-user-pass-after" class="offcanvas offcanvas-end" tabindex="-1" aria-labelledby="offcanvas-user-pass-after-title">
       <div class="offcanvas-header">
@@ -439,6 +440,109 @@
 
         <button id="offcanvas-user-pass-after-submit" class="btn btn-primary" type="button">
           <span data-i18n="offcanvas-user-pass-after-submit">
+            Got it
+          </span>
+          <i class="bi bi-x-lg"></i>
+        </button>
+
+      </div>
+    </div>
+
+    <!-- Offcanvas user status -->
+    <div id="offcanvas-user-status" class="offcanvas offcanvas-start" tabindex="-1" aria-labelledby="offcanvas-user-status-title">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" data-i18n="offcanvas-user-status-title">
+          User status
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+
+        <input id="offcanvas-user-status-user-id" type="hidden">
+
+        <div class="mb-3">
+          <small class="text-muted" data-i18n="offcanvas-user-status-user-login">
+            User login
+          </small>
+          <div id="offcanvas-user-status-user-login">
+            dummy
+          </div>
+        </div>
+
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="offcanvas-user-status-user-status" id="offcanvas-user-status-admin" value="admin">
+          <label class="form-check-label" for="offcanvas-user-status-admin">
+            admin
+          </label>
+        </div>
+
+        <div class="mb-3 form-text" data-i18n="offcanvas-user-status-admin-text">
+          Can change user statuss. Can create, update, delete and read volumes, categories, posts, comments and uploads.
+        </div>
+        
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="offcanvas-user-status-user-status" id="offcanvas-user-status-editor" value="editor">
+          <label class="form-check-label" for="offcanvas-user-status-editor">
+            editor
+          </label>
+        </div>
+
+        <div class="mb-3 form-text" data-i18n="offcanvas-user-status-editor-text">
+          Can create, update and read volumes, categories, posts, comments and uploads.
+        </div>
+
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="offcanvas-user-status-user-status" id="offcanvas-user-status-reader" value="reader">
+          <label class="form-check-label" for="offcanvas-user-status-reader">
+            reader
+          </label>
+        </div>
+
+        <div class="mb-3 form-text" data-i18n="offcanvas-user-status-reader-text">
+          Can only read volumes, categories, posts, comments and uploads.
+        </div>
+
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="offcanvas-user-status-user-status" id="offcanvas-user-status-blank" value="blank">
+          <label class="form-check-label" for="offcanvas-user-status-blank">
+            blank
+          </label>
+        </div>
+
+        <div class="mb-3 form-text" data-i18n="offcanvas-user-status-blank-text">
+          Can nothing. Access is not possible.
+        </div>
+
+        <button id="offcanvas-user-status-submit" class="btn btn-primary" type="button">
+          <span data-i18n="offcanvas-user-status-submit">
+            Done
+          </span>
+          <i class="bi bi-arrow-right"></i>
+        </button>
+
+        <div id="offcanvas-user-role-spinner" class="spinner-border spinner-border-sm text-primary d-none" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Offcanvas user status after -->
+    <div id="offcanvas-user-status-after" class="offcanvas offcanvas-start" tabindex="-1" aria-labelledby="offcanvas-user-status-after-title">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" data-i18n="offcanvas-user-status-after-title">
+          User status changed
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+
+        <div class="mb-3 form-text" data-i18n="offcanvas-user-status-after-text-1">
+          User status changed successfully.
+        </div>
+
+        <button id="offcanvas-user-status-after-submit" class="btn btn-primary" type="button">
+          <span data-i18n="offcanvas-user-status-after-submit">
             Got it
           </span>
           <i class="bi bi-x-lg"></i>
@@ -677,6 +781,78 @@
       </div>
     </div>
 
+    <!-- Offcanvas category update -->
+    <div id="offcanvas-category-update" class="offcanvas offcanvas-start" tabindex="-1" aria-labelledby="offcanvas-category-update-title">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" data-i18n="offcanvas-category-update-title">
+          Update category
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+
+        <input id="offcanvas-category-update-category-id" type="hidden">
+
+        <div class="form-floating mb-3">
+          <input id="offcanvas-category-update-category-title" class="form-control" type="text" placeholder="Category update">
+          <label for="offcanvas-category-update-category-title" data-i18n="offcanvas-category-update-category-title">
+            Category title
+          </label>
+          <div id="offcanvas-category-update-category-title-error" class="form-text text-danger d-none"></div>
+        </div>
+
+        <div class="form-floating mb-2">
+          <textarea id="offcanvas-category-update-category-summary" class="form-control" style="height: 128px" maxlength="127" placeholder="Volume summary"></textarea>
+          <label for="offcanvas-category-update-category-summary" data-i18n="offcanvas-categore-update-category-summary">
+            Category summary
+          </label>
+          <div id="offcanvas-category-update-category-summary-error" class="form-text text-danger d-none"></div>
+        </div>
+
+        <button id="offcanvas-category-update-submit" class="btn btn-primary" type="button">
+          <span data-i18n="offcanvas-category-update-submit">
+            Done
+          </span>
+          <i class="bi bi-arrow-right"></i>
+        </button>
+
+      </div>
+    </div>
+
+    <!-- Offcanvas category delete -->
+    <div id="offcanvas-category-delete" class="offcanvas offcanvas-start" tabindex="-1" aria-labelledby="offcanvas-category-delete-title">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" data-i18n="offcanvas-category-delete-title">
+          Category delete
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+
+        <input id="offcanvas-category-delete-category-id" type="hidden">
+
+        <div class="mb-3 form-text" data-i18n="offcanvas-category-delete-text-1">
+          Are you sure to delete this item?
+        </div>
+
+        <div class="form-check form-switch">
+          <input id="offcanvas-category-delete-switch" class="form-check-input" type="checkbox" role="switch">
+        </div>
+
+        <div class="mb-3 form-text" data-i18n="offcanvas-category-delete-text-2">
+          Please note that once deleted, the data cannot be recovered.
+        </div>
+
+        <button id="offcanvas-category-delete-submit" class="btn btn-primary" type="button" disabled>
+          <span data-i18n="offcanvas-category-delete-submit">
+            Go ahead
+          </span>
+          <i class="bi bi-arrow-right"></i>
+        </button>
+
+      </div>
+    </div>
+
     <!-- Offcanvas post insert -->
     <div id="offcanvas-post-insert" class="offcanvas offcanvas-start w-50" tabindex="-1" aria-labelledby="offcanvas-post-insert-title">
       <div class="offcanvas-header">
@@ -766,11 +942,13 @@
 
         <input id="offcanvas-post-update-post-id" type="hidden">
 
-        <div class="mb-3 form-floating">
-          <select id="offcanvas-post-update-volume-id" class="form-select" aria-label="Volume">
-          </select>
-          <label for="offcanvas-post-update-volume-id" data-i18n="offcanvas-post-update-volume-id">Volume</label>
-          <div id="offcanvas-post-update-volume-id-error" class="form-text text-danger d-none"></div>
+        <div class="mb-3">
+          <small class="text-muted" data-i18n="offcanvas-post-update-volume-title">
+            Volume
+          </small>
+          <div id="offcanvas-post-update-volume-title">
+            dummy
+          </div>
         </div>
 
         <div class="mb-3 form-floating">
@@ -826,6 +1004,38 @@
         <button id="offcanvas-post-update-submit" class="btn btn-primary" type="button">
           <span data-i18n="offcanvas-post-update-submit">
             Done
+          </span>
+          <i class="bi bi-arrow-right"></i>
+        </button>
+
+      </div>
+    </div>
+
+    <!-- Offcanvas post delete -->
+    <div id="offcanvas-post-delete" class="offcanvas offcanvas-start" tabindex="-1" aria-labelledby="offcanvas-post-delete-title">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" data-i18n="offcanvas-post-delete-title">
+          Post delete
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+
+        <div class="mb-3 form-text" data-i18n="offcanvas-post-delete-text-1">
+          Are you sure to delete this item?
+        </div>
+
+        <div class="form-check form-switch">
+          <input id="offcanvas-post-delete-switch" class="form-check-input" type="checkbox" role="switch">
+        </div>
+
+        <div class="mb-3 form-text" data-i18n="offcanvas-post-delete-text-2">
+          Please note that once deleted, the data cannot be recovered.
+        </div>
+
+        <button id="offcanvas-post-delete-submit" class="btn btn-primary" type="button" disabled>
+          <span data-i18n="offcanvas-post-delete-submit">
+            Go ahead
           </span>
           <i class="bi bi-arrow-right"></i>
         </button>
