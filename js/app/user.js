@@ -74,7 +74,7 @@ function user_auth() {
         url: APP_URL + 'user/' + token_data.user_id + '/',
         dataType: 'json',
         success: function(msg) {
-            //console.log(msg);
+            console.log(msg);
 
             if($.isEmptyObject(msg.errors)) {
                 USER_DATA = msg.data.user;

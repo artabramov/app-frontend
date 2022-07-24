@@ -620,7 +620,7 @@
       <div class="offcanvas-body">
 
         <div class="mb-3 form-text" data-i18n="offcanvas-volume-delete-text-1">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut dignissim dolor ac nulla condimentum pretium.
+          Are you sure to delete this item?
         </div>
 
         <div class="form-check form-switch">
@@ -628,7 +628,7 @@
         </div>
 
         <div class="mb-3 form-text" data-i18n="offcanvas-volume-delete-text-2">
-          Morbi vitae mi elementum, mattis justo fringilla, interdum sem.
+          Please note that once deleted, the data cannot be recovered.
         </div>
 
         <button id="offcanvas-volume-delete-submit" class="btn btn-primary" type="button" disabled>
@@ -754,6 +754,85 @@
       </div>
     </div>
 
+    <!-- Offcanvas post update -->
+    <div id="offcanvas-post-update" class="offcanvas offcanvas-start" tabindex="-1" aria-labelledby="offcanvas-post-update-title">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" data-i18n="offcanvas-post-update-title">
+          Update post
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+
+        <input id="offcanvas-post-update-post-id" type="hidden">
+
+        <div class="mb-3 form-floating">
+          <select id="offcanvas-post-update-volume-id" class="form-select" aria-label="Volume">
+          </select>
+          <label for="offcanvas-post-update-volume-id" data-i18n="offcanvas-post-update-volume-id">Volume</label>
+          <div id="offcanvas-post-update-volume-id-error" class="form-text text-danger d-none"></div>
+        </div>
+
+        <div class="mb-3 form-floating">
+          <select id="offcanvas-post-update-category-id" class="form-select" aria-label="Category">
+          </select>
+          <label for="offcanvas-post-update-category-id" data-i18n="offcanvas-post-update-category-id">Category</label>
+          <div id="offcanvas-post-update-category-id-error" class="form-text text-danger d-none"></div>
+        </div>
+
+        <div class="mb-3 form-floating">
+          <select id="offcanvas-post-update-post-status" class="form-select" aria-label="Post status">
+            <option value="draft" data-i18n="offcanvas-post-update-post-status-draft">draft</option>
+            <option value="todo" data-i18n="offcanvas-post-update-post-status-todo">todo</option>
+            <option value="doing" data-i18n="offcanvas-post-update-post-status-doing">doing</option>
+            <option value="done" data-i18n="offcanvas-post-update-post-status-done">done</option>
+          </select>
+          <label for="offcanvas-post-update-post-status" data-i18n="offcanvas-post-update-post-status">Post status</label>
+          <div id="offcanvas-post-update-post-status-error" class="form-text text-danger d-none"></div>
+        </div>
+
+        <div class="form-floating mb-3">
+          <input id="offcanvas-post-update-post-title" class="form-control" type="text" placeholder="Post update">
+          <label for="offcanvas-post-update-post-title" data-i18n="offcanvas-post-update-post-title">
+            Post title
+          </label>
+          <div id="offcanvas-post-update-post-title-error" class="form-text text-danger d-none"></div>
+        </div>
+
+        <div class="form-floating mb-2">
+          <textarea id="offcanvas-post-update-post-content" class="form-control" style="height: 160px" placeholder="Post content"></textarea>
+          <label for="offcanvas-post-update-post-content" data-i18n="offcanvas-post-update-post-content">
+            Post content
+          </label>
+          <div id="offcanvas-post-update-post-content-error" class="form-text text-danger d-none"></div>
+        </div>
+
+        <div class="form-floating mb-3">
+          <input id="offcanvas-post-update-post-sum" class="form-control" type="text" placeholder="Post sum">
+          <label for="offcanvas-post-update-post-sum" data-i18n="offcanvas-post-update-post-sum">
+            Post sum
+          </label>
+          <div id="offcanvas-post-update-post-sum-error" class="form-text text-danger d-none"></div>
+        </div>
+
+        <div class="form-floating mb-3">
+          <input id="offcanvas-post-update-post-tags" class="form-control" type="text" placeholder="Post tags">
+          <label for="offcanvas-post-update-post-tags" data-i18n="offcanvas-post-update-post-tags">
+            Post tags
+          </label>
+          <div id="offcanvas-post-update-post-tags-error" class="form-text text-danger d-none"></div>
+        </div>
+
+        <button id="offcanvas-post-update-submit" class="btn btn-primary" type="button">
+          <span data-i18n="offcanvas-post-update-submit">
+            Done
+          </span>
+          <i class="bi bi-arrow-right"></i>
+        </button>
+
+      </div>
+    </div>
+
     <!-- Offcanvas comment insert -->
     <div id="offcanvas-comment-insert" class="offcanvas offcanvas-start" tabindex="-1" aria-labelledby="offcanvas-comment-insert-title">
       <div class="offcanvas-header">
@@ -824,6 +903,13 @@
       <div id="tab-help" class="container-fluid d-none">
         <h1 class="d-inline" data-i18n="tab-help-title">
           Help
+        </h1>
+      </div>
+
+      <!-- Tab terms -->
+      <div id="tab-terms" class="container-fluid d-none">
+        <h1 class="d-inline" data-i18n="tab-terms-title">
+          Terms and conditions
         </h1>
       </div>
 
@@ -942,11 +1028,11 @@
             </span>
           </button>
 
-          <button id="tab-posts-volume-delete" class="btn btn-outline-danger" type="button">
+          <a id="tab-posts-volume-delete" class="btn btn-outline-danger" type="button" href="#offcanvas-volume-delete" data-bs-toggle="offcanvas">
             <span data-i18n="tab-posts-volume-delete">
               Delete volume
             </span>
-          </button>
+          </a>
         </div>
 
         <div id="tab-posts-empty" class="d-none" data-i18n="tab-posts-empty">
@@ -960,6 +1046,7 @@
               <th data-i18n="tab-posts-rows-created" scope="col">Created</th>
               <th data-i18n="tab-posts-rows-user" scope="col">User</th>
               <th data-i18n="tab-posts-rows-post-title" scope="col">Post title</th>
+              <th data-i18n="tab-posts-rows-category" scope="col">Post category</th>
               <th data-i18n="tab-posts-rows-post-tags" scope="col">Post tags</th>
               <th data-i18n="tab-posts-rows-post-sum" scope="col">Post sum</th>
               <th data-i18n="tab-posts-rows-comments-count" scope="col">Comments count</th>
@@ -1002,12 +1089,23 @@
                 Comments
               </h1>
       
-              <button id="tab-comments-insert" class="btn btn-outline-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas-comment-insert">
+              <button id="tab-comments-insert" class="btn btn-outline-primary me-5" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas-comment-insert">
                 <span data-i18n="tab-comments-insert">
                   Add comment
                 </span>
-                <i class="bi bi-plus"></i>
               </button>
+
+              <button id="tab-comments-post-update" class="btn btn-outline-primary" type="button">
+                <span data-i18n="tab-comments-post-update">
+                  Update post
+                </span>
+              </button>
+    
+              <a id="tab-comments-post-delete" class="btn btn-outline-danger" type="button" href="#offcanvas-post-delete" data-bs-toggle="offcanvas">
+                <span data-i18n="tab-comments-post-delete">
+                  Delete post
+                </span>
+              </a>
       
               <div id="tab-comments-empty" class="d-none" data-i18n="tab-comments-empty">
                 No comments yet.
@@ -1074,6 +1172,12 @@
             </a>
           </li>
 
+          <li id="footer-terms" class="nav-item p-2">
+            <a class="link-secondary text-decoration-none" data-i18n="footer-terms" href="#">
+              Terms and conditions
+            </a>
+          </li>
+
         </ul>
       </div>
 
@@ -1081,7 +1185,7 @@
         © 2021-2022
         <a class="link-secondary" href="https://mdbootstrap.com/">dummy</a>
         &mdash; 
-        <span data-i18n="footer-rights">all rights reserved.</span>
+        <span data-i18n="footer-copyright">all rights reserved.</span>
       </div>
 
     </footer>

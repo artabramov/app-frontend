@@ -55,7 +55,7 @@ function uploads_list(post_id) {
         url: APP_URL + '/uploads/' + post_id + '/',
         dataType: 'json',
         success: function(msg) {
-            console.log(msg);
+            //console.log(msg);
 
             if($.isEmptyObject(msg.errors)) {
                 if (msg.data.uploads.length == 0) {

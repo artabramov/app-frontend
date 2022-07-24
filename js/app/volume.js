@@ -1,5 +1,5 @@
 // ---- populate dropdown ----
-function volumes_dropdown(dropdown_id) {
+function volumes_dropdown(dropdown_id, volume_id=null) {
     $(dropdown_id).empty();
     $(dropdown_id).append(
         $('<option>').attr('value', '').text('')
@@ -15,7 +15,7 @@ function volumes_dropdown(dropdown_id) {
                 if (msg.data.volumes.length > 0) {
                     $.each(msg.data.volumes, function(key, value){
                         let el = $('<option>').attr('value', value.id).text(value.volume_title);
-                        if(value.id == VOLUME_ID) {
+                        if(volume_id && value.id == volume_id) {
                             el.attr('selected', 'selected');
                         }
                         $(dropdown_id).append(el);
@@ -37,7 +37,7 @@ function fill_offcanvas_volume_update(volume_id) {
         url: APP_URL + 'volume/' + volume_id + '/',
         dataType: 'json',
         success: function(msg) {
-            console.log(msg);
+            //console.log(msg);
 
             if($.isEmptyObject(msg.errors)) {
                 $(offcanvas_id + '-volume-id').val(msg.data.volume.id);
@@ -151,6 +151,39 @@ function volume_update(volume_id, volume_title, volume_summary, volume_currency)
                 enable_submit(offcanvas_id);
                 show_posts(volume_id, 'doing', '', '', 0, volume_title);
                 //volumes_list();
+
+            } else {
+                show_errors(offcanvas_id, msg.errors);
+                enable_submit(offcanvas_id);
+            }
+        },
+        error: function(xhr, status, error) {
+            enable_submit(offcanvas_id);
+        }
+    });
+}
+
+// ---- volume delete ----
+function volume_delete(volume_id) {
+    let offcanvas_id = '#offcanvas-volume-delete';
+    hide_errors(offcanvas_id);
+    disable_submit(offcanvas_id);
+
+    $.ajax({
+        method: 'DELETE',
+        headers: {'user-token': USER_TOKEN},
+        url: APP_URL + 'volume/' + volume_id + '/',
+        dataType: 'json',
+        success: function(msg) {
+            console.log(msg);
+
+            if($.isEmptyObject(msg.errors)) {
+                hide_offcanvas(offcanvas_id);
+                enable_submit(offcanvas_id);
+                //show_posts(volume_id, 'doing', '', '', 0, volume_title);
+                //volumes_list();
+                //hide_tabs();
+                $('#navbar-volumes').click();
 
             } else {
                 show_errors(offcanvas_id, msg.errors);

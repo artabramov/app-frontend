@@ -15,7 +15,7 @@ function posts_list(volume_id=0, post_status='', post_title='', post_tag='', off
 
         $('#tab-posts-volume-update').off('click');
         $('#tab-posts-volume-update').on('click', function() {show_offcanvas_volume_update(volume_id)});
-        $('#tab-posts-volume-delete').on('click', function() {show_offcanvas_volume_delete(volume_id)});
+        //$('#tab-posts-volume-delete').on('click', function() {show_offcanvas_volume_delete(volume_id)});
 
     } else if(post_title) {
         VOLUME_ID = 0;
@@ -66,6 +66,7 @@ function posts_list(volume_id=0, post_status='', post_title='', post_tag='', off
                             '<td>' + datetime(post.created) + '</td>' +
                             '<td><a href="#" onclick="show_offcanvas_user_select(' + post.user_id + ');">' + post.user.user_login + '</a></td>' +
                             '<td><a href="#" onclick="show_comments(\'' + post.id + '\', 0);">' + post.post_title + '</a></td>' +
+                            '<td>' + post.category.category_title + '</td>' +
                             '<td>' + tags_list(post.tags) + '</td>' +
                             '<td>' + post.post_sum + '</td>' +
                             '<td>' + post.meta.comments_count + '</td>' +
@@ -85,7 +86,6 @@ function posts_list(volume_id=0, post_status='', post_title='', post_tag='', off
         error: function(xhr, status, error) {}
     });
 }
-
 
 // ---- post insert ----
 function post_insert(volume_id, category_id, post_status, post_title, post_content, post_sum, post_tags) {
@@ -119,5 +119,71 @@ function post_insert(volume_id, category_id, post_status, post_title, post_conte
         error: function(xhr, status, error) {
             enable_submit(offcanvas_id);
         }
+    });
+}
+
+// ---- post update ----
+function post_update(post_id, volume_id, category_id, post_status, post_title, post_content, post_sum, post_tags) {
+    //if($('#tab-posts').hasClass('d-none')) {
+    //    $('#navbar-posts').click();
+    //}
+
+    let offcanvas_id = '#offcanvas-post-update';
+    hide_errors(offcanvas_id);
+    disable_submit(offcanvas_id);
+
+    $.ajax({
+        method: 'PUT',
+        headers: {'user-token': USER_TOKEN},
+        url: APP_URL + 'post/' + post_id + '/?volume_id=' + volume_id + '&category_id=' + category_id + '&post_status=' + post_status + '&post_title=' + post_title + '&post_content=' + post_content + '&post_sum=' + post_sum + '&post_tags=' + post_tags,
+        dataType: 'json',
+        success: function(msg) {
+            console.log(msg);
+
+            if($.isEmptyObject(msg.errors)) {
+                hide_offcanvas(offcanvas_id);
+                clear_inputs(offcanvas_id);
+                enable_submit(offcanvas_id);
+                posts_list(volume_id, post_status, '', '', 0);
+
+            } else {
+                show_errors(offcanvas_id, msg.errors);
+                enable_submit(offcanvas_id);
+            }
+        },
+        error: function(xhr, status, error) {
+            enable_submit(offcanvas_id);
+        }
+    });
+}
+
+
+// ---- populate offcanvas post update ----
+function fill_offcanvas_post_update(post_id) {
+    let offcanvas_id = '#offcanvas-post-update';
+
+    $.ajax({
+        method: 'GET',
+        headers: {'user-token': USER_TOKEN},
+        url: APP_URL + 'post/' + post_id + '/',
+        dataType: 'json',
+        success: function(msg) {
+            console.log(msg);
+
+            if($.isEmptyObject(msg.errors)) {
+                $(offcanvas_id + '-post-id').val(msg.data.post.id);
+                $(offcanvas_id + '-post-title').val(msg.data.post.post_title);
+                $(offcanvas_id + '-post-status').val(msg.data.post.post_status);
+                $(offcanvas_id + '-post-content').val(msg.data.post.post_content);
+                $(offcanvas_id + '-post-sum').val(msg.data.post.post_sum);
+                $(offcanvas_id + '-post-tags').val(tags_string(msg.data.post.tags));
+                volumes_dropdown(offcanvas_id + '-volume-id', msg.data.post.volume_id);
+                categories_dropdown(offcanvas_id + '-category-id', msg.data.post.category_id);
+
+            } else {
+                //USER_DATA = {};
+            }
+        },
+        error: function(xhr, status, error) {}
     });
 }

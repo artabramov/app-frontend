@@ -1,5 +1,5 @@
 // ---- populate dropdown ----
-function categories_dropdown(dropdown_id) {
+function categories_dropdown(dropdown_id, category_id=null) {
     $(dropdown_id).empty();
     $(dropdown_id).append(
         $('<option>').attr('value', '').text('')
@@ -17,6 +17,9 @@ function categories_dropdown(dropdown_id) {
                 if (msg.data.categories.length > 0) {
                     $.each(msg.data.categories, function(key, category){
                         let el = $('<option>').attr('value', category.id).text(category.category_title);
+                        if(category_id && category.id == category_id) {
+                            el.attr('selected', 'selected');
+                        }
                         $(dropdown_id).append(el);
                     });
                 }

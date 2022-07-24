@@ -21,7 +21,7 @@ let INTERVAL_TIME = 10000; // 10 seconds
 
 // self user
 //let USER_TOKEN = $.cookie('user-token') ? $.cookie('user-token'): '';
-let USER_TOKEN = "eyJ1c2VyX2lkIjogMSwgInRva2VuX3NpZ25hdHVyZSI6ICJwcjJFV3pNaUpqVGQ2U2lORTRodkhTNWd1R3hpN2pkSDE5UzVOQW1BR3NNTENUSUYwclo3dUFNYjFaa3JRbm0ySm02UFNXNFlKaUQzTjBkUEFIR0dEYTl5SFhyZWtkNU94Rko2ckRkZWVSc2NxY25oUmpGZXBYcUlabWljaVc4SyIsICJ0b2tlbl9leHBpcmVzIjogMTY1ODc4MDcwOC44MTk2MjJ9";
+let USER_TOKEN = "eyJ1c2VyX2lkIjogMSwgInRva2VuX3NpZ25hdHVyZSI6ICIyVjgzQXRhN1pUYTBITmQ0NDFaY3JJT3ZIUWZMZG1Pam1GcXp2MTQ2dll1NlhuMmpvNTBaYlFHSWNJYzJLb21scTFzQUZHTkRYT0ZiM0FTcVZwVndhM1hSb2lOZXdsUE1UYjB5T3lmTWxZbHp1TExYNDd5SG5Lc0cwdWl0T0twRyIsICJ0b2tlbl9leHBpcmVzIjogMTY1OTI1MDY5NC4yMTc3NzQyfQ==";
 let USER_DATA = {};
 
 // rows limit on page
@@ -165,6 +165,7 @@ function hide_tabs() {
     $('#tab-reports').addClass('d-none');
     $('#tab-outer').addClass('d-none');
     $('#tab-help').addClass('d-none');
+    $('#tab-terms').addClass('d-none');
 }
 
 // show tab posts
@@ -265,6 +266,18 @@ function tags_list(tags) {
     return tags_str;
 }
 
+// ---- make tags string ----
+function tags_string(tags) {
+    let tags_str = '';
+    tags.forEach(function(tag) {
+        if(tags_str != '') {
+            tags_str += ', ';
+        }
+        tags_str += tag;
+    });
+    return tags_str;
+}
+
 // hide title on tab posts
 function hide_tab_posts_title() {
     $('#tab-posts-title-by-volume').addClass('d-none');
@@ -284,18 +297,18 @@ function show_offcanvas_volume_update(volume_id) {
     show_offcanvas('#offcanvas-volume-update');
 }
 
-function show_offcanvas_volume_delete(volume_id) {
-    //console.log('fuck');
-    //fill_offcanvas_volume_delete(volume_id);
-    show_offcanvas('#offcanvas-volume-delete');
-}
-
 function volume_update(volume_id, volume_title, volume_summary, volume_currency) {
     //console.log(volume_summary);
     volume_update(volume_id, volume_title, volume_summary, volume_currency);
 }
 
-// regular refresh
+function show_offcanvas_post_update(post_id) {
+    //console.log(post_id);
+    fill_offcanvas_post_update(post_id);
+    show_offcanvas('#offcanvas-post-update');
+}
+
+// regular refresh (not used)
 function refresh_tab(func, args) {
     clearInterval(INTERVAL_FUNC);
     INTERVAL_FUNC = setInterval(function() {
@@ -451,6 +464,13 @@ $(document).ready(function(){
         volume_update(volume_id, volume_title, volume_summary, volume_currency);
     });
 
+    // volume delete
+    $('#offcanvas-volume-delete-submit').click(function(){
+        //let volume_id = $('#offcanvas-volume-delete-volume-id').val();
+        //console.log(VOLUME_ID);
+        volume_delete(VOLUME_ID);
+    });
+
     // category insert
     $('#offcanvas-category-insert-submit').click(function(){
         let category_title = $('#offcanvas-category-insert-category-title').val();
@@ -460,8 +480,16 @@ $(document).ready(function(){
 
     // show offcanvas post insert
     $('#offcanvas-post-insert').on('show.bs.offcanvas', function () {
-        volumes_dropdown('#offcanvas-post-insert-volume-id');
+        volumes_dropdown('#offcanvas-post-insert-volume-id', VOLUME_ID);
         categories_dropdown('#offcanvas-post-insert-category-id');
+    })
+
+    // hide offcanvas volume delete
+    $('#offcanvas-volume-delete').on('hide.bs.offcanvas', function () {
+        if ($('#offcanvas-volume-delete-switch').prop('checked')) {
+            $('#offcanvas-volume-delete-switch').prop('checked', false);
+            $('#offcanvas-volume-delete-submit').prop('disabled', true);
+        }
     })
 
     // post insert
@@ -477,6 +505,23 @@ $(document).ready(function(){
         if(!volume_id) {volume_id = 0;}
         if(!category_id) {category_id = 0;}
         post_insert(volume_id, category_id, post_status, post_title, post_content, post_sum, post_tags);
+    });
+
+    // update the post
+    $('#offcanvas-post-update-submit').click(function(){
+        let post_id = $('#offcanvas-post-update-post-id').val();
+        let volume_id = $('#offcanvas-post-update-volume-id').val();
+        let category_id = $('#offcanvas-post-update-category-id').val();
+        let post_status = $('#offcanvas-post-update-post-status').val();
+        let post_title = $('#offcanvas-post-update-post-title').val();
+        let post_content = $('#offcanvas-post-update-post-content').val();
+        let post_sum = $('#offcanvas-post-update-post-sum').val();
+        let post_tags = $('#offcanvas-post-update-post-tags').val();
+
+        if(!volume_id) {volume_id = 0;}
+        if(!category_id) {category_id = 0;}
+        post_update(post_id, volume_id, category_id, post_status, post_title, post_content, post_sum, post_tags);
+        //console.log(post_id);
     });
 
     // comment insert
@@ -538,6 +583,13 @@ $(document).ready(function(){
         hide_tabs();
         enable_links();
         $('#tab-help').removeClass('d-none');
+    });
+
+    // show tab terms
+    $('#footer-terms').click(function(){
+        hide_tabs();
+        enable_links();
+        $('#tab-terms').removeClass('d-none');
     });
 
     // click search by title

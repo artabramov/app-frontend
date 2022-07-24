@@ -119,6 +119,11 @@ const I18N_ru =
     'offcanvas-volume-insert-volume-currency': 'Валюта хранилища',
     'offcanvas-volume-insert-submit': 'Готово',
 
+    'offcanvas-volume-delete-title': 'Удаление хранилища',
+    'offcanvas-volume-delete-text-1': 'Вы уверены, что хотите удалить хранилище?',
+    'offcanvas-volume-delete-text-2': 'Пожалуйста, обратите внимание, что после удаления восстановить данные будет невозможно.',
+    'offcanvas-volume-delete-submit': 'Вперед',
+
     'offcanvas-category-insert-title': 'Добавление категории',
     'offcanvas-category-insert-category-title': 'Название категории',
     'offcanvas-category-insert-category-summary': 'Краткая информация',
@@ -165,6 +170,8 @@ const I18N_ru =
     'tab-comments-insert': 'Добавить комментарий',
     'tab-comments-uploads-insert': 'Загрузить файлы',
     'tab-comments-emtpy': 'Еще нет ни одного комментария.',
+    'tab-comments-post-update': 'Изменить запись',
+    'tab-comments-post-delete': 'Удалить запись',
 
     'tab-users-title': 'Пользователи',
     'tab-users-rows-created': 'Дата создания',
@@ -173,6 +180,7 @@ const I18N_ru =
 
     'footer-outer': 'Главная',
     'footer-help': 'Помощь',
-    'footer-rights': 'все права защищены.',
+    'footer-terms': 'Правила использования',
+    'footer-copyright': 'все права защищены.',
 
 }

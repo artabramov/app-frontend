@@ -6,6 +6,9 @@ function comments_list(post_id, offset=0) {
 
     POST_ID = post_id;
 
+    $('#tab-comments-post-update').off('click');
+    $('#tab-comments-post-update').on('click', function() {show_offcanvas_post_update(post_id)});
+
     // select post
     $.ajax({
         method: 'GET',
