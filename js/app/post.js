@@ -1,5 +1,3 @@
-
-
 // ---- posts list ----
 function posts_list(volume_id=0, post_status='', post_title='', post_tag='', offset=0, volume_title='') {
     $('#tab-posts-rows').find('tbody').empty();

@@ -50,7 +50,14 @@ function comments_list(post_id, offset=0) {
                 
                     msg.data.comments.forEach(function(comment) {
                         $('#tab-comments-rows').append(
-                            '<p>' + comment.comment_content + '</p>'
+                            '<p onmouseover="show_actions(\'#actions-comment-id-' + comment.id + '\');" onmouseout="hide_actions(\'#actions-comment-id-' + comment.id + '\');">' + 
+                            '<span id="comment-id-' + comment.id + '">' + comment.comment_content + '</span>' + 
+                            ' ' +
+                            '<span id="actions-comment-id-' + comment.id + '" class="d-none">' +
+                            '<a href="#" onclick="show_offcanvas_comment_update(' + comment.id + ');">update</a> ' +
+                            '<a href="#" onclick="show_offcanvas_comment_delete(' + comment.id + ');">delete</a>' +
+                            '</span>' + 
+                            '</p>'
                         );
                     });
                     
@@ -118,6 +125,75 @@ function comment_insert(post_id, comment_content) {
                 clear_inputs(offcanvas_id);
                 enable_submit(offcanvas_id);
                 comments_list(post_id, 0);
+
+            } else {
+                show_errors(offcanvas_id, msg.errors);
+                enable_submit(offcanvas_id);
+            }
+        },
+        error: function(xhr, status, error) {
+            enable_submit(offcanvas_id);
+        }
+    });
+}
+
+// comment update
+function comment_update(comment_id, comment_content) {
+    //if($('#tab-posts').hasClass('d-none')) {
+    //    $('#navbar-posts').click();
+    //}
+
+    let offcanvas_id = '#offcanvas-comment-update';
+    hide_errors(offcanvas_id);
+    disable_submit(offcanvas_id);
+
+    $.ajax({
+        method: 'PUT',
+        headers: {'user-token': USER_TOKEN},
+        url: APP_URL + 'comment/' + comment_id + '/?comment_content=' + comment_content,
+        dataType: 'json',
+        success: function(msg) {
+            console.log(msg);
+
+            if($.isEmptyObject(msg.errors)) {
+                hide_offcanvas(offcanvas_id);
+                clear_inputs(offcanvas_id);
+                enable_submit(offcanvas_id);
+                comments_list(POST_ID, 0);
+
+            } else {
+                show_errors(offcanvas_id, msg.errors);
+                enable_submit(offcanvas_id);
+            }
+        },
+        error: function(xhr, status, error) {
+            enable_submit(offcanvas_id);
+        }
+    });
+}
+
+// comment delete
+function comment_delete(comment_id) {
+    let offcanvas_id = '#offcanvas-comment-delete';
+    hide_errors(offcanvas_id);
+    disable_submit(offcanvas_id);
+
+    $.ajax({
+        method: 'DELETE',
+        headers: {'user-token': USER_TOKEN},
+        url: APP_URL + 'comment/' + comment_id + '/',
+        dataType: 'json',
+        success: function(msg) {
+            console.log(msg);
+
+            if($.isEmptyObject(msg.errors)) {
+                hide_offcanvas(offcanvas_id);
+                enable_submit(offcanvas_id);
+                //show_posts(volume_id, 'doing', '', '', 0, volume_title);
+                //volumes_list();
+                //hide_tabs();
+                //$('#navbar-posts').click();
+                comments_list(POST_ID, 0);
 
             } else {
                 show_errors(offcanvas_id, msg.errors);

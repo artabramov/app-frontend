@@ -325,9 +325,28 @@ function show_offcanvas_category_update(category_id) {
 function show_offcanvas_category_delete(category_id) {
     //console.log(category_id);
     $('#offcanvas-category-delete-category-id').val(category_id);
-    show_offcanvas('#offcanvas-category-delete');   
+    show_offcanvas('#offcanvas-category-delete');
 }
 
+function show_offcanvas_comment_delete(comment_id) {
+    $('#offcanvas-comment-delete-comment-id').val(comment_id);
+    show_offcanvas('#offcanvas-comment-delete');
+}
+
+function show_offcanvas_upload_delete(upload_id) {
+    $('#offcanvas-upload-delete-upload-id').val(upload_id);
+    show_offcanvas('#offcanvas-upload-delete');
+}
+
+function show_offcanvas_comment_update(comment_id) {
+    //console.log(comment_id);
+    //console.log($('#comment-id-' + comment_id).text());
+    
+    let comment_content = $('#comment-id-' + comment_id).text();
+    $('#offcanvas-comment-update-comment-id').val(comment_id);
+    $('#offcanvas-comment-update-comment-content').val(comment_content);
+    show_offcanvas('#offcanvas-comment-update');
+}
 
 // regular refresh (not used)
 function refresh_tab(func, args) {
@@ -569,6 +588,22 @@ $(document).ready(function(){
         }
     })
 
+    // hide offcanvas comment delete
+    $('#offcanvas-comment-delete').on('hide.bs.offcanvas', function () {
+        if ($('#offcanvas-comment-delete-switch').prop('checked')) {
+            $('#offcanvas-comment-delete-switch').prop('checked', false);
+            $('#offcanvas-comment-delete-submit').prop('disabled', true);
+        }
+    })
+
+    // hide offcanvas upload delete
+    $('#offcanvas-upload-delete').on('hide.bs.offcanvas', function () {
+        if ($('#offcanvas-upload-delete-switch').prop('checked')) {
+            $('#offcanvas-upload-delete-switch').prop('checked', false);
+            $('#offcanvas-upload-delete-submit').prop('disabled', true);
+        }
+    })
+
     // post insert
     $('#offcanvas-post-insert-submit').click(function(){
         let volume_id = $('#offcanvas-post-insert-volume-id').val();
@@ -601,6 +636,22 @@ $(document).ready(function(){
         //console.log(post_id);
     });
 
+    // update the comment
+    $('#offcanvas-comment-update-submit').click(function(){
+        let comment_id = $('#offcanvas-comment-update-comment-id').val();
+        let comment_content = $('#offcanvas-comment-update-comment-content').val();
+
+        comment_update(comment_id, comment_content);
+        //console.log(comment_id, comment_content);
+    });
+
+    // comment delete
+    $('#offcanvas-comment-delete-submit').click(function(){
+        let comment_id = $('#offcanvas-comment-delete-comment-id').val();
+        //console.log(VOLUME_ID);
+        comment_delete(comment_id);
+    });
+
     // comment insert
     $('#offcanvas-comment-insert-submit').click(function(){
         let comment_content = $('#offcanvas-comment-insert-comment-content').val();
@@ -611,6 +662,13 @@ $(document).ready(function(){
     $('#offcanvas-uploads-insert-submit').click(function(){
         let user_files = $('#offcanvas-uploads-insert-user-files')[0].files;
         uploads_insert(POST_ID, user_files);
+    });
+
+    // upload delete
+    $('#offcanvas-upload-delete-submit').click(function(){
+        let upload_id = $('#offcanvas-upload-delete-upload-id').val();
+        //console.log(VOLUME_ID);
+        upload_delete(upload_id);
     });
 
     // show tab users
@@ -709,6 +767,24 @@ $(document).ready(function(){
             $('#offcanvas-post-delete-submit').prop('disabled', false);
         } else {
             $('#offcanvas-post-delete-submit').prop('disabled', true);
+        }
+    });
+
+    // offcanvas comment delete switch
+    $('#offcanvas-comment-delete-switch').on('click', function(){
+        if ($('#offcanvas-comment-delete-switch').prop('checked')) {
+            $('#offcanvas-comment-delete-submit').prop('disabled', false);
+        } else {
+            $('#offcanvas-comment-delete-submit').prop('disabled', true);
+        }
+    });
+
+    // offcanvas upload delete switch
+    $('#offcanvas-upload-delete-switch').on('click', function(){
+        if ($('#offcanvas-upload-delete-switch').prop('checked')) {
+            $('#offcanvas-upload-delete-submit').prop('disabled', false);
+        } else {
+            $('#offcanvas-upload-delete-submit').prop('disabled', true);
         }
     });
 

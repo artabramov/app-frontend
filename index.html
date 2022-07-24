@@ -1071,6 +1071,104 @@
       </div>
     </div>
 
+    <!-- Offcanvas comment update -->
+    <div id="offcanvas-comment-update" class="offcanvas offcanvas-start" tabindex="-1" aria-labelledby="offcanvas-comment-update-title">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" data-i18n="offcanvas-comment-update-title">
+          Update comment
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+
+        <input id="offcanvas-comment-update-comment-id" type="hidden">
+
+        <div class="form-floating mb-2">
+          <textarea id="offcanvas-comment-update-comment-content" class="form-control" style="height: 128px" placeholder="Comment content"></textarea>
+          <label for="offcanvas-comment-update-comment-content" data-i18n="offcanvas-comment-update-comment-content">
+            Comment content
+          </label>
+          <div id="offcanvas-comment-update-comment-content-error" class="form-text text-danger d-none"></div>
+        </div>
+
+        <button id="offcanvas-comment-update-submit" class="btn btn-primary" type="button">
+          <span data-i18n="offcanvas-comment-update-submit">
+            Done
+          </span>
+          <i class="bi bi-arrow-right"></i>
+        </button>
+
+      </div>
+    </div>
+
+    <!-- Offcanvas comment delete -->
+    <div id="offcanvas-comment-delete" class="offcanvas offcanvas-start" tabindex="-1" aria-labelledby="offcanvas-comment-delete-title">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" data-i18n="offcanvas-comment-delete-title">
+          Comment delete
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+
+        <input id="offcanvas-comment-delete-comment-id" type="hidden">
+
+        <div class="mb-3 form-text" data-i18n="offcanvas-comment-delete-text-1">
+          Are you sure to delete this item?
+        </div>
+
+        <div class="form-check form-switch">
+          <input id="offcanvas-comment-delete-switch" class="form-check-input" type="checkbox" role="switch">
+        </div>
+
+        <div class="mb-3 form-text" data-i18n="offcanvas-comment-delete-text-2">
+          Please note that once deleted, the data cannot be recovered.
+        </div>
+
+        <button id="offcanvas-comment-delete-submit" class="btn btn-primary" type="button" disabled>
+          <span data-i18n="offcanvas-comment-delete-submit">
+            Go ahead
+          </span>
+          <i class="bi bi-arrow-right"></i>
+        </button>
+
+      </div>
+    </div>
+
+    <!-- Offcanvas upload delete -->
+    <div id="offcanvas-upload-delete" class="offcanvas offcanvas-start" tabindex="-1" aria-labelledby="offcanvas-upload-delete-title">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" data-i18n="offcanvas-upload-delete-title">
+          Upload delete
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+
+        <input id="offcanvas-upload-delete-upload-id" type="hidden">
+
+        <div class="mb-3 form-text" data-i18n="offcanvas-upload-delete-text-1">
+          Are you sure to delete this item?
+        </div>
+
+        <div class="form-check form-switch">
+          <input id="offcanvas-upload-delete-switch" class="form-check-input" type="checkbox" role="switch">
+        </div>
+
+        <div class="mb-3 form-text" data-i18n="offcanvas-upload-delete-text-2">
+          Please note that once deleted, the data cannot be recovered.
+        </div>
+
+        <button id="offcanvas-upload-delete-submit" class="btn btn-primary" type="button" disabled>
+          <span data-i18n="offcanvas-upload-delete-submit">
+            Go ahead
+          </span>
+          <i class="bi bi-arrow-right"></i>
+        </button>
+
+      </div>
+    </div>
+
     <!-- Offcanvas upload files -->
     <div id="offcanvas-uploads-insert" class="offcanvas offcanvas-start" tabindex="-1" aria-labelledby="offcanvas-uploads-insert-title">
       <div class="offcanvas-header">
@@ -1294,7 +1392,7 @@
         <div class="container-fluid p-0">
           <div class="row">
 
-            <div class="col-8">
+            <div class="col-6">
               <h1 data-i18n="tab-comments-title">
                 Comments
               </h1>
@@ -1330,7 +1428,7 @@
               </nav>
             </div>
 
-            <div class="col-4">
+            <div class="col-6">
               <h1 data-i18n="tab-comments-uploads-title">
                 Uploaded files
               </h1>

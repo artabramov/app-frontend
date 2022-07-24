@@ -68,7 +68,13 @@ function uploads_list(post_id) {
                 
                     msg.data.uploads.forEach(function(upload) {
                         $('#tab-comments-uploads-rows').append(
-                            '<p><a href="' + upload.upload_link + '" target="_blank">' + upload.upload_name + '</a> ' + filesize(upload.upload_size, I18N._sizes) + '</p>'
+                            '<p onmouseover="show_actions(\'#actions-upload-id-' + upload.id + '\');" onmouseout="hide_actions(\'#actions-upload-id-' + upload.id + '\');">' +
+                            '<a href="' + upload.upload_link + '" target="_blank">' + upload.upload_name + '</a> ' + filesize(upload.upload_size, I18N._sizes) + 
+                            ' ' +
+                            '<span id="actions-upload-id-' + upload.id + '" class="d-none">' +
+                            '<a href="#" onclick="show_offcanvas_upload_delete(' + upload.id + ');">delete</a>' +
+                            '</span>' + 
+                            '</p>'
                         );
                     });
                 }
@@ -77,5 +83,39 @@ function uploads_list(post_id) {
             
         },
         error: function(xhr, status, error) {}
+    });
+}
+
+// delete upload
+function upload_delete(upload_id) {
+    let offcanvas_id = '#offcanvas-upload-delete';
+    hide_errors(offcanvas_id);
+    disable_submit(offcanvas_id);
+
+    $.ajax({
+        method: 'DELETE',
+        headers: {'user-token': USER_TOKEN},
+        url: APP_URL + 'upload/' + upload_id + '/',
+        dataType: 'json',
+        success: function(msg) {
+            console.log(msg);
+
+            if($.isEmptyObject(msg.errors)) {
+                hide_offcanvas(offcanvas_id);
+                enable_submit(offcanvas_id);
+                //show_posts(volume_id, 'doing', '', '', 0, volume_title);
+                //volumes_list();
+                //hide_tabs();
+                //$('#navbar-posts').click();
+                comments_list(POST_ID, 0);
+
+            } else {
+                show_errors(offcanvas_id, msg.errors);
+                enable_submit(offcanvas_id);
+            }
+        },
+        error: function(xhr, status, error) {
+            enable_submit(offcanvas_id);
+        }
     });
 }
