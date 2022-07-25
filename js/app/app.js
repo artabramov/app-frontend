@@ -704,6 +704,13 @@ $(document).ready(function(){
         enable_links();
         $('#navbar-reports').find('a').addClass('disabled');
         $('#tab-reports').removeClass('d-none');
+        //reports_list();
+        volumes_dropdown('#tab-reports-volume-id', 0)
+    });
+
+    // change volume for report
+    $('#tab-reports-volume-id').on('change', function(){
+        report_select($('#tab-reports-volume-id').val());
     });
 
     // show tab outer

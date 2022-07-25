@@ -178,6 +178,11 @@ const I18N_ru =
     'tab-users-rows-user-login': 'Логин',
     'tab-users-rows-user-status': 'Статус',
 
+    'tab-reports-volume-currency': 'Валюта',
+    'tab-reports-volume-sum': 'Баланс',
+    'tab-reports-posts-count': 'Количество записей',
+    'tab-reports-uploads-count': 'Количество файлов',
+
     'footer-outer': 'Главная',
     'footer-help': 'Помощь',
     'footer-terms': 'Правила использования',
