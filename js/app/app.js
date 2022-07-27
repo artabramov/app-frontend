@@ -1,5 +1,5 @@
 // backend address
-const APP_URL = 'http://localhost/app/';
+const APP_URL = 'http://localhost:5000/';
 
 // available languages UI
 const LANGUAGES = {

@@ -17,62 +17,62 @@ function report_select(volume_id) {
                 $('#tab-reports-volume-sum').text(msg.data.volume.volume_sum);
                 $('#tab-reports-posts-count').text(msg.data.volume.meta.posts_count);
                 $('#tab-reports-uploads-count').text(msg.data.volume.meta.uploads_count);
-
-                let labels = [
-                    'January',
-                    'February',
-                    'March',
-                    'April',
-                    'May',
-                    'June',
-                ];
                 
                 let data = {
-                    labels: labels,
+                    labels: msg.data.posts_data.labels,
                     datasets: [
-                        {
-                            label: 'First dataset',
-                            borderColor: 'rgb(255, 99, 132)',
-                            data: [0, 10, 5, 2, 20, 30, 45],
-                        }, {
-                            label: 'Second dataset',
-                            backgroundColor: 'rgb(99, 255, 132)',
-                            borderColor: 'rgb(99, 255, 132)',
-                            data: [10, 5, 55, 20, 0, 50, 15],
-                        }
+                      {
+                        label: 'Income',
+                        data: msg.data.posts_data.income_data,
+                        backgroundColor: '#4169E1',
+                      },
+                      {
+                        label: 'Outcome',
+                        data: msg.data.posts_data.outcome_data,
+                        backgroundColor: '#DC143C',
+                      }
                     ]
-                };
+                  };
+
+                
             
                 let config = {
-                    type: 'line',
+                    type: 'bar',
                     data: data,
                     options: {
-                        responsive:true,
-                        maintainAspectRatio: false,
+                        legend: {
+                            display: false
+                        },
+                        title: {
+                            display: false,
+                          },
+                      responsive: true,
+                      maintainAspectRatio: false,
+                      scales: {
+                        xAxes: [{
+                          stacked: true,
+                          ticks: { display: false },
+                          gridLines : { display : false },
+                        }],
+                        yAxes: [{
+                          stacked: true
+                        }]
+                      },
                     }
-                };
+                  };
 
                 let myChart = new Chart(
                     document.getElementById('myChart'),
                     config
                 );
 
-                // ----------------- DONUT -----------------
-
+                // ----------------- INCOME DONUT -----------------
                 data = {
-                    labels: [
-                      'Red',
-                      'Blue',
-                      'Yellow'
-                    ],
+                    labels: msg.data.categories_data.income.labels,
                     datasets: [{
-                      label: 'My First Dataset',
-                      data: [300, 50, 100],
-                      backgroundColor: [
-                        'rgb(255, 99, 132)',
-                        'rgb(54, 162, 235)',
-                        'rgb(255, 205, 86)'
-                      ],
+                      label: 'income',
+                      data: msg.data.categories_data.income.data,
+                      backgroundColor: ['#4169E1', '#0000FF', '#00008B', '#6495ED', '#483D8B', '#00BFFF', '#4B0082', '#1E90FF', '#87CEFA', '#0000CD', '#ADD8E6', '#7B68EE', '#191970', '#000080', '#B0E0E6', '#87CEEB', '#6A5ACD', '#4682B4'],
                       hoverOffset: 4
                     }]
                   };
@@ -87,46 +87,27 @@ function report_select(volume_id) {
                     config
                 );
 
-
-                /*
-                let labels = [
-                    "Monday",
-                    "Tuesday",
-                    "Wednesday",
-                    "Thursday",
-                    "Friday",
-                    "Saturday",
-                    "Sunday",
-                ];
-
-                let data = [
-                    {
-                      label: "work load",
-                      data: [2, 9, 3, 17, 6, 3, 7],
-                      backgroundColor: "rgba(153,205,1,0.6)",
-                    },
-                    {
-                      label: "free hours",
-                      data: [2, 2, 5, 5, 2, 1, 10],
-                      backgroundColor: "rgba(155,153,10,0.6)",
-                    },
-                ];
-
-                let config = {
-                    type: 'line',
-                    data: data,
-                    options: {}
+                // ------------------ OUTCOME DONUT ------------------
+                let donut_outcome_data = {
+                    labels: msg.data.categories_data.outcome.labels,
+                    datasets: [{
+                      label: 'outcome payments',
+                      data: msg.data.categories_data.outcome.data,
+                      backgroundColor: ['#DC143C', '#B22222', '#8B0000', '#CD5C5C', '#FF4500', '#FF0000', '#FF6347', '#FA8072', '#FFA07A', '#FFB6C1', '#F08080', '#A52A2A'],
+                      hoverOffset: 4
+                    }]
                   };
 
-                var ctx = document.getElementById("myChart").getContext("2d");
-                var myChart = new Chart(ctx, {
-                  type: "line",
-                  data: {
-                    labels: labels,
-                    datasets: data,
-                  },
-                });
-                */
+                let donut_outcome_config = {
+                    type: 'doughnut',
+                    data: donut_outcome_data,
+                };
+
+                let myChart3 = new Chart(
+                    document.getElementById('myChart3'),
+                    donut_outcome_config
+                );
+
             }
             
         },

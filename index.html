@@ -15,6 +15,7 @@
     <script type='text/javascript' src='./js/popper.min.js'></script>
     <script type='text/javascript' src='./js/bootstrap.min.js'></script>
     <script type='text/javascript' src='./js/chart.min.js'></script>
+    <!-- <script type='text/javascript' src='./js/chartjs-plugin-colorschemes.js'></script> -->
 
     <script type='text/javascript' src='./js/app/app.js'></script>
     <script type='text/javascript' src='./js/app/i18n.js'></script>
@@ -1469,7 +1470,14 @@
         <h1 id="tab-reports-volume-title">Volume title</h1>
         <p id="tab-reports-volume-summary">Volume summary</p>
 
-        <div class="container text-center p-0 m-0">
+        <button id="tab-reports-download-pdf" class="btn btn-outline-primary" type="button">
+          <span data-i18n="tab-reports-download-pdf">
+            Download PDF
+          </span>
+          <i class="bi bi-arrow-down"></i>
+        </button>
+
+        <div class="container text-center pt-3 m-0">
           <div class="row row-cols-auto">
             
             <div class="col">
@@ -1495,12 +1503,27 @@
           </div>
         </div>
 
-        <div style="height:200px !important;">
-          <canvas id="myChart"></canvas>
-        </div>
 
-        <div class="w-50 h-50">
-          <canvas id="myChart2"></canvas>
+        <div class="container-fluid text-center p-0 m-0">
+
+          <div class="row row-cols-auto pt-5">
+            <div class="col w-50 p-0 m-0">
+              <h1>Income</h1>
+              <canvas id="myChart2"></canvas>
+            </div>
+            <div class="col w-50 p-0 m-0">
+              <h1>Outcome</h1>
+              <canvas id="myChart3"></canvas>
+            </div>
+          </div>
+
+          <div class="row pt-5 m-0">
+            <div class="col">
+              <h1>Net income and outcome for the last 30 days</h1>
+              <canvas id="myChart" style="height:200px;"></canvas>
+            </div>
+          </div>
+
         </div>
 
       </div>
