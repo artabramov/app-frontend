@@ -1380,9 +1380,23 @@
           Volume title
         </a>
 
-        <h1 id="tab-comments-post-title" class="pb-4">
+        <h1 id="tab-comments-post-title" class="pb-3">
           Post title
         </h1>
+
+        <div class="pb-4">
+          <button id="tab-comments-post-update" class="btn btn-outline-primary" type="button">
+            <span data-i18n="tab-comments-post-update">
+              Update post
+            </span>
+          </button>
+
+          <a id="tab-comments-post-delete" class="btn btn-outline-danger" type="button" href="#offcanvas-post-delete" data-bs-toggle="offcanvas">
+            <span data-i18n="tab-comments-post-delete">
+              Delete post
+            </span>
+          </a>
+        </div>
 
         <div class="alert alert-secondary" role="alert">
           <p id="tab-comments-post-content"></p>
@@ -1399,27 +1413,15 @@
           <div class="row">
 
             <div class="col-6">
-              <h1 data-i18n="tab-comments-title">
+              <h2 class="pb-3" data-i18n="tab-comments-title">
                 Comments
-              </h1>
+              </h2>
       
               <button id="tab-comments-insert" class="btn btn-outline-primary me-5" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas-comment-insert">
                 <span data-i18n="tab-comments-insert">
                   Add comment
                 </span>
               </button>
-
-              <button id="tab-comments-post-update" class="btn btn-outline-primary" type="button">
-                <span data-i18n="tab-comments-post-update">
-                  Update post
-                </span>
-              </button>
-    
-              <a id="tab-comments-post-delete" class="btn btn-outline-danger" type="button" href="#offcanvas-post-delete" data-bs-toggle="offcanvas">
-                <span data-i18n="tab-comments-post-delete">
-                  Delete post
-                </span>
-              </a>
       
               <div id="tab-comments-empty" class="d-none" data-i18n="tab-comments-empty">
                 No comments yet.
@@ -1435,9 +1437,9 @@
             </div>
 
             <div class="col-6">
-              <h1 data-i18n="tab-comments-uploads-title">
+              <h2 data-i18n="tab-comments-uploads-title">
                 Uploaded files
-              </h1>
+              </h2>
 
               <button id="tab-comments-uploads-insert" class="btn btn-outline-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas-uploads-insert">
                 <span data-i18n="tab-comments-uploads-insert">
