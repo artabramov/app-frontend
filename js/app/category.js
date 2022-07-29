@@ -51,16 +51,22 @@ function categories_list() {
                     $('#tab-categories-empty').addClass('d-none');
 
                     msg.data.categories.forEach(function(category) {
+
+                        let category_actions = 
+                        '<span id="actions-category-id-' + category.id + '" class="dropdown d-none">' + 
+                        '<span class="dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">' +
+                        '</span>' +
+                        '<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">' +
+                        '<li><a class="dropdown-item" href="#" onclick="show_offcanvas_category_update(' + category.id + ');">' + I18N['_actions']['update'] + '</a></li>' +
+                        '<li><a class="dropdown-item" href="#" onclick="show_offcanvas_category_delete(' + category.id + ');">' + I18N['_actions']['delete'] + '</a></li>' +
+                        '</ul>' +
+                        '</span>';
+
                         $('#tab-categories-rows').find('tbody').append(
                             '<tr onmouseover="show_actions(\'#actions-category-id-' + category.id + '\');" onmouseout="hide_actions(\'#actions-category-id-' + category.id + '\');">' +
                             '<th scope="row">' + category.id + '</th>' +
-                            '<td>' + category.created + '</td>' +
-                            '<td>' + 
-                            category.category_title + 
-                            ' <span id="actions-category-id-' + category.id + '" class="d-none">' + 
-                            '<button type="button" class="btn btn-outline-primary btn-sm" onclick="show_offcanvas_category_update(' + category.id + ');">Update category</button> ' +
-                            '<button type="button" class="btn btn-outline-danger btn-sm" onclick="show_offcanvas_category_delete(' + category.id + ');">Delete category</button>' +
-                            '<span>' +
+                            '<td>' + datetime(category.created) + '</td>' +
+                            '<td>' + category.category_title + ' ' + category_actions +
                             '</td>' +
                             '</tr>'
                         );

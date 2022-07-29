@@ -17,21 +17,26 @@ const I18N_ru =
     },
     
     '_sizes': {
-        '0': 'б', 
-        '1': 'кб', 
-        '2': 'Мб', 
-        '3': 'Гб', 
-        '4': 'Тб', 
-        '5': 'Пб', 
-        '6': 'Эб', 
-        '7': 'Зб', 
-        '8': 'Йб'
+        '0': 'байт', 
+        '1': 'кбайт', 
+        '2': 'Мбайт', 
+        '3': 'Гбайт', 
+        '4': 'Тбайт', 
+        '5': 'Пбайт', 
+        '6': 'Эбайт', 
+        '7': 'Збайт', 
+        '8': 'Йбайт'
     },
 
     '_currencies': {
         'RUB': 'RUB (российский рубль)',
         'USD': 'USD (доллар США)',
         'EUR': 'EUR (европейский евро)',
+    },
+
+    '_actions': {
+        'update': 'Изменить',
+        'delete': 'Удалить',
     },
 
     '_errors': {
@@ -104,6 +109,18 @@ const I18N_ru =
     'offcanvas-user-pass-after-text-1': 'Отлично, вы изменили свой пароль. Пожалуйста, не забудьте его.',
     'offcanvas-user-pass-after-submit': 'Готово',
 
+    'offcanvas-user-status-title': 'Изменение статуса пользователя',
+    'offcanvas-user-status-user-login': 'Логин пользователя',
+    'offcanvas-user-status-admin-text': 'Может изменять статусы пользователей. Может создавать, обновлять, просматривать и удалять хранилища, категории, записи, комментарии и файлы.',
+    'offcanvas-user-status-editor-text': 'Может создавать, обновлять и просматривать хранилища, категории, записи, комментарии и файлы.',
+    'offcanvas-user-status-reader-text': 'Может просматривать хранилища, категории, записи, комментарии и файлы.',
+    'offcanvas-user-status-blank-text': 'Права отсутствуют. Доступ невозможен.',
+    'offcanvas-user-status-submit': 'Готово',
+
+    'offcanvas-user-status-after-title': 'Статус пользователя изменен',
+    'offcanvas-user-status-after-text-1': 'Статус пользователя был успешно изменен. Пожалуйста, будьте очень внимательны при изменении статусов пользователей.',
+    'offcanvas-user-status-after-submit': 'Понятно',
+
     'offcanvas-user-select-title': 'Просмотр пользователя',
     'offcanvas-user-select-user-login': 'Логин пользователя',
     'offcanvas-user-select-user-status': 'Статус пользователя',
@@ -120,7 +137,7 @@ const I18N_ru =
     'offcanvas-volume-insert-submit': 'Готово',
 
     'offcanvas-volume-delete-title': 'Удаление хранилища',
-    'offcanvas-volume-delete-text-1': 'Вы уверены, что хотите удалить хранилище?',
+    'offcanvas-volume-delete-text-1': 'Вы уверены, что хотите удалить это хранилище?',
     'offcanvas-volume-delete-text-2': 'Пожалуйста, обратите внимание, что после удаления восстановить данные будет невозможно.',
     'offcanvas-volume-delete-submit': 'Вперед',
 
@@ -128,6 +145,16 @@ const I18N_ru =
     'offcanvas-category-insert-category-title': 'Название категории',
     'offcanvas-category-insert-category-summary': 'Краткая информация',
     'offcanvas-category-insert-submit': 'Готово',
+
+    'offcanvas-category-delete-title': 'Удаление категории',
+    'offcanvas-category-delete-text-1': 'Вы уверены, что хотите удалить эту категорию?',
+    'offcanvas-category-delete-text-2': 'Пожалуйста, обратите внимание, что после удаления восстановить данные будет невозможно.',
+    'offcanvas-category-delete-submit': 'Готово',
+
+    'offcanvas-category-update-title': 'Изменение категории',
+    'offcanvas-category-update-category-title': 'Название категории',
+    'offcanvas-category-update-category-summary': 'Краткое описание',
+    'offcanvas-category-update-submit': 'Готово',
 
     'offcanvas-post-insert-title': 'Новая запись',
     'offcanvas-post-insert-volume-id': 'Хранилище',
@@ -146,16 +173,16 @@ const I18N_ru =
     'tab-volumes-title': 'Хранилища',
     'tab-volumes-insert': 'Добавить хранилище',
     'tab-volumes-empty': 'Хранилищ еще нет.',
-    'tab-volumes-rows-created': 'Создано',
+    'tab-volumes-rows-created': 'Дата создания',
     'tab-volumes-rows-volume-title': 'Название хранилища',
     'tab-volumes-rows-posts-count': 'Записей',
     'tab-volumes-rows-volume-currency': 'Валюта',
-    'tab-volumes-rows-volume-sum': 'Сумма',
+    'tab-volumes-rows-volume-sum': 'Баланс',
 
     'tab-categories-title': 'Категории',
     'tab-categories-insert': 'Добавить категорию',
     'tab-categories-empty': 'Категорий еще нет.',
-    'tab-categories-rows-created': 'Создано',
+    'tab-categories-rows-created': 'Дата создания',
     'tab-categories-rows-category-title': 'Название категории',
 
     'tab-posts-title-by-volume': 'Записи хранилища',
@@ -164,7 +191,16 @@ const I18N_ru =
     'tab-posts-insert': 'Добавить запись',
     'tab-posts-volume-update': 'Изменить хранилище',
     'tab-posts-volume-delete': 'Удалить хранилище',
-
+    'tab-posts-empty': 'Здесь пока нет ни одной записи.',
+    'tab-posts-rows-created': 'Дата создания',
+    'tab-posts-rows-user': 'Пользователь',
+    'tab-posts-rows-post-title': 'Название записи',
+    'tab-posts-rows-category': 'Категория',
+    'tab-posts-rows-post-tags': 'Метки',
+    'tab-posts-rows-comments-count': 'Комментариев',
+    'tab-posts-rows-uploads-count': 'Файлов',
+    'tab-posts-rows-post-sum': 'Сумма',
+    
     'tab-comments-title': 'Комментарии',
     'tab-comments-uploads-title': 'Загруженные файлы',
     'tab-comments-insert': 'Добавить комментарий',
@@ -174,7 +210,7 @@ const I18N_ru =
     'tab-comments-post-delete': 'Удалить запись',
 
     'tab-users-title': 'Пользователи',
-    'tab-users-rows-created': 'Дата создания',
+    'tab-users-rows-created': 'Дата регистрации',
     'tab-users-rows-user-login': 'Логин',
     'tab-users-rows-user-status': 'Статус',
 

@@ -24,7 +24,7 @@ function report_select(volume_id) {
                       {
                         label: 'Income',
                         data: msg.data.posts_data.income_data,
-                        backgroundColor: '#4169E1',
+                        backgroundColor: '#228B22',
                       },
                       {
                         label: 'Outcome',
@@ -72,7 +72,7 @@ function report_select(volume_id) {
                     datasets: [{
                       label: 'income',
                       data: msg.data.categories_data.income.data,
-                      backgroundColor: ['#4169E1', '#0000FF', '#00008B', '#6495ED', '#483D8B', '#00BFFF', '#4B0082', '#1E90FF', '#87CEFA', '#0000CD', '#ADD8E6', '#7B68EE', '#191970', '#000080', '#B0E0E6', '#87CEEB', '#6A5ACD', '#4682B4'],
+                      backgroundColor: ['#228B22', '#006400', '#556B2F', '#ADFF2F', '#008000', '#7CFC00', '#90EE90', '#32CD32', '#3CB371', '#00FA9A', '#98FB98', '#2E8B57', '#00FF7F', '#9ACD32'],
                       hoverOffset: 4
                     }]
                   };

@@ -80,11 +80,11 @@ function volumes_list() {
                         $('#tab-volumes-rows').find('tbody').append(
                             '<tr>' +
                             '<th scope="row">' + volume.id + '</th>' +
-                            '<td>' + volume.created + '</td>' +
+                            '<td>' + datetime(volume.created) + '</td>' +
                             '<td><a href="#" onclick="show_posts(' + volume.id + ', \'doing\', \'\', \'\', 0, \'' + volume.volume_title + '\');">' + volume.volume_title + '</a></td>' +
                             '<td>' + posts_count + '</td>' +
                             '<td>' + volume.volume_currency + '</td>' +
-                            '<td class="fw-bold">' + volume.volume_sum + '</td>' +
+                            '<td class="text-end fw-bold">' + format_sum(volume.volume_sum) + '</td>' +
                             '</tr>'
                         );
                     });

@@ -63,13 +63,11 @@ function posts_list(volume_id=0, post_status='', post_title='', post_tag='', off
                             '<th scope="row">' + post.id + '</th>' +
                             '<td>' + datetime(post.created) + '</td>' +
                             '<td><a href="#" onclick="show_offcanvas_user_select(' + post.user_id + ');">' + post.user.user_login + '</a></td>' +
-                            '<td><a href="#" onclick="show_comments(\'' + post.id + '\', 0);">' + post.post_title + '</a></td>' +
                             '<td>' + post.category.category_title + '</td>' +
+                            '<td><a href="#" onclick="show_comments(\'' + post.id + '\', 0);">' + post.post_title + '</a></td>' +
+                            '<td>' + format_number(post.meta.comments_count) + '</td>' +
                             '<td>' + tags_list(post.tags) + '</td>' +
-                            '<td>' + post.post_sum + '</td>' +
-                            '<td>' + post.meta.comments_count + '</td>' +
-                            '<td>' + post.meta.uploads_count + '</td>' +
-                            '<td>' + post.meta.uploads_size + '</td>' +
+                            '<td class="text-end fw-bold">' + format_sum(post.post_sum) + '</td>' +
                             '</tr>'
                         );
                     });

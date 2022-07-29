@@ -1,5 +1,5 @@
 // backend address
-const APP_URL = 'http://localhost:5000/';
+const APP_URL = 'http://localhost/app/';
 
 // available languages UI
 const LANGUAGES = {
@@ -240,7 +240,7 @@ function pagination(id, func, args, offset, rows_count, rows_limit) {
 
         // prev
         disabled = page_active == 0 ? ' disabled' : '';
-        $('#' + id).find('ul').append('<li class="page-item' + disabled + '"><a class="page-link" href="#" onClick="eval(\'' + func + '\')(' + args_str + ((page_active - 1) * rows_limit) + ');">Prev</a></li>');
+        $('#' + id).find('ul').append('<li class="page-item' + disabled + '"><a class="page-link" href="#" onClick="eval(\'' + func + '\')(' + args_str + ((page_active - 1) * rows_limit) + ');"><i class="bi bi-arrow-left"></i></a></li>');
 
         // pages
         for( i = page_start; i<=page_end; i++ ) {
@@ -250,7 +250,7 @@ function pagination(id, func, args, offset, rows_count, rows_limit) {
 
         // next
         disabled = page_active == page_end ? ' disabled' : '';
-        $('#' + id).find('ul').append('<li class="page-item' + disabled + '"><a class="page-link" href="#" onClick="eval(\'' + func + '\')(' + args_str + ((page_active + 1) * rows_limit) + ');">Next</a></li>');
+        $('#' + id).find('ul').append('<li class="page-item' + disabled + '"><a class="page-link" href="#" onClick="eval(\'' + func + '\')(' + args_str + ((page_active + 1) * rows_limit) + ');"><i class="bi bi-arrow-right"></i></a></li>');
     }
 }
 
@@ -381,8 +381,8 @@ function hide_actions(actions_id) {
     const thresh=1024;
     const dp=1;
 
-    if(bytes == 0) {
-        return '0';
+    if(bytes == 0 || bytes == undefined) {
+        return '0 ' + sizes[0];
 
     } else if (Math.abs(bytes) < thresh) {
         return bytes + ' ' + sizes[0];
@@ -397,6 +397,29 @@ function hide_actions(actions_id) {
     } while (Math.round(Math.abs(bytes) * r) / r >= thresh && u < sizes.length - 1);
 
     return bytes.toFixed(dp) + ' ' + sizes[u];
+}
+
+function format_number(value) {
+    if (value == undefined) {
+        value = 0;
+    }
+    return value;
+}
+
+function format_sum(value) {
+    if (value == undefined) {
+        value = 0;
+    }
+    value = parseFloat(value).toFixed(2);
+    if (value > 0) {
+        return '<span class="text-success">' + value + '</span>';
+    
+    } else if (value < 0) {
+        return '<span class="text-danger">' + value + '</span>';
+
+    } else {
+        return '<span class="text-secondary">' + value + '</span>';
+    }
 }
 
 function datetime(datetime) {
@@ -421,7 +444,7 @@ function datetime(datetime) {
       return I18N['_today'] + ' ' + ('0' + localHours).slice(-2) + ':' + ('0' + localMinutes).slice(-2);
   
     } else if(localYear == currentYear) {
-      return localDay + ' ' + I18N['_months'][localMonth] + ', ' + ('0' + localHours).slice(-2) + ':' + ('0' + localMinutes).slice(-2);
+      return localDay + ' ' + I18N['_months'][localMonth] + ' ' + ('0' + localHours).slice(-2) + ':' + ('0' + localMinutes).slice(-2);
   
     } else {
       return localDay + ' ' + I18N['_months'][localMonth] + ' ' + localYear + ', ' + ('0' + localHours).slice(-2) + ':' + ('0' + localMinutes).slice(-2);
@@ -577,6 +600,14 @@ $(document).ready(function(){
         if ($('#offcanvas-volume-delete-switch').prop('checked')) {
             $('#offcanvas-volume-delete-switch').prop('checked', false);
             $('#offcanvas-volume-delete-submit').prop('disabled', true);
+        }
+    })
+
+    // hide offcanvas category delete
+    $('#offcanvas-category-delete').on('hide.bs.offcanvas', function () {
+        if ($('#offcanvas-category-delete-switch').prop('checked')) {
+            $('#offcanvas-category-delete-switch').prop('checked', false);
+            $('#offcanvas-category-delete-submit').prop('disabled', true);
         }
     })
 

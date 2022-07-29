@@ -206,7 +206,7 @@ function user_select(user_id) {
             if($.isEmptyObject(msg.errors)) {
                 $(offcanvas_id + '-user-login').text(msg.data.user.user_login);
                 $(offcanvas_id + '-user-status').text(msg.data.user.user_status);
-                $(offcanvas_id + '-created').text(msg.data.user.created);
+                $(offcanvas_id + '-created').text(datetime(msg.data.user.created));
 
                 if (msg.data.user.user_summary) {
                     $(offcanvas_id + '-user-summary').text(msg.data.user.user_summary);
@@ -278,14 +278,14 @@ function users_list(offset=0) {
 
                 } else {
                     $('#tab-users-rows').removeClass('d-none');
-                
                     msg.data.users.forEach(function(user) {
+                        let user_status = USER_DATA.user_status == 'admin' ? '<a href="#" onclick="show_offcanvas_user_status(' + user.id + ');">' + user.user_status + '</a>' : user.user_status;
                         $('#tab-users-rows').find('tbody').append(
                             '<tr>' +
                             '<th scope="row">' + user.id + '</th>' +
-                            '<td>' + user.created + '</td>' +
+                            '<td>' + datetime(user.created) + '</td>' +
                             '<td><a href="#" onclick="show_offcanvas_user_select(' + user.id + ');">' + user.user_login + '</a></td>' +
-                            '<td><a href="#" onclick="show_offcanvas_user_status(' + user.id + ');">' + user.user_status + '</a></td>' +
+                            '<td>' + user_status + '</td>' +
                             '</tr>'
                         );
                     });

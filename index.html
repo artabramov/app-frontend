@@ -480,7 +480,7 @@
         </div>
 
         <div class="mb-3 form-text" data-i18n="offcanvas-user-status-admin-text">
-          Can change user statuss. Can create, update, delete and read volumes, categories, posts, comments and uploads.
+          Can change user statuses. Can create, update, delete and read volumes, categories, posts, comments and uploads.
         </div>
         
         <div class="form-check">
@@ -541,7 +541,7 @@
       <div class="offcanvas-body">
 
         <div class="mb-3 form-text" data-i18n="offcanvas-user-status-after-text-1">
-          User status changed successfully.
+          User status has been changed successfully. Please be very careful when you are changing user statuses.
         </div>
 
         <button id="offcanvas-user-status-after-submit" class="btn btn-primary" type="button">
@@ -603,13 +603,6 @@
           <div id="offcanvas-user-select-created">
           </div>
         </div>
-
-        <button id="offcanvas-user-select-submit" class="btn btn-primary" type="button">
-          <span data-i18n="offcanvas-user-select-submit">
-            Change role
-          </span>
-          <i class="bi bi-arrow-right"></i>
-        </button>
 
       </div>
     </div>
@@ -806,7 +799,7 @@
 
         <div class="form-floating mb-2">
           <textarea id="offcanvas-category-update-category-summary" class="form-control" style="height: 128px" maxlength="127" placeholder="Volume summary"></textarea>
-          <label for="offcanvas-category-update-category-summary" data-i18n="offcanvas-categore-update-category-summary">
+          <label for="offcanvas-category-update-category-summary" data-i18n="offcanvas-category-update-category-summary">
             Category summary
           </label>
           <div id="offcanvas-category-update-category-summary-error" class="form-text text-danger d-none"></div>
@@ -1226,7 +1219,7 @@
 
       <!-- Tab users -->
       <div id="tab-users" class="container-fluid d-none">
-        <h1 class="d-inline" data-i18n="tab-users-title">
+        <h1 class="pb-4" data-i18n="tab-users-title">
           Users
         </h1>
 
@@ -1251,15 +1244,17 @@
 
       <!-- Tab volumes -->
       <div id="tab-volumes" class="container-fluid d-none">
-        <h1 class="d-inline" data-i18n="tab-volumes-title">
+        <h1 class="pb-4" data-i18n="tab-volumes-title">
           Volumes
         </h1>
 
-        <button id="tab-volumes-insert" class="btn btn-outline-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas-volume-insert">
-          <span data-i18n="tab-volumes-insert">
-            Add volume
-          </span>
-        </button>
+        <div class="pb-4">
+          <button id="tab-volumes-insert" class="btn btn-outline-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas-volume-insert">
+            <span data-i18n="tab-volumes-insert">
+              Add volume
+            </span>
+          </button>
+        </div>
 
         <div id="tab-volumes-empty" class="d-none" data-i18n="tab-volumes-empty">
           No volumes yet.
@@ -1283,15 +1278,17 @@
 
       <!-- Tab categories -->
       <div id="tab-categories" class="container-fluid d-none">
-        <h1 class="d-inline" data-i18n="tab-categories-title">
+        <h1 class="pb-4" data-i18n="tab-categories-title">
           Categories
         </h1>
 
-        <button id="tab-categories-insert" class="btn btn-outline-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas-category-insert">
-          <span data-i18n="tab-categories-insert">
-            Add category
-          </span>
-        </button>
+        <div class="pb-4">
+          <button id="tab-categories-insert" class="btn btn-outline-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas-category-insert">
+            <span data-i18n="tab-categories-insert">
+              Add category
+            </span>
+          </button>
+        </div>
 
         <div id="tab-categories-empty" class="d-none" data-i18n="tab-categories-empty">
           No categories yet.
@@ -1302,7 +1299,7 @@
             <tr>
               <th scope="col">#</th>
               <th data-i18n="tab-categories-rows-created" scope="col">Created</th>
-              <th data-i18n="tab-categories-rows-category-title" scope="col">Category title</th>
+              <th class="w-75" data-i18n="tab-categories-rows-category-title" scope="col">Category title</th>
             </tr>
           </thead>
           <tbody></tbody>
@@ -1318,6 +1315,9 @@
           <span id="tab-posts-title-by-tag" class="d-none" data-i18n="tab-posts-title-by-tag">Posts by tag</span>
           <span id="tab-posts-title-object" class="d-none">object</span>
         </h1>
+
+        <div id="tab-posts-volume-summary" class="w-50 d-none">
+        </div>
 
         <div class="pb-4">
           <div id="tab-posts-post-status" class="btn-group btn-group-outline d-none pe-5">
@@ -1356,13 +1356,11 @@
               <th scope="col">#</th>
               <th data-i18n="tab-posts-rows-created" scope="col">Created</th>
               <th data-i18n="tab-posts-rows-user" scope="col">User</th>
-              <th data-i18n="tab-posts-rows-post-title" scope="col">Post title</th>
               <th data-i18n="tab-posts-rows-category" scope="col">Post category</th>
+              <th data-i18n="tab-posts-rows-post-title" scope="col">Post title</th>
+              <th data-i18n="tab-posts-rows-comments-count" scope="col">Comments count</th>
               <th data-i18n="tab-posts-rows-post-tags" scope="col">Post tags</th>
               <th data-i18n="tab-posts-rows-post-sum" scope="col">Post sum</th>
-              <th data-i18n="tab-posts-rows-comments-count" scope="col">Comments count</th>
-              <th data-i18n="tab-posts-rows-uploads-count" scope="col">Uploads count</th>
-              <th data-i18n="tab-posts-rows-uploads-size" scope="col">Uploads size</th>
             </tr>
           </thead>
           <tbody></tbody>
@@ -1377,20 +1375,25 @@
 
       <!-- Tab comments -->
       <div id="tab-comments" class="container-fluid d-none">
-        <h1>
-          <a id="tab-comments-volume-title" class="link-secondary" href="#">
-            Volume title
-          </a>
-          <i class="bi bi-arrow-right h3"></i>
-          <span id="tab-comments-post-title">
-            Post title
-          </span>
+
+        <a id="tab-comments-volume-title" class="link-secondary" href="#">
+          Volume title
+        </a>
+
+        <h1 id="tab-comments-post-title" class="pb-4">
+          Post title
         </h1>
 
-        <div id="tab-comments-post-content">
-          Post content.
+        <div class="alert alert-secondary" role="alert">
+          <p id="tab-comments-post-content"></p>
+          <hr>
+          <small class="mb-0">
+            <span id="tab-comments-post-tags"></span>
+            <br>
+            <span id="tab-comments-post-user">dummy</span>,
+            <span id="tab-comments-post-created">1 Jan 1970</span>
+          </small>
         </div>
-
 
         <div class="container-fluid p-0">
           <div class="row">
@@ -1502,7 +1505,6 @@
 
           </div>
         </div>
-
 
         <div class="container-fluid text-center p-0 m-0">
 

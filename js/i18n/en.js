@@ -17,21 +17,26 @@ let I18N_en =
     },
 
     '_sizes': {
-        '0': 'B', 
-        '1': 'kB', 
-        '2': 'MB', 
-        '3': 'GB', 
-        '4': 'TB', 
-        '5': 'PB', 
-        '6': 'EB', 
-        '7': 'ZB', 
-        '8': 'YB'
+        '0': 'Bytes', 
+        '1': 'kBytes', 
+        '2': 'MBytes', 
+        '3': 'GBytes', 
+        '4': 'TBytes', 
+        '5': 'PBytes', 
+        '6': 'EBytes', 
+        '7': 'ZBytes', 
+        '8': 'YBytes'
     },
 
     '_currencies': {
         'RUB': 'RUB (russian ruble)',
         'USD': 'USD (US dollar)',
         'EUR': 'EUR (european euro)',
+    },
+
+    '_actions': {
+        'update': 'Update',
+        'delete': 'Delete',
     },
 
 }
