@@ -66,8 +66,9 @@ function posts_list(volume_id=0, post_status='', post_title='', post_tag='', off
                             '<td>' + post.category.category_title + '</td>' +
                             '<td><a href="#" onclick="show_comments(\'' + post.id + '\', 0);">' + post.post_title + '</a></td>' +
                             '<td>' + format_number(post.meta.comments_count) + '</td>' +
+                            '<td>' + format_number(post.meta.uploads_count) + '</td>' +
                             '<td>' + tags_list(post.tags) + '</td>' +
-                            '<td class="text-end fw-bold">' + format_sum(post.post_sum) + '</td>' +
+                            '<td class="text-end fw-bold">' + format_sum(post.post_sum, true) + '</td>' +
                             '</tr>'
                         );
                     });

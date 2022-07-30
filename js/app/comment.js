@@ -16,7 +16,7 @@ function comments_list(post_id, offset=0) {
         url: APP_URL + 'post/' + post_id + '/',
         dataType: 'json',
         success: function(msg) {
-            console.log(msg);
+            //console.log(msg);
 
             if($.isEmptyObject(msg.errors)) {
                 $('#tab-comments-volume-title').text(msg.data.post.volume.volume_title);
@@ -27,6 +27,17 @@ function comments_list(post_id, offset=0) {
                 //
                 $('#tab-comments-post-title').text(msg.data.post.post_title);
                 $('#tab-comments-post-content').text(msg.data.post.post_content);
+                //
+                if(msg.data.post.category) {
+                    $('#tab-comments-category-title').text(msg.data.post.category.category_title);
+                    $('#tab-comments-category-title').removeClass('d-none');
+                } else {
+                    $('#tab-comments-category-title').text('');
+                    $('#tab-comments-category-title').addClass('d-none');
+                }
+                //
+                $('#tab-comments-volume-currency').text(msg.data.post.volume.volume_currency);
+                $('#tab-comments-post-sum').html(format_sum(msg.data.post.post_sum, true));
             }
             
         },
@@ -40,7 +51,7 @@ function comments_list(post_id, offset=0) {
         url: APP_URL + 'post/' + post_id + '/comments/' + offset + '/',
         dataType: 'json',
         success: function(msg) {
-            //console.log(msg);
+            console.log(msg);
 
             if($.isEmptyObject(msg.errors)) {
                 if (msg.data.comments.length == 0) {
@@ -53,14 +64,21 @@ function comments_list(post_id, offset=0) {
                 
                     msg.data.comments.forEach(function(comment) {
                         $('#tab-comments-rows').append(
-                            '<p onmouseover="show_actions(\'#actions-comment-id-' + comment.id + '\');" onmouseout="hide_actions(\'#actions-comment-id-' + comment.id + '\');">' + 
+                            '<div class="alert alert-secondary" role="alert">' +
+                            '<p>' + 
                             '<span id="comment-id-' + comment.id + '">' + comment.comment_content + '</span>' + 
-                            ' ' +
+                            '</p>' +
+                            '<hr>' +
+                            '<div onmouseover="show_actions(\'#actions-comment-id-' + comment.id + '\');" onmouseout="hide_actions(\'#actions-comment-id-' + comment.id + '\');">' +
+                            '<a href="#" onclick="show_offcanvas_user_select(' + comment.user_id + ');">' + comment.user.user_login + '</a>, ' +
+                            '<span class="text-secondary">' + datetime(comment.created) + '</span>' +
                             '<span id="actions-comment-id-' + comment.id + '" class="d-none">' +
-                            '<a href="#" onclick="show_offcanvas_comment_update(' + comment.id + ');">update</a> ' +
-                            '<a href="#" onclick="show_offcanvas_comment_delete(' + comment.id + ');">delete</a>' +
+                            ' ' +
+                            '<a href="#" class="link-primary ms-3" onclick="show_offcanvas_comment_update(' + comment.id + ');">' + I18N['_actions']['update'] + '</a> ' +
+                            '<a href="#" class="link-danger ms-2" onclick="show_offcanvas_comment_delete(' + comment.id + ');">' + I18N['_actions']['delete'] + '</a>' +
                             '</span>' + 
-                            '</p>'
+                            '</div>' +
+                            '</div>'
                         );
                     });
                     

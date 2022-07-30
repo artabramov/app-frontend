@@ -51,7 +51,7 @@ const I18N_ru =
     'navbar-volumes': 'Хранилища',
     'navbar-categories': 'Категории',
     'navbar-reports': 'Отчеты',
-    'qwerty': 'Добавить',
+    'navbar-add': 'Добавить',
     'navbar-add-volume': 'Хранилище',
     'navbar-add-category': 'Категорию',
     'navbar-add-post': 'Запись',
@@ -60,6 +60,8 @@ const I18N_ru =
     'navbar-search-title': 'по названию',
     'navbar-search-tag': 'по метке',
     '_navbar-search': 'поиск записей',
+    'navbar-backward': 'Назад',
+    'navbar-refresh': 'Обновить',
 
     'navbar-user-register': 'Зарегистрироваться',
     'navbar-user-signin': 'Войти',
@@ -202,10 +204,11 @@ const I18N_ru =
     'tab-posts-rows-post-sum': 'Сумма',
     
     'tab-comments-title': 'Комментарии',
-    'tab-comments-uploads-title': 'Загруженные файлы',
+    'tab-comments-uploads-title': 'Файлы',
     'tab-comments-insert': 'Добавить комментарий',
     'tab-comments-uploads-insert': 'Загрузить файлы',
-    'tab-comments-emtpy': 'Еще нет ни одного комментария.',
+    'tab-comments-empty': 'Еще нет ни одного комментария.',
+    'tab-comments-uploads-empty': 'Еще не загружено ни одного файла.',
     'tab-comments-post-update': 'Изменить запись',
     'tab-comments-post-delete': 'Удалить запись',
 

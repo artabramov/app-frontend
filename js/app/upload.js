@@ -68,13 +68,13 @@ function uploads_list(post_id) {
                 
                     msg.data.uploads.forEach(function(upload) {
                         $('#tab-comments-uploads-rows').append(
-                            '<p onmouseover="show_actions(\'#actions-upload-id-' + upload.id + '\');" onmouseout="hide_actions(\'#actions-upload-id-' + upload.id + '\');">' +
+                            '<div class="border border-secondary rounded m-0 mb-3 p-3" onmouseover="show_actions(\'#actions-upload-id-' + upload.id + '\');" onmouseout="hide_actions(\'#actions-upload-id-' + upload.id + '\');">' +
                             '<a href="' + upload.upload_link + '" target="_blank">' + upload.upload_name + '</a> ' + filesize(upload.upload_size, I18N._sizes) + 
                             ' ' +
                             '<span id="actions-upload-id-' + upload.id + '" class="d-none">' +
                             '<a href="#" onclick="show_offcanvas_upload_delete(' + upload.id + ');">delete</a>' +
                             '</span>' + 
-                            '</p>'
+                            '</div>'
                         );
                     });
                 }

@@ -106,7 +106,9 @@ function update_navbar(user_data) {
         $('#navbar-reports').removeClass('d-none');
         $('#navbar-add').removeClass('d-none');
         $('#navbar-search').removeClass('d-none');
-        
+        $('#navbar-backward').removeClass('d-none');
+        $('#navbar-refresh').removeClass('d-none');
+
         $('#navbar-i18n').removeClass('d-none');
         $('#navbar-user-login').text(user_data.user_login);
         $('#navbar-user').removeClass('d-none');
@@ -132,6 +134,8 @@ function update_navbar(user_data) {
         $('#navbar-reports').addClass('d-none');
         $('#navbar-add').addClass('d-none');
         $('#navbar-search').addClass('d-none');
+        $('#navbar-backward').addClass('d-none');
+        $('#navbar-refresh').addClass('d-none');
 
         $('#navbar-i18n').removeClass('d-none');
         $('#navbar-user-login').text('');
@@ -406,13 +410,14 @@ function format_number(value) {
     return value;
 }
 
-function format_sum(value) {
+function format_sum(value, show_plus=false) {
     if (value == undefined) {
         value = 0;
     }
     value = parseFloat(value).toFixed(2);
     if (value > 0) {
-        return '<span class="text-success">' + value + '</span>';
+        let plus = show_plus ? '+' : '';
+        return '<span class="text-success">' + plus + value + '</span>';
     
     } else if (value < 0) {
         return '<span class="text-danger">' + value + '</span>';

@@ -76,7 +76,7 @@
             </li>
 
             <li id="navbar-add" class="nav-item dropdown pe-5 d-none">
-              <a class="btn btn-outline-light dropdown-toggle" data-i18n="qwerty" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <a class="btn btn-outline-light dropdown-toggle" data-i18n="navbar-add" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Add
               </a>
               <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbar-add">
@@ -98,7 +98,7 @@
               </ul>
             </li>
 
-            <li id="navbar-search" class="nav-item d-none">
+            <li id="navbar-search" class="nav-item pe-5 d-none">
               <div class="input-group">
                 <input class="form-control app-search" type="search" placeholder="search posts" aria-label="Search">
                 <!--
@@ -112,6 +112,24 @@
                   <li><a id="navbar-search-tag" class="dropdown-item" data-i18n="navbar-search-tag" href="#">by tag</a></li>
                 </ul>
               </div>
+            </li>
+
+            <li id="navbar-backward" class="nav-item d-none pe-2">
+              <a class="nav-link" href="#">
+                <i class="bi bi-arrow-left"></i>
+                <span data-i18n="navbar-backward">
+                  Backward
+                </span>
+              </a>
+            </li>
+
+            <li id="navbar-refresh" class="nav-item d-none">
+              <a class="nav-link" href="#">
+                <i class="bi bi-arrow-clockwise"></i>
+                <span data-i18n="navbar-refresh">
+                  Refresh
+                </span>
+              </a>
             </li>
 
           </ul>
@@ -1194,7 +1212,7 @@
     </div>
 
     <!-- Tabs -->
-    <div class="container-fluid p-4">
+    <div class="container-fluid p-4 mb-5">
 
       <!-- Tab outer -->
       <div id="tab-outer" class="container-fluid d-none">
@@ -1359,6 +1377,7 @@
               <th data-i18n="tab-posts-rows-category" scope="col">Post category</th>
               <th data-i18n="tab-posts-rows-post-title" scope="col">Post title</th>
               <th data-i18n="tab-posts-rows-comments-count" scope="col">Comments count</th>
+              <th data-i18n="tab-posts-rows-uploads-count" scope="col">Uploads count</th>
               <th data-i18n="tab-posts-rows-post-tags" scope="col">Post tags</th>
               <th data-i18n="tab-posts-rows-post-sum" scope="col">Post sum</th>
             </tr>
@@ -1376,9 +1395,21 @@
       <!-- Tab comments -->
       <div id="tab-comments" class="container-fluid d-none">
 
-        <a id="tab-comments-volume-title" class="link-secondary" href="#">
+        <a id="tab-comments-volume-title" class="link-primary" href="#">
           Volume title
         </a>
+
+        <span id="tab-comments-volume-currency" class="text-secondary ps-5">
+          USD
+        </span>
+
+        <span id="tab-comments-post-sum" class="fw-bold">
+          0
+        </span>
+
+        <span id="tab-comments-category-title" class="text-secondary ps-5">
+          Category title
+        </span>
 
         <h1 id="tab-comments-post-title" class="pb-3">
           Post title
@@ -1398,14 +1429,14 @@
           </a>
         </div>
 
-        <div class="alert alert-secondary" role="alert">
+        <div class="alert alert-secondary mb-4" role="alert">
           <p id="tab-comments-post-content"></p>
           <hr>
           <small class="mb-0">
-            <span id="tab-comments-post-tags"></span>
-            <br>
             <span id="tab-comments-post-user">dummy</span>,
-            <span id="tab-comments-post-created">1 Jan 1970</span>
+            <span id="tab-comments-post-created" class="text-secondary">1 Jan 1970</span>
+            <br>
+            <span id="tab-comments-post-tags"></span>
           </small>
         </div>
 
@@ -1417,11 +1448,13 @@
                 Comments
               </h2>
       
-              <button id="tab-comments-insert" class="btn btn-outline-primary me-5" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas-comment-insert">
-                <span data-i18n="tab-comments-insert">
-                  Add comment
-                </span>
-              </button>
+              <div class="pb-4">
+                <button id="tab-comments-insert" class="btn btn-outline-primary me-5" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas-comment-insert">
+                  <span data-i18n="tab-comments-insert">
+                    Add comment
+                  </span>
+                </button>
+              </div>
       
               <div id="tab-comments-empty" class="d-none" data-i18n="tab-comments-empty">
                 No comments yet.
@@ -1430,23 +1463,24 @@
               <div id="tab-comments-rows" class="d-none">
               </div>
       
-              <nav id="tab-comments-pagination" aria-label="Comments pagination" class="d-none">
+              <nav id="tab-comments-pagination" aria-label="Comments pagination" class="d-none ps-3">
                 <ul class="pagination">
                 </ul>
               </nav>
             </div>
 
             <div class="col-6">
-              <h2 data-i18n="tab-comments-uploads-title">
-                Uploaded files
+              <h2 class="pb-3" data-i18n="tab-comments-uploads-title">
+                Files
               </h2>
 
-              <button id="tab-comments-uploads-insert" class="btn btn-outline-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas-uploads-insert">
-                <span data-i18n="tab-comments-uploads-insert">
-                  Upload files
-                </span>
-                <i class="bi bi-arrow-up"></i>
-              </button>
+              <div class="pb-4">
+                <button id="tab-comments-uploads-insert" class="btn btn-outline-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas-uploads-insert">
+                  <span data-i18n="tab-comments-uploads-insert">
+                    Upload files
+                  </span>
+                </button>
+              </div>
 
               <div id="tab-comments-uploads-empty" class="d-none" data-i18n="tab-comments-uploads-empty">
                 No uploads yet.
